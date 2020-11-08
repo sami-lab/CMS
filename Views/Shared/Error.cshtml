@@ -1,0 +1,24 @@
+﻿@inject IConfiguration Configuration
+
+@if (ViewBag.ErrorTitle == null)
+{
+
+    string email = null;
+    email = Configuration["Email"] != null ? @Configuration["Email"] : "85575687@qq.com";
+
+    <h3>
+        An occured while processing your request. The support
+        team is notified and we are working on the fix
+    </h3>
+
+    <h5>Please contact us on @email</h5>
+    <hr />
+}
+else
+{
+    <h1 class="text-danger">@ViewBag.ErrorTitle</h1>
+    <h6 class="text-danger">@ViewBag.ErrorMessage</h6>
+}
+
+
+

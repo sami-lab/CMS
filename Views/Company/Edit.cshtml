@@ -1,0 +1,609 @@
+﻿@model WebBuilder.ViewModel.Companies.CompaniesViewModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+<div class="container">
+    <form asp-action="Edit">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <div class="bg-light m-3 p-5">
+            <h1 class="text-center mt-3 text-info">Update Brand</h1>
+            <div class="row">
+
+                <div class="col-md-6 px-1">
+                    <div class="form-group">
+                        <label asp-for="CompanyName" class="control-label"></label>
+                        <input asp-for="CompanyName" id="input_3" class="form-control" />
+                        <span asp-validation-for="CompanyName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="CompanyLogo" class="col-form-label"></label>
+                        <div class="custom-file">
+                            <input asp-for="CompanyLogo" class="form-control custom-file-input" id="file_1">
+                            <label class="custom-file-label">Choose File...</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="CompanyTitle" class="control-label"></label>
+                        <input asp-for="CompanyTitle" id="input_1" class="form-control" />
+                        <span asp-validation-for="CompanyTitle" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="CompanyDesc" class="control-label"></label>
+                        <input asp-for="CompanyDesc" id="input_4" class="form-control" />
+                        <span asp-validation-for="CompanyDesc" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="CompanyBackgorund" class="col-form-label"></label>
+                        <div class="custom-file">
+                            <input asp-for="CompanyBackgorund" class="form-control custom-file-input" id="file_2">
+                            <label class="custom-file-label">Choose File...</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 px-1">
+                    @*WhyChooseUS*@
+                    <div class="form-group">
+                        <label asp-for="whyCooseUsImage" class="col-form-label"></label>
+                        <div class="custom-file">
+                            <input asp-for="whyCooseUsImage" class="form-control custom-file-input" id="file_3">
+                            <label class="custom-file-label">Choose File...</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="whyCooseUsText" class="control-label"></label>
+                        <input asp-for="whyCooseUsText" id="input_2" class="form-control" />
+                        <span asp-validation-for="whyCooseUsText" class="text-danger"></span>
+                    </div>
+
+                    @*Contact*@
+                    <div class="form-group">
+                        <label asp-for="CompanyAdd" class="control-label"></label>
+                        <input asp-for="CompanyAdd" id="input_5" class="form-control" />
+                        <span asp-validation-for="CompanyAdd" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="CompanyPhone" class="control-label"></label>
+                        <input asp-for="CompanyPhone" id="input_6" class="form-control" />
+                        <span asp-validation-for="CompanyPhone" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="CompanyEmail" class="control-label"></label>
+                        <input asp-for="CompanyEmail" id="input_7" class="form-control" />
+                        <span asp-validation-for="CompanyEmail" class="text-danger"></span>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <input type="submit" value="Update" class="btn btn-success rounded" />
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="w-100 px-0 mx-0 container-fluid">
+
+    <!--First Page Started -->
+    <div class=" container-fluid mx-auto">
+        <!-- Row 1 for text  -->
+        <div class="row">
+            <!-- Navbar Second div -->
+            <div class="col-12 text-white text-center py-lg-2 d-flex justify-content-center align-items-center element_1"
+                 style="background-image: url(/Image/background.jpg); background-size: cover;">
+                @Model.CompanyTitle
+            </div>
+        </div>
+        <!-- Row 2 for heading -->
+        <div class="row">
+            <!-- First Section of heading -->
+            <div class="col-12 d-flex justify-content-center align-items-center">
+
+                <div class="d-flex justify-content-between align-items-center">
+                    <span class="mx-3">
+                        <i class="fas fa-gem" style="color: #B97A57;"></i>
+                    </span>
+                    @*<h1 class="text-uppercase pt-5 pb-4"
+                            style="font-family: 'Libre Baskerville', serif; color: #B97A57 ;">
+                            Hoten
+                        </h1>*@
+
+                    <img asp-append-version="true" src="~/Image/Companies/@Model.CompanyLogoPath" id="image_1" />
+                    <span class="mx-3">
+                        <i class="fas fa-gem" style="color: #B97A57;"></i>
+                    </span>
+                </div>
+            </div>
+        </div>
+
+
+
+        <!--  -->
+        <nav class="navbar navbar-expand-lg navbar-light mb-lg-3">
+            <button class="border border-dark w-100 navbar-toggler ml-auto mb-3" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse " id="navbarSupportedContent">
+                <ul class="navbar-nav  mx-auto">
+                    <li class=" px-5 nav-item active">
+                        <a class="text-uppercase text-center font-weight-bold bg-light nav-link" href="#">
+                            Home
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item  px-5">
+                        <a class="text-uppercase text-dark text-center font-weight-bold bg-light nav-link"
+                           href="#">
+                            Products
+                        </a>
+                    </li>
+                    <li class="nav-item  px-5">
+                        <a class="text-uppercase text-dark text-center font-weight-bold bg-light nav-link"
+                           href="#">
+                            About Us
+                        </a>
+                    </li>
+                    <li class="nav-item  px-5">
+                        <a class="text-uppercase text-dark text-center font-weight-bold bg-light nav-link"
+                           href="#">
+                            Contact Us
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+
+
+
+
+        <!-- Row 4 hero image-->
+        <div class="row p-0">
+            <div class="col-12 p-0 d-flex justify-content-center align-items-center">
+                <img class="w-100" id="image_2" src="~/Image/Companies/@Model.CompanyBackgorundPath"
+                     alt="" asp-append-version="true" />
+            </div>
+        </div>
+
+        <!-- First page Ended |  container closing div -->
+    </div>
+    <div class=" container-fluid my-2 my-lg-5 ">
+        <!-- Row for three cards -->
+        <div class="row d-flex my-lg-5 justify-content-around align-items-center p-0">
+            <!-- Card one -->
+            <div class="col-10 my-2 py-md-0 col-md-4 d-flex justify-content-center align-items-center overflow-hidden  specialCol"
+                 style="height:10rem;">
+                <img src="~/Image/bg.jpg" asp-append-version="true" alt=""
+                     style="width: 100%;height: 100%;" class="cardImages " />
+            </div>
+            <!-- Card Two -->
+            <div class="col-10 my-2 py-md-0 col-md-4 d-flex justify-content-center align-items-center overflow-hidden  specialCol"
+                 style="height:10rem;">
+                <img src="~/Image/bg.jpg" alt="" asp-append-version="true"
+                     style="width: 100%;height: 100%;" class="cardImages " />
+            </div>
+            <!-- Card Three -->
+            <div class="col-10 my-2 py-md-0 col-md-4 d-flex justify-content-center align-items-center overflow-hidden  specialCol"
+                 style="height:10rem;">
+                <img src="~/Image/bg.jpg" alt="" asp-append-version="true"
+                     style="width: 100%;height: 100%;" class="cardImages " />
+            </div>
+
+
+
+        </div>
+    </div>
+   
+    @*----------------Why choose us Section--------------*@
+    <div class=" container-fluid my-2 my-lg-5">
+        <div class="row">
+            <!-- Left for image -->
+            <div class="col-12 col-md-6 p-0 d-flex justify-content-center align-items-center">
+                <img src="~/Image/Companies/@Model.whyCooseUsImagePath" id="image_3" alt="WhyChooseUs"
+                     style="width: 100%; height: 100%;" asp-append-version="true">
+            </div>
+            <!-- Right for text  -->
+            <div class="lightGray py-5 px-4 col-12 col-md-6 d-flex justify-content-center align-items-start flex-column"
+                 style="background: url(/Image/leafbg.png); background-repeat: no-repeat; background-position: right; background-color: #F4F4F4;">
+                <h1 class="text-uppercase " style="font-family: 'Libre Baskerville', serif; font-size: 1.8rem;">
+                    why
+                    choose
+                    us
+                </h1>
+                <span class="mt-lg-2"><img src="~/Image/greyDesign.png" alt="designPhoto"></span>
+                <p class="mt-lg-2 text-muted element_2" >
+                    @Model.whyCooseUsText
+                </p>
+                <a class="px-5 py-2 mt-lg-3 buttonHover text-uppercase" href="#">
+                    view more
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- Popular Products -->
+    <div class=" container-fluid d-flex justify-content-center align-items-center flex-column">
+        <!-- Hot sale -->
+        <div class="row">
+            <div class="col-12">
+                <h1 class="pt-lg-2" style="font-family: 'Great Vibes', cursive;">Hot Sale</h1>
+            </div>
+        </div>
+        <!-- Popular products -->
+        <div class="row">
+            <div class="col-12  text-center">
+                <h3 class="mx-auto pt-lg-2 text-uppercase font-weight-bold"
+                    style="font-family: 'Libre Baskerville', serif;">
+                    Popular
+                    products
+                </h3>
+            </div>
+        </div>
+        <!-- design -->
+        <div class="row">
+            <div class="col-12 mb-lg-5 mt-lg-2">
+                <img src="~/Image/TransparentDesign.png" alt="">
+            </div>
+        </div>
+        <!-- Images div -->
+        <div class="row d-flex justify-content-center align-items-center">
+            <div class="py-3  py-md-0 col-12 col-md-6 col-lg-3 d-flex justify-content-center align-items-center flex-column">
+                <img class="popularProductsImages"
+                     src="https://www.dodsandmcnair.com/include/site_storage/193388/defaultImage/converted/center-258x262-4141989.jpg"
+                     alt="" style="position: relative; z-index: 1" />
+                <p style="
+              position: absolute;
+              font-size: 4rem;
+              color: #9b562e;
+              top: 80px;
+              background: transparent;
+            ">
+                    <span>+</span>
+                </p>
+                <p class="pt-3">Outdoor Rugs</p>
+                <a href="#" class="text-decoration-none text-uppercase"
+                   style="border-bottom: 2px solid #9b562e; color: #9b562e ;">
+                    View
+                    more
+                </a>
+            </div>
+            <div class="py-3 py-md-0 col-12 col-md-6 col-lg-3 d-flex justify-content-center align-items-center flex-column">
+                <img class="popularProductsImages"
+                     src="https://www.dodsandmcnair.com/include/site_storage/193388/defaultImage/converted/center-258x262-4141989.jpg"
+                     alt="" style="position: relative; z-index: 1" />
+                <p style="
+              position: absolute;
+              font-size: 4rem;
+              color: #9b562e;
+              top: 80px;
+              background: transparent;
+            ">
+                    <span>+</span>
+                </p>
+
+                <p class="pt-3">Outdoor Rugs</p>
+                <a href="#" class="text-decoration-none text-uppercase"
+                   style="border-bottom: 2px solid #9b562e; color: #9b562e ;">
+                    View
+                    more
+                </a>
+
+            </div>
+            <div class="py-3 py-md-0 col-12 col-md-6 col-lg-3 d-flex justify-content-center align-items-center flex-column">
+                <img class="popularProductsImages"
+                     src="https://www.dodsandmcnair.com/include/site_storage/193388/defaultImage/converted/center-258x262-4141989.jpg"
+                     alt="" style="position: relative; z-index: 1" />
+                <p style="
+              position: absolute;
+              font-size: 4rem;
+              color: #9b562e;
+              top: 80px;
+              background: transparent;
+            ">
+                    <span>+</span>
+                </p>
+
+                <p class="pt-3">Outdoor Rugs</p>
+
+
+                <a href="#" class="text-decoration-none text-uppercase"
+                   style="border-bottom: 2px solid #9b562e; color: #9b562e ;">
+                    View
+                    more
+                </a>
+
+            </div>
+            <div class="py-3 py-md-0 col-12 col-md-6 col-lg-3  d-flex justify-content-center align-items-center flex-column">
+                <img class="popularProductsImages"
+                     src="https://www.dodsandmcnair.com/include/site_storage/193388/defaultImage/converted/center-258x262-4141989.jpg"
+                     alt="" style="position: relative; z-index: 1" />
+                <p style="
+              position: absolute;
+              font-size: 4rem;
+              color: #9b562e;
+              top: 80px;
+              background: transparent;
+            ">
+                    <span>+</span>
+                </p>
+
+                <p class="pt-3">Outdoor Rugs</p>
+
+
+                <a href="#" class="text-decoration-none text-uppercase"
+                   style="border-bottom: 2px solid #9b562e; color: #9b562e ;">
+                    View
+                    more
+                </a>
+
+
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- Popular case  container -->
+    <div class=" container-fluid pt-lg-4  d-flex justify-content-center align-items-center flex-column p-0">
+
+
+        <!-- Hot sale -->
+        <div class="row w-100 "
+             style="background-image: url(/Image/background.jpg);
+    background-size: cover;
+    background-repeat: no-repeat">
+            <div class="col-12 d-flex justify-content-center align-items-center flex-column">
+                <h1 class="pt-lg-2 pt-4 my-lg-4 text-white" style="font-family: 'Great Vibes', cursive;">Home Decia</h1>
+                <h3 class="mx-auto pt-lg-2 text-uppercase text-white font-weight-bold mb-lg-4"
+                    style="font-family: 'Libre Baskerville', serif;">
+                    Popular
+                    case
+                </h3>
+
+                <span class="text-white mb-lg-5 mb-5 pb-5">
+
+                    --------
+                    <img src="~/Image/diamond-white-desin.png" alt="">
+
+                </span>
+
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="container-fluid" style="position: relative; top: -4rem;">
+
+        <!-- First five images -->
+        <div class="row d-flex justify-content-center align-items-center ">
+            <div class="col-6  col-md-2 overflow-hidden  p-0">
+                <img src="https://officefurniturefirst.co.nz/wp-content/uploads/apollo-sofa-1-226x226.jpg" alt=""
+                     class="popularCaseImage">
+            </div>
+            <div class="col-6  col-md-2 overflow-hidden p-0">
+                <img src="https://officefurniturefirst.co.nz/wp-content/uploads/apollo-sofa-1-226x226.jpg" alt=""
+                     class="popularCaseImage">
+            </div>
+            <div class="col-6  col-md-2 overflow-hidden p-0">
+                <img src="https://officefurniturefirst.co.nz/wp-content/uploads/apollo-sofa-1-226x226.jpg" alt=""
+                     class="popularCaseImage">
+            </div>
+            <div class="col-6  col-md-2 overflow-hidden p-0">
+                <img src="https://officefurniturefirst.co.nz/wp-content/uploads/apollo-sofa-1-226x226.jpg" alt=""
+                     class="popularCaseImage">
+            </div>
+            <div class="col-6  col-md-2 overflow-hidden p-0">
+                <img src="https://officefurniturefirst.co.nz/wp-content/uploads/apollo-sofa-1-226x226.jpg" alt=""
+                     class="popularCaseImage">
+            </div>
+        </div>
+
+
+        <!-- Second five images -->
+        <div class="row d-flex justify-content-center align-items-center">
+            <div class=" col-6 col-md-2 overflow-hidden p-0">
+                <img src="https://officefurniturefirst.co.nz/wp-content/uploads/apollo-sofa-1-226x226.jpg" alt=""
+                     class="popularCaseImage">
+            </div>
+            <div class="col-6  col-md-2 overflow-hidden p-0">
+                <img src="https://officefurniturefirst.co.nz/wp-content/uploads/apollo-sofa-1-226x226.jpg" alt=""
+                     class="popularCaseImage">
+            </div>
+            <div class="col-6  col-md-2 overflow-hidden p-0">
+                <img src="https://officefurniturefirst.co.nz/wp-content/uploads/apollo-sofa-1-226x226.jpg" alt=""
+                     class="popularCaseImage">
+            </div>
+            <div class="col-6  col-md-2 overflow-hidden p-0">
+                <img src="https://officefurniturefirst.co.nz/wp-content/uploads/apollo-sofa-1-226x226.jpg" alt=""
+                     class="popularCaseImage">
+            </div>
+            <div class="col-6  col-md-2 overflow-hidden p-0">
+                <img src="https://officefurniturefirst.co.nz/wp-content/uploads/apollo-sofa-1-226x226.jpg" alt=""
+                     class="popularCaseImage">
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+
+
+    <div class=" container-fluid ">
+        <div class="row py-lg-5 d-flex justify-content-center align-items-center" style="background-color: #282828;">
+
+            <!-- First column -->
+            <div class="py-3 py-lg-0 col-9 col-md-4 d-flex justify-content-center align-items-start flex-column ">
+                <div class="row">
+                    <div class="col-12 d-flex justify-content-between align-items-center ">
+                        <span class="mx-3">
+                            <i class="fas fa-gem" style="color: #B97A57;"></i>
+                        </span>
+                        <h1 class="text-uppercase text-center mx-auto pb-lg-3 element_3"
+                            style="color: #B97A57; border-bottom: 4px dotted #9b562e;">
+                            @Model.CompanyName
+                        </h1>
+                        <span class="mx-3">
+                            <i class="fas fa-gem" style="color: #B97A57;"></i>
+                        </span>
+                    </div>
+                    <div class="col-12">
+                        <p class="text-muted text-center element_4">
+                            @Model.CompanyDesc
+                        </p>
+                    </div>
+                    <div class="col-12  d-flex justify-center align-items-center">
+                        <a href="#" class=" text-decoration-none mx-auto text-uppercase"
+                           style="border-bottom: 2px solid #9b562e; color: #9b562e ;">
+                            View
+                            more
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Second column -->
+            <!-- footer col sm -->
+            <div class="py-3 py-lg-0 col-9 col-md-2 justify-content-start align-items-start flex-column footerColSm">
+                <a class="text-decoration-none text-white text-uppercase " data-toggle="collapse" href="#firstColumn"
+                   role="button" aria-expanded="false" aria-controls="firstColumn"
+                   style="font-size: 1.1rem; font-family: 'Libre Baskerville', serif">
+                    Products
+                </a>
+                <div class="collapse mt-3 " id="firstColumn">
+                    <a class="d-block text-decoration-none" href="#">Dining & Kitchen</a>
+                    <a class="d-block text-decoration-none" href="#">Dining & Kitchen</a>
+                    <a class="d-block text-decoration-none" href="#">Dining & Kitchen</a>
+                    <a class="d-block text-decoration-none" href="#">Dining & Kitchen</a>
+                </div>
+            </div>
+            <!-- footer col lg -->
+            <div class="py-3 py-lg-0 col-9 col-md-2 justify-content-start align-items-start flex-column footerColLg ">
+                <a class="text-decoration-none text-white text-uppercase py-4"
+                   style="font-size: 1.1rem; font-family: 'Libre Baskerville', serif">
+                    Products
+                </a>
+                <div>
+                    <a class="d-block text-decoration-none" href="#">Dining & Kitchen</a>
+                    <a class="d-block text-decoration-none" href="#">Dining & Kitchen</a>
+                    <a class="d-block text-decoration-none" href="#">Dining & Kitchen</a>
+                    <a class="d-block text-decoration-none" href="#">Dining & Kitchen</a>
+                </div>
+            </div>
+
+            <!-- Third column About-->
+            <!-- footer col sm -->
+            <div class="py-3 py-lg-0 col-9 col-md-2  justify-content-start align-items-start flex-column footerColSm">
+
+                <a class="text-decoration-none text-white text-uppercase" data-toggle="collapse" href="#thridColumn"
+                   role="button" aria-expanded="false" aria-controls="thridColumn"
+                   style="font-size: 1.1rem; font-family: 'Libre Baskerville', serif">
+                    About Us
+                </a>
+
+
+                <div class="collapse mt-3 " id="thridColumn">
+                    <a class="d-block text-decoration-none" href="#">Dining & Kitchen</a>
+                    <a class="d-block text-decoration-none" href="#">Dining & Kitchen</a>
+                    <a class="d-block text-decoration-none" href="#">Dining & Kitchen</a>
+                    <a class="d-block text-decoration-none" href="#">Dining & Kitchen</a>
+                </div>
+
+
+
+            </div>
+
+
+            <!-- footer col lg -->
+            <div class="py-3 py-lg-0 col-9 col-md-2 justify-content-start align-items-start flex-column footerColLg ">
+                <a class="text-decoration-none text-white text-uppercase py-4"
+                   style="font-size: 1.1rem; font-family: 'Libre Baskerville', serif">
+                    About Us
+                </a>
+                <div>
+                    <a class="d-block text-decoration-none" href="#">Dining & Kitchen</a>
+                    <a class="d-block text-decoration-none" href="#">Dining & Kitchen</a>
+                    <a class="d-block text-decoration-none" href="#">Dining & Kitchen</a>
+                    <a class="d-block text-decoration-none" href="#">Dining & Kitchen</a>
+                </div>
+            </div>
+
+
+            <!-- Fourth column contact us -->
+            <!-- colsm -->
+            <div class="py-3 py-lg-0 col-9 col-md-2  justify-content-start align-items-start flex-column footerColSm">
+
+                <a class="text-decoration-none text-white text-uppercase" data-toggle="collapse" href="#fourthColumn"
+                   role="button" aria-expanded="false" aria-controls="fourthColumn"
+                   style="font-size: 1.1rem; font-family: 'Libre Baskerville', serif">
+                    Contact Us
+                </a>
+
+
+                <div class="collapse mt-3 " id="fourthColumn">
+                    <a class="d-block text-decoration-none" href="#"><i class="fas fa-map-marker-alt rounded mr-1" style="width:20px; height:20px;  margin-right:2px"></i>Add:<span class="element_5">@Model.CompanyAdd</span></a>
+                    <a class="d-block text-decoration-none" href="tel:02083226791">  <i class="fas fa-phone-volume rounded mr-1" style="width:20px; height:20px;  margin-right:2px"></i>TEL:<span class="element_6"> @Model.CompanyPhone</span></a>
+                    <a class="d-block text-decoration-none" href="mailto:320006220@qq.com">    <i class="fas fa-envelope-open-text rounded" style="width:20px; height:20px; margin-right:2px"></i>E-Mail:<span class="element_7"> @Model.CompanyEmail</span></a>
+
+                </div>
+
+
+
+            </div>
+            <!-- colLg -->
+            <div class="py-3 py-lg-0 col-9 col-md-2 justify-content-start align-items-start flex-column footerColLg ">
+                <a class="text-decoration-none text-white text-uppercase py-4"
+                   style="font-size: 1.1rem; font-family: 'Libre Baskerville', serif">
+                    Contact Us
+                </a>
+                <div>
+                    <a class="d-block text-decoration-none" href="#"><i class="fas fa-map-marker-alt rounded" style="width:20px; height:20px;  margin-right:2px"></i>Add:<span class="element_5">@Model.CompanyAdd</span></a>
+                    <a class="d-block text-decoration-none" href="tel:02083226791"><i class="fas fa-phone-volume rounded" style="width:20px; height:20px;  margin-right:2px"></i>TEL:<span class="element_6"> @Model.CompanyPhone</span></a>
+                    <a class="d-block text-decoration-none" href="mailto:320006220@qq.com">    <i class="fas fa-envelope-open-text rounded" style="width:20px; height:20px;  margin-right:2px"></i>E-Mail:<span class="element_7"> @Model.CompanyEmail</span></a>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+<link href="~/css/company.css" rel="stylesheet" />
+    <script>
+        $(document).ready(function () {
+            $("[id^='file_']").on("change", function () {
+                var fileName = $(this).val().split("\\").pop();
+                $(this).next('.custom-file-label').html(fileName);
+                readURL(this, $(this).attr('id').split('_')[1]);
+            });
+
+            $("[id^='input_']").bind("input change", function () {
+                var inputId = $(this).attr('id').split('_')[1];
+                $(`.element_${inputId}`).text($(this).val())
+
+            });
+        });
+
+        function readURL(input, elementID) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    //alert(e.target.result);
+                    $(`#image_${elementID}`).attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
+}

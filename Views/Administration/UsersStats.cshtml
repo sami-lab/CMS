@@ -1,0 +1,110 @@
+﻿@model IEnumerable<WebBuilder.ViewModel.Account.UsersLocationViewModel>
+
+@{
+    ViewData["Title"] = "UsersStats";
+}
+
+<div class="container">
+    <h1>All Visits</h1>
+
+    @if (Model.Any())
+    {
+       
+        <div class="row">
+            <div class="panel panel-primary filterable">
+                <div class="panel-heading rounded">
+                    <h3 class="panel-title font-weight-bold">Users</h3>
+                    <div class="pull-right">
+                        <button class="btn btn-default btn-xs btn-filter"><i class="fas fa-filter"></i> Filter</button>
+                    </div>
+                </div>
+                <table class="table table-responsive ">
+                    <thead>
+                        <tr class="filters">
+                            <th><input type="text" class="form-control" placeholder="@Html.DisplayNameFor(model => model.First().IP)" disabled></th>
+                            <th><input type="text" class="form-control" placeholder="@Html.DisplayNameFor(model => model.First().Location)" disabled></th>
+                            <th><input type="text" class="form-control" placeholder="@Html.DisplayNameFor(model => model.First().Time)" disabled></th>
+                            <th><input type="text" class="form-control" placeholder=" @Html.DisplayNameFor(model => model.First().Url)" disabled></th>
+                            <th><input type="text" class="form-control" placeholder=" @Html.DisplayNameFor(model => model.First().Browser)" disabled></th>
+                           
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.IP)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Location)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Time)
+                                </td>
+                                <td>
+                                    <a href="@item.Url" target="_blank">URL</a>
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Browser)
+                                </td>
+
+                            </tr>
+
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <nav class="table-responsive">
+                <ul class="pagination justify-content-center d-flex flex-wrap">
+                    @if (ViewBag.CurrentPage > 1)
+                    {
+                        <li class="page-item">
+                            <a class="page-link" asp-controller="Administration" asp-action="UsersStats" asp-route-CompanyName="@ViewBag.CompanyName" >First</a>
+                        </li>
+                        <li class="page-item">
+                            @{ var pageNo = ViewBag.CurrentPage - 1; }
+                            <a class="page-link" asp-controller="Administration" asp-action="UsersStats" asp-route-CompanyName="@ViewBag.CompanyName" asp-route-pageNo="@pageNo">&laquo;</a>
+                        </li>
+                    }
+
+                    @for (int i = 1; i <= ViewBag.TotalPages; i++)
+                    {
+
+                        <li class="page-item @(i == ViewBag.CurrentPage ? "active" : "")">
+                            <a class="page-link" asp-controller="Administration" asp-action="UsersStats" asp-route-CompanyName="@ViewBag.CompanyName" asp-route-pageNo="@i">@i</a>
+                        </li>
+                    }
+
+                    @if (ViewBag.CurrentPage < ViewBag.TotalPages)
+                    {
+                        <li class="page-item">
+                            @{ var pageNo = ViewBag.CurrentPage + 1; }
+                            <a class="page-link" asp-controller="Administration" asp-action="UsersStats" asp-route-CompanyName="@ViewBag.CompanyName" asp-route-pageNo="@pageNo">&raquo;</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" asp-controller="Administration" asp-action="UsersStats" asp-route-CompanyName="@ViewBag.CompanyName" asp-route-pageNo="@ViewBag.TotalPages">Last</a>
+                        </li>
+                    }
+                </ul>
+            </nav>
+        </div>
+
+    }
+    else
+    {
+        <div class="card">
+            <div class="card-header">
+                No user Visited yet
+            </div>
+            <div class="card-body">
+               
+            </div>
+        </div>
+    }
+</div>
+@section Scripts{
+   
+    <link href="~/css/Table.css" rel="stylesheet" />
+    <script src="~/js/Filter.js"></script>
+}

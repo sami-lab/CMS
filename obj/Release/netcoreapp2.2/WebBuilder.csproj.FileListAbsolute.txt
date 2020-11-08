@@ -1,0 +1,124 @@
+C:\Users\Sami\source\repos\WebBuilder\backend\WebBuilder\bin\Release\netcoreapp2.2\WebBuilder.deps.json
+C:\Users\Sami\source\repos\WebBuilder\backend\WebBuilder\bin\Release\netcoreapp2.2\WebBuilder.runtimeconfig.json
+C:\Users\Sami\source\repos\WebBuilder\backend\WebBuilder\bin\Release\netcoreapp2.2\WebBuilder.runtimeconfig.dev.json
+C:\Users\Sami\source\repos\WebBuilder\backend\WebBuilder\bin\Release\netcoreapp2.2\WebBuilder.dll
+C:\Users\Sami\source\repos\WebBuilder\backend\WebBuilder\bin\Release\netcoreapp2.2\WebBuilder.pdb
+C:\Users\Sami\source\repos\WebBuilder\backend\WebBuilder\bin\Release\netcoreapp2.2\WebBuilder.Views.dll
+C:\Users\Sami\source\repos\WebBuilder\backend\WebBuilder\bin\Release\netcoreapp2.2\WebBuilder.Views.pdb
+C:\Users\Sami\source\repos\WebBuilder\backend\WebBuilder\obj\Release\netcoreapp2.2\WebBuilder.csprojAssemblyReference.cache
+C:\Users\Sami\source\repos\WebBuilder\backend\WebBuilder\obj\Release\netcoreapp2.2\WebBuilder.csproj.CoreCompileInputs.cache
+C:\Users\Sami\source\repos\WebBuilder\backend\WebBuilder\obj\Release\netcoreapp2.2\WebBuilder.RazorAssemblyInfo.cache
+C:\Users\Sami\source\repos\WebBuilder\backend\WebBuilder\obj\Release\netcoreapp2.2\WebBuilder.RazorAssemblyInfo.cs
+C:\Users\Sami\source\repos\WebBuilder\backend\WebBuilder\obj\Release\netcoreapp2.2\WebBuilder.AssemblyInfoInputs.cache
+C:\Users\Sami\source\repos\WebBuilder\backend\WebBuilder\obj\Release\netcoreapp2.2\WebBuilder.AssemblyInfo.cs
+C:\Users\Sami\source\repos\WebBuilder\backend\WebBuilder\obj\Release\netcoreapp2.2\WebBuilder.TagHelpers.input.cache
+C:\Users\Sami\source\repos\WebBuilder\backend\WebBuilder\obj\Release\netcoreapp2.2\WebBuilder.TagHelpers.output.cache
+C:\Users\Sami\source\repos\WebBuilder\backend\WebBuilder\obj\Release\netcoreapp2.2\WebBuilder.RazorCoreGenerate.cache
+C:\Users\Sami\source\repos\WebBuilder\backend\WebBuilder\obj\Release\netcoreapp2.2\Razor\Views\Account\AccessDenied.g.cshtml.cs
+C:\Users\Sami\source\repos\WebBuilder\backend\WebBuilder\obj\Release\netcoreapp2.2\Razor\Views\Account\ChangePassword.g.cshtml.cs
+C:\Users\Sami\source\repos\WebBuilder\backend\WebBuilder\obj\Release\netcoreapp2.2\Razor\Views\Account\ChangePasswordConfirmation.g.cshtml.cs
+C:\Users\Sami\source\repos\WebBuilder\backend\WebBuilder\obj\Release\netcoreapp2.2\Razor\Views\Account\Edit.g.cshtml.cs
+C:\Users\Sami\source\repos\WebBuilder\backend\WebBuilder\obj\Release\netcoreapp2.2\Razor\Views\Account\Login.g.cshtml.cs
+C:\Users\Sami\source\repos\WebBuilder\backend\WebBuilder\obj\Release\netcoreapp2.2\Razor\Views\Account\Profile.g.cshtml.cs
+C:\Users\Sami\source\repos\WebBuilder\backend\WebBuilder\obj\Release\netcoreapp2.2\Razor\Views\Account\Register.g.cshtml.cs
+C:\Users\Sami\source\repos\WebBuilder\backend\WebBuilder\obj\Release\netcoreapp2.2\Razor\Views\Administration\Admin.g.cshtml.cs
+C:\Users\Sami\source\repos\WebBuilder\backend\WebBuilder\obj\Release\netcoreapp2.2\Razor\Views\Administration\Contacts.g.cshtml.cs
+C:\Users\Sami\source\repos\WebBuilder\backend\WebBuilder\obj\Release\netcoreapp2.2\Razor\Views\Administration\GetAllRoles.g.cshtml.cs
+C:\Users\Sami\source\repos\WebBuilder\backend\WebBuilder\obj\Release\netcoreapp2.2\Razor\Views\Administration\ListUsers.g.cshtml.cs
+C:\Users\Sami\source\repos\WebBuilder\backend\WebBuilder\obj\Release\netcoreapp2.2\Razor\Views\Administration\UsersStats.g.cshtml.cs
+C:\Users\Sami\source\repos\WebBuilder\backend\WebBuilder\obj\Release\netcoreapp2.2\Razor\Views\Category\Create.g.cshtml.cs
+C:\Users\Sami\source\repos\WebBuilder\backend\WebBuilder\obj\Release\netcoreapp2.2\Razor\Views\Category\Details.g.cshtml.cs
+C:\Users\Sami\source\repos\WebBuilder\backend\WebBuilder\obj\Release\netcoreapp2.2\Razor\Views\Category\Edit.g.cshtml.cs
+C:\Users\Sami\source\repos\WebBuilder\backend\WebBuilder\obj\Release\netcoreapp2.2\Razor\Views\Category\Index.g.cshtml.cs
+C:\Users\Sami\source\repos\WebBuilder\backend\WebBuilder\obj\Release\netcoreapp2.2\Razor\Views\Company\Create.g.cshtml.cs
+C:\Users\Sami\source\repos\WebBuilder\backend\WebBuilder\obj\Release\netcoreapp2.2\Razor\Views\Company\Details.g.cshtml.cs
+C:\Users\Sami\source\repos\WebBuilder\backend\WebBuilder\obj\Release\netcoreapp2.2\Razor\Views\Company\Edit.g.cshtml.cs
+C:\Users\Sami\source\repos\WebBuilder\backend\WebBuilder\obj\Release\netcoreapp2.2\Razor\Views\Company\Index.g.cshtml.cs
+C:\Users\Sami\source\repos\WebBuilder\backend\WebBuilder\obj\Release\netcoreapp2.2\Razor\Views\Home\aboutus.g.cshtml.cs
+C:\Users\Sami\source\repos\WebBuilder\backend\WebBuilder\obj\Release\netcoreapp2.2\Razor\Views\Home\contactus.g.cshtml.cs
+C:\Users\Sami\source\repos\WebBuilder\backend\WebBuilder\obj\Release\netcoreapp2.2\Razor\Views\Home\Index.g.cshtml.cs
+C:\Users\Sami\source\repos\WebBuilder\backend\WebBuilder\obj\Release\netcoreapp2.2\Razor\Views\Home\Privacy.g.cshtml.cs
+C:\Users\Sami\source\repos\WebBuilder\backend\WebBuilder\obj\Release\netcoreapp2.2\Razor\Views\Products\Create.g.cshtml.cs
+C:\Users\Sami\source\repos\WebBuilder\backend\WebBuilder\obj\Release\netcoreapp2.2\Razor\Views\Products\Details.g.cshtml.cs
+C:\Users\Sami\source\repos\WebBuilder\backend\WebBuilder\obj\Release\netcoreapp2.2\Razor\Views\Products\Edit.g.cshtml.cs
+C:\Users\Sami\source\repos\WebBuilder\backend\WebBuilder\obj\Release\netcoreapp2.2\Razor\Views\Products\Index.g.cshtml.cs
+C:\Users\Sami\source\repos\WebBuilder\backend\WebBuilder\obj\Release\netcoreapp2.2\Razor\Views\Products\ListProducts.g.cshtml.cs
+C:\Users\Sami\source\repos\WebBuilder\backend\WebBuilder\obj\Release\netcoreapp2.2\Razor\Views\Products\Products.g.cshtml.cs
+C:\Users\Sami\source\repos\WebBuilder\backend\WebBuilder\obj\Release\netcoreapp2.2\Razor\Views\Shared\Error.g.cshtml.cs
+C:\Users\Sami\source\repos\WebBuilder\backend\WebBuilder\obj\Release\netcoreapp2.2\Razor\Views\Shared\Modal.g.cshtml.cs
+C:\Users\Sami\source\repos\WebBuilder\backend\WebBuilder\obj\Release\netcoreapp2.2\Razor\Views\Shared\NotFound.g.cshtml.cs
+C:\Users\Sami\source\repos\WebBuilder\backend\WebBuilder\obj\Release\netcoreapp2.2\Razor\Views\Shared\ProductNotFound.g.cshtml.cs
+C:\Users\Sami\source\repos\WebBuilder\backend\WebBuilder\obj\Release\netcoreapp2.2\Razor\Views\Shared\_Admin.g.cshtml.cs
+C:\Users\Sami\source\repos\WebBuilder\backend\WebBuilder\obj\Release\netcoreapp2.2\Razor\Views\Shared\_CookieConsentPartial.g.cshtml.cs
+C:\Users\Sami\source\repos\WebBuilder\backend\WebBuilder\obj\Release\netcoreapp2.2\Razor\Views\Shared\_Layout.g.cshtml.cs
+C:\Users\Sami\source\repos\WebBuilder\backend\WebBuilder\obj\Release\netcoreapp2.2\Razor\Views\Shared\_ValidationScriptsPartial.g.cshtml.cs
+C:\Users\Sami\source\repos\WebBuilder\backend\WebBuilder\obj\Release\netcoreapp2.2\Razor\Views\_ViewImports.g.cshtml.cs
+C:\Users\Sami\source\repos\WebBuilder\backend\WebBuilder\obj\Release\netcoreapp2.2\Razor\Views\_ViewStart.g.cshtml.cs
+C:\Users\Sami\source\repos\WebBuilder\backend\WebBuilder\obj\Release\netcoreapp2.2\WebBuilder.RazorTargetAssemblyInfo.cache
+C:\Users\Sami\source\repos\WebBuilder\backend\WebBuilder\obj\Release\netcoreapp2.2\WebBuilder.RazorTargetAssemblyInfo.cs
+C:\Users\Sami\source\repos\WebBuilder\backend\WebBuilder\obj\Release\netcoreapp2.2\WebBuilder.Views.pdb
+C:\Users\Sami\source\repos\WebBuilder\backend\WebBuilder\obj\Release\netcoreapp2.2\WebBuilder.dll
+C:\Users\Sami\source\repos\WebBuilder\backend\WebBuilder\obj\Release\netcoreapp2.2\WebBuilder.pdb
+C:\Users\Sami\source\repos\WebBuilder\backend\WebBuilder\obj\Release\netcoreapp2.2\WebBuilder.csproj.CopyComplete
+D:\Files and Softwares\ass\backend\WebBuilder\bin\Release\netcoreapp2.2\WebBuilder.deps.json
+D:\Files and Softwares\ass\backend\WebBuilder\bin\Release\netcoreapp2.2\WebBuilder.runtimeconfig.json
+D:\Files and Softwares\ass\backend\WebBuilder\bin\Release\netcoreapp2.2\WebBuilder.runtimeconfig.dev.json
+D:\Files and Softwares\ass\backend\WebBuilder\bin\Release\netcoreapp2.2\WebBuilder.dll
+D:\Files and Softwares\ass\backend\WebBuilder\bin\Release\netcoreapp2.2\WebBuilder.pdb
+D:\Files and Softwares\ass\backend\WebBuilder\bin\Release\netcoreapp2.2\WebBuilder.Views.dll
+D:\Files and Softwares\ass\backend\WebBuilder\bin\Release\netcoreapp2.2\WebBuilder.Views.pdb
+D:\Files and Softwares\ass\backend\WebBuilder\obj\Release\netcoreapp2.2\WebBuilder.csprojAssemblyReference.cache
+D:\Files and Softwares\ass\backend\WebBuilder\obj\Release\netcoreapp2.2\WebBuilder.csproj.CoreCompileInputs.cache
+D:\Files and Softwares\ass\backend\WebBuilder\obj\Release\netcoreapp2.2\WebBuilder.RazorAssemblyInfo.cache
+D:\Files and Softwares\ass\backend\WebBuilder\obj\Release\netcoreapp2.2\WebBuilder.RazorAssemblyInfo.cs
+D:\Files and Softwares\ass\backend\WebBuilder\obj\Release\netcoreapp2.2\WebBuilder.AssemblyInfoInputs.cache
+D:\Files and Softwares\ass\backend\WebBuilder\obj\Release\netcoreapp2.2\WebBuilder.AssemblyInfo.cs
+D:\Files and Softwares\ass\backend\WebBuilder\obj\Release\netcoreapp2.2\WebBuilder.TagHelpers.input.cache
+D:\Files and Softwares\ass\backend\WebBuilder\obj\Release\netcoreapp2.2\WebBuilder.TagHelpers.output.cache
+D:\Files and Softwares\ass\backend\WebBuilder\obj\Release\netcoreapp2.2\WebBuilder.RazorCoreGenerate.cache
+D:\Files and Softwares\ass\backend\WebBuilder\obj\Release\netcoreapp2.2\Razor\Views\Account\AccessDenied.g.cshtml.cs
+D:\Files and Softwares\ass\backend\WebBuilder\obj\Release\netcoreapp2.2\Razor\Views\Account\ChangePassword.g.cshtml.cs
+D:\Files and Softwares\ass\backend\WebBuilder\obj\Release\netcoreapp2.2\Razor\Views\Account\ChangePasswordConfirmation.g.cshtml.cs
+D:\Files and Softwares\ass\backend\WebBuilder\obj\Release\netcoreapp2.2\Razor\Views\Account\Edit.g.cshtml.cs
+D:\Files and Softwares\ass\backend\WebBuilder\obj\Release\netcoreapp2.2\Razor\Views\Account\Login.g.cshtml.cs
+D:\Files and Softwares\ass\backend\WebBuilder\obj\Release\netcoreapp2.2\Razor\Views\Account\Profile.g.cshtml.cs
+D:\Files and Softwares\ass\backend\WebBuilder\obj\Release\netcoreapp2.2\Razor\Views\Account\Register.g.cshtml.cs
+D:\Files and Softwares\ass\backend\WebBuilder\obj\Release\netcoreapp2.2\Razor\Views\Administration\Admin.g.cshtml.cs
+D:\Files and Softwares\ass\backend\WebBuilder\obj\Release\netcoreapp2.2\Razor\Views\Administration\Contacts.g.cshtml.cs
+D:\Files and Softwares\ass\backend\WebBuilder\obj\Release\netcoreapp2.2\Razor\Views\Administration\GetAllRoles.g.cshtml.cs
+D:\Files and Softwares\ass\backend\WebBuilder\obj\Release\netcoreapp2.2\Razor\Views\Administration\ListUsers.g.cshtml.cs
+D:\Files and Softwares\ass\backend\WebBuilder\obj\Release\netcoreapp2.2\Razor\Views\Administration\UsersStats.g.cshtml.cs
+D:\Files and Softwares\ass\backend\WebBuilder\obj\Release\netcoreapp2.2\Razor\Views\Category\Create.g.cshtml.cs
+D:\Files and Softwares\ass\backend\WebBuilder\obj\Release\netcoreapp2.2\Razor\Views\Category\Details.g.cshtml.cs
+D:\Files and Softwares\ass\backend\WebBuilder\obj\Release\netcoreapp2.2\Razor\Views\Category\Edit.g.cshtml.cs
+D:\Files and Softwares\ass\backend\WebBuilder\obj\Release\netcoreapp2.2\Razor\Views\Category\Index.g.cshtml.cs
+D:\Files and Softwares\ass\backend\WebBuilder\obj\Release\netcoreapp2.2\Razor\Views\Company\Create.g.cshtml.cs
+D:\Files and Softwares\ass\backend\WebBuilder\obj\Release\netcoreapp2.2\Razor\Views\Company\Details.g.cshtml.cs
+D:\Files and Softwares\ass\backend\WebBuilder\obj\Release\netcoreapp2.2\Razor\Views\Company\Edit.g.cshtml.cs
+D:\Files and Softwares\ass\backend\WebBuilder\obj\Release\netcoreapp2.2\Razor\Views\Company\Index.g.cshtml.cs
+D:\Files and Softwares\ass\backend\WebBuilder\obj\Release\netcoreapp2.2\Razor\Views\Home\aboutus.g.cshtml.cs
+D:\Files and Softwares\ass\backend\WebBuilder\obj\Release\netcoreapp2.2\Razor\Views\Home\contactus.g.cshtml.cs
+D:\Files and Softwares\ass\backend\WebBuilder\obj\Release\netcoreapp2.2\Razor\Views\Home\Index.g.cshtml.cs
+D:\Files and Softwares\ass\backend\WebBuilder\obj\Release\netcoreapp2.2\Razor\Views\Home\Privacy.g.cshtml.cs
+D:\Files and Softwares\ass\backend\WebBuilder\obj\Release\netcoreapp2.2\Razor\Views\Products\Create.g.cshtml.cs
+D:\Files and Softwares\ass\backend\WebBuilder\obj\Release\netcoreapp2.2\Razor\Views\Products\Details.g.cshtml.cs
+D:\Files and Softwares\ass\backend\WebBuilder\obj\Release\netcoreapp2.2\Razor\Views\Products\Edit.g.cshtml.cs
+D:\Files and Softwares\ass\backend\WebBuilder\obj\Release\netcoreapp2.2\Razor\Views\Products\Index.g.cshtml.cs
+D:\Files and Softwares\ass\backend\WebBuilder\obj\Release\netcoreapp2.2\Razor\Views\Products\ListProducts.g.cshtml.cs
+D:\Files and Softwares\ass\backend\WebBuilder\obj\Release\netcoreapp2.2\Razor\Views\Products\Products.g.cshtml.cs
+D:\Files and Softwares\ass\backend\WebBuilder\obj\Release\netcoreapp2.2\Razor\Views\Shared\Error.g.cshtml.cs
+D:\Files and Softwares\ass\backend\WebBuilder\obj\Release\netcoreapp2.2\Razor\Views\Shared\Modal.g.cshtml.cs
+D:\Files and Softwares\ass\backend\WebBuilder\obj\Release\netcoreapp2.2\Razor\Views\Shared\NotFound.g.cshtml.cs
+D:\Files and Softwares\ass\backend\WebBuilder\obj\Release\netcoreapp2.2\Razor\Views\Shared\ProductNotFound.g.cshtml.cs
+D:\Files and Softwares\ass\backend\WebBuilder\obj\Release\netcoreapp2.2\Razor\Views\Shared\_Admin.g.cshtml.cs
+D:\Files and Softwares\ass\backend\WebBuilder\obj\Release\netcoreapp2.2\Razor\Views\Shared\_CookieConsentPartial.g.cshtml.cs
+D:\Files and Softwares\ass\backend\WebBuilder\obj\Release\netcoreapp2.2\Razor\Views\Shared\_Layout.g.cshtml.cs
+D:\Files and Softwares\ass\backend\WebBuilder\obj\Release\netcoreapp2.2\Razor\Views\Shared\_ValidationScriptsPartial.g.cshtml.cs
+D:\Files and Softwares\ass\backend\WebBuilder\obj\Release\netcoreapp2.2\Razor\Views\_ViewImports.g.cshtml.cs
+D:\Files and Softwares\ass\backend\WebBuilder\obj\Release\netcoreapp2.2\Razor\Views\_ViewStart.g.cshtml.cs
+D:\Files and Softwares\ass\backend\WebBuilder\obj\Release\netcoreapp2.2\WebBuilder.RazorTargetAssemblyInfo.cache
+D:\Files and Softwares\ass\backend\WebBuilder\obj\Release\netcoreapp2.2\WebBuilder.RazorTargetAssemblyInfo.cs
+D:\Files and Softwares\ass\backend\WebBuilder\obj\Release\netcoreapp2.2\WebBuilder.Views.pdb
+D:\Files and Softwares\ass\backend\WebBuilder\obj\Release\netcoreapp2.2\WebBuilder.dll
+D:\Files and Softwares\ass\backend\WebBuilder\obj\Release\netcoreapp2.2\WebBuilder.pdb
+D:\Files and Softwares\ass\backend\WebBuilder\obj\Release\netcoreapp2.2\WebBuilder.csproj.CopyComplete

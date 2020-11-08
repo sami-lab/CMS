@@ -1,0 +1,52 @@
+﻿@model WebBuilder.ViewModel.Categories.CategoriesViewModel
+
+@{
+    ViewData["Title"] = "Categories Details";
+}
+
+<div class="container">
+    <h1>Details</h1>
+
+    <hr />
+    <dl class="row">
+
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CategoryName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CategoryName)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CompanyName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CompanyName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TotalProducts)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TotalProducts)
+        </dd>
+    </dl>
+
+    <div>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+        @if (User.IsInRole("Admin"))
+        {
+            <a asp-controller="Products" asp-action="Create" asp-route-categoryId="@Model.id">Create Products</a> <span>|</span>
+            <a asp-action="Categories">Back to List</a> <span>|</span>
+        }
+        else
+        {
+            <a asp-action="Index">Back to List</a> <span>|</span>
+        }
+        @await Html.PartialAsync("~/Views/Shared/Modal.cshtml", Model.id)<span>|</span>
+        <a asp-controller="Products" asp-action="ProductsInCategory" asp-route-id="@Model.id" asp-route-name="@Model.CompanyName">Products</a> |
+
+        <a asp-controller="Company" asp-action="Details" asp-route-name="@Model.CompanyName">Company</a>
+
+    </div>
+</div>

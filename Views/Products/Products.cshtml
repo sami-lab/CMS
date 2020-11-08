@@ -1,0 +1,371 @@
+﻿@model WebBuilder.ViewModel.Products.ProductsCategoriesViewModel
+
+@{
+    ViewData["Title"] = "Our Products-" + Model.company.CompanyName;
+    <meta name="description"
+          key="description"
+          content="Get Quality Products now at @Model.company.CompanyName" />
+    string CompanyLogoPath = null;
+    if (Model.company.CompanyLogoPath != null)
+    {
+        CompanyLogoPath = "~/Image/Companies/" + Model.company.CompanyLogoPath;
+    }
+    else
+    {
+        CompanyLogoPath = "~/Image/companyLogo.png";
+    }
+}
+
+<div>
+    <!--First Page Started -->
+    <div class=" container-fluid mx-auto">
+        <!-- Row 1 for text  -->
+        <div class="row">
+            <!-- Navbar Second div -->
+            <div class="col-12 text-white text-center py-lg-2 d-flex justify-content-center align-items-center "
+                 style="background-image: url(/Image/background.jpg); background-size: cover;">
+                @Model.company.CompanyTitle
+            </div>
+        </div>
+
+        <!-- Row 2 for heading -->
+        <div class="row">
+            <!-- First Section of heading -->
+            <div class="col-12 d-flex justify-content-center align-items-center">
+
+                <!-- Desin logo image -->
+                <div class="mb-5 p-0" style="height: 6rem;">
+                    <img asp-append-version="true" src="@CompanyLogoPath" style="width: 100%; height: 100%;" id="image_1" />
+                </div>
+
+
+            </div>
+        </div>
+        <!--  -->
+        <nav class="navbar navbar-expand-lg navbar-light mb-lg-3">
+            <button class="border border-dark w-100 navbar-toggler ml-auto mb-3" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse " id="navbarSupportedContent">
+                <ul class="navbar-nav  mx-auto">
+                    <li class=" px-5 nav-item active">
+                        <a class="text-uppercase text-center font-weight-bold nav-link " asp-controller="Company" asp-action="Details" asp-route-name="@Model.company.CompanyName">
+                            Home
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item  px-5">
+                        <a class="text-uppercase text-dark text-center font-weight-bold nav-link"
+                           asp-controller="Products" asp-action="Products" asp-route-name="@Model.company.CompanyName">
+                            Products
+                        </a>
+                    </li>
+                    <li class="nav-item  px-5">
+                        <a class="text-uppercase text-dark text-center font-weight-bold  nav-link"
+                           asp-controller="Home" asp-action="aboutus" asp-route-name="@Model.company.CompanyName">
+                            About Us
+                        </a>
+                    </li>
+                    <li class="nav-item  px-5">
+                        <a class="text-uppercase text-dark text-center font-weight-bold nav-link"
+                           asp-controller="Home" asp-action="contactus" asp-route-name="@Model.company.CompanyName">
+                            Contact Us
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+
+        <!-- First page ifded |  container closing div -->
+    </div>
+
+
+    <!-- Container for products -->
+    <div class="container">
+        <div class="row">
+            <!-- First column | Left column  -->
+            <div class="col-12 col-md-3">
+                <!-- First nested row -->
+                <div class="row mx-lg-2 mx-sm-1 justify-content-center justify-content-md-start">
+                    <!-- nested first column for heading -->
+
+                    <h3 class="font-weight-normal">Products</h3>
+
+                </div>
+
+                <!-- nested second row column for anchors -->
+                <div class="row px-lg-2">
+                    <div class="col-12 py-lg-4 d-flex justify-content-between align-items-md-start align-items-center flex-column">
+                        @foreach (var category in Model.Categories)
+                        {
+                            <a asp-controller="Products" asp-action="ProductsInCategory" asp-route-categoryId="@category.id" asp-route-name="@Model.company.CompanyName" class="py-2 text-decoration-none text-muted font-weight-normal"
+                               style="font-size: 1.2rem">@category.CategoryName</a>
+                            <span class="" style="width: 50px; background-color: #9b562e; height: 2px"></span>
+                        }
+
+                    </div>
+                </div>
+                <!-- nested Third row for products -->
+                <div class="row px-lg-4 my-5">
+                    @foreach (var SpecialProducts in Model.SpecialProducts)
+                    {
+                        string productpath = null;
+                        if (SpecialProducts.ImageName != null)
+                        {
+                            productpath = "~/Image/Products/" + SpecialProducts.ImageName;
+                        }
+                        else
+                        {
+                            productpath = "~/Image/download.png";
+                        }
+                        <!-- nested for image -->
+                        <div class="col-8 col-md-4 overflow-hidden py-2">
+                            <img src="@productpath" asp-append-version="true"
+                                 class="border border-primary smallImages" alt="" style="width: 100%;" />
+                        </div>
+                        <!-- nested for anchor -->
+                        <div class="col-4 col-md-8 d-flex justify-content-center align-items-start  align-items-md-center flex-column">
+                            <span class="text-muted text-center"> @SpecialProducts.title </span>
+                            <a asp-controller="Products" asp-action="Details" asp-route-id="@SpecialProducts.id" asp-route-name="@Model.company.CompanyName" class="text-decoration-none text-uppercase text-center" style="
+                  border-bottom: 2px solid #9b562e;
+                  color: #9b562e;
+                  font-size: 12px;
+                ">View more</a>
+                        </div>
+                    }
+
+                </div>
+            </div>
+
+            <!-- Second column | Right column  -->
+            <div class="col-10 mx-auto m-0 col-md-9">
+                <h3 class="font-weight-normal ml-2 ml-md-0 text-lg-left text-center py-lg-0 py-2">Products</h3>
+
+                @if (Model.Products.Any())
+                {
+                    <!-- Row for  products -->
+                    <div class="row pt-lg-3 d-flex justify-content-around align-items-center">
+
+                        @foreach (var product in Model.Products)
+                        {
+                            string productImagepath = null;
+                            if (product.ImageName != null)
+                            {
+                                productImagepath = "~/Image/Products/" + product.ImageName;
+                            }
+                            else
+                            {
+                                productImagepath = "~/Image/download.png";
+                            }
+
+                            <div class="py-3 py-md-0 col-12 col-md-6 col-lg-4 d-flex justify-content-center align-items-center overflow-hidden flex-column imageMainDiv specialColImages">
+                                <img class="popularProductsImages customWidth" asp-append-version="true" src="@productImagepath" alt="@product.title" style="
+                  position: relative;
+                  z-index: 1;
+                  height: 220px;
+                   " />
+
+                                <a href="#" class="pt-3 text-decoration-none text-dark py-2"
+                                   style="font-family: 'Libre Baskerville', serif">
+                                    @product.title
+                                </a>
+                                <a asp-controller="Products" asp-action="Details" asp-route-id="@product.id" asp-route-name="@Model.company.CompanyName" class="text-decoration-none text-uppercase"
+                                   style="border-bottom: 2px solid #9b562e; color: #9b562e">View more</a>
+                            </div>
+                        }
+
+                    </div>
+                }
+                else
+                {
+                    <h3 class="text-info py-2"> No Products Registered Yet in this Category</h3>
+                }
+                <nav class="table-responsive my-3">
+                    <ul class="pagination justify-content-center d-flex flex-wrap">
+                        @if (ViewBag.CurrentPage > 1)
+                        {
+                            <li class="page-item">
+                                <a class="page-link" asp-controller="Products" asp-action="Products" asp-route-name="@Model.company.CompanyName">First</a>
+                            </li>
+                            <li class="page-item">
+                                @{ var pageNo = ViewBag.CurrentPage - 1; }
+                                <a class="page-link" asp-controller="Products" asp-action="Products" asp-route-name="@Model.company.CompanyName" asp-route-pageNo="@pageNo">&laquo;</a>
+                            </li>
+                        }
+
+                        @for (int i = 1; i <= ViewBag.TotalPages; i++)
+                        {
+
+                            <li class="page-item @(i == ViewBag.CurrentPage ? "active" : "")">
+                                <a class="page-link" asp-controller="Products" asp-action="Products" asp-route-name="@Model.company.CompanyName" asp-route-pageNo="@i">@i</a>
+                            </li>
+                        }
+
+                        @if (ViewBag.CurrentPage < ViewBag.TotalPages)
+                        {
+                            <li class="page-item">
+                                @{ var pageNo = ViewBag.CurrentPage + 1; }
+                                <a class="page-link" asp-controller="Products" asp-action="Products" asp-route-name="@Model.company.CompanyName" asp-route-pageNo="@pageNo">&raquo;</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" asp-controller="Products" asp-action="Products" asp-route-name="@Model.company.CompanyName" asp-route-pageNo="@ViewBag.TotalPages">Last</a>
+                            </li>
+                        }
+                    </ul>
+                </nav>
+
+                <!-- Right side column closing tag -->
+            </div>
+
+            <!-- Row closing tag -->
+        </div>
+        <!-- Container closing tag -->
+    </div>
+
+    <!--Footer -->
+    <div class="container-fluid">
+        <div class="row py-lg-5 d-flex justify-content-center" style="background-color: #282828;">
+
+            <!-- First column -->
+            <div class="py-3 py-lg-0 col-9 col-md-4 d-flex justify-content-start align-items-start flex-column">
+                <div class="row">
+                    <div class="col-12 d-flex justify-content-between align-items-center ">
+                        <h1 class="text-uppercase text-center mx-auto pb-lg-3"
+                            style="color: #B97A57; border-bottom: 4px dotted #9b562e;">
+                            <span class="mr-3">
+                                <i class="fas fa-gem small" style="color: #B97A57;"></i>
+                            </span>
+                            @Model.company.CompanyName
+
+                            <span class="ml-3">
+                                <i class="fas fa-gem small" style="color: #B97A57;"></i>
+                            </span>
+                        </h1>
+
+                    </div>
+                    <div class="col-12">
+                        <p class="text-muted text-center">
+                            @Model.company.CompanyDesc
+                        </p>
+                    </div>
+                    <div class="col-12  d-flex justify-center align-items-center">
+                        <a asp-controller="Home" asp-action="aboutus" asp-route-id="@Model.company.CompanyName" class=" text-decoration-none mx-auto text-uppercase"
+                           style="border-bottom: 2px solid #9b562e; color: #9b562e ;">
+                            View
+                            more
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Second column -->
+            <!-- footer col sm -->
+            <div class="py-3 py-lg-0 col-9 col-md-2 justify-content-start align-items-start flex-column footerColSm">
+                <a class="text-decoration-none text-white text-uppercase " data-toggle="collapse" href="#firstColumn"
+                   role="button" aria-expanded="false" aria-controls="firstColumn"
+                   style="font-size: 1.1rem; font-family: 'Libre Baskerville', serif">
+                    Products
+                </a>
+                <div class="collapse mt-3 " id="firstColumn">
+                    @foreach (var category in Model.Categories.Take(4))
+                    {
+                        <a class="d-block text-decoration-none" asp-controller="Products" asp-action="ProductsInCategory" asp-route-categoryId="@category.id" asp-route-name="@Model.company.CompanyName">@category.CategoryName</a>
+                    }
+                </div>
+            </div>
+            <!-- footer col lg -->
+            <div class="py-3 py-lg-0 col-9 col-md-2 justify-content-start align-items-start flex-column footerColLg ">
+                <a class="text-decoration-none text-white text-uppercase py-4"
+                   style="font-size: 1.1rem; font-family: 'Libre Baskerville', serif">
+                    Products
+                </a>
+                <div>
+                    @foreach (var category in Model.Categories.Take(4))
+                    {
+                        <a class="d-block text-decoration-none" asp-controller="Products" asp-action="ProductsInCategory" asp-route-categoryId="@category.id" asp-route-name="@Model.company.CompanyName">@category.CategoryName</a>
+                    }
+                </div>
+            </div>
+
+            <!-- Third column About-->
+            <!-- footer col sm -->
+            <div class="py-3 py-lg-0 col-9 col-md-2  justify-content-start align-items-start flex-column footerColSm">
+
+                <a class="text-decoration-none text-white text-uppercase" data-toggle="collapse" href="#thridColumn"
+                   role="button" aria-expanded="false" aria-controls="thridColumn"
+                   style="font-size: 1.1rem; font-family: 'Libre Baskerville', serif">
+                    About Us
+                </a>
+
+
+                <div class="collapse mt-3 " id="thridColumn">
+                    <a class="d-block text-decoration-none" asp-controller="Home" asp-action="aboutus" asp-route-name="@Model.company.CompanyName">About us</a>
+
+                </div>
+
+
+
+            </div>
+
+
+            <!-- footer col lg -->
+            <div class="py-3 py-lg-0 col-9 col-md-2 justify-content-start align-items-start flex-column footerColLg ">
+                <a class="text-decoration-none text-white text-uppercase py-4"
+                   style="font-size: 1.1rem; font-family: 'Libre Baskerville', serif">
+                    About Us
+                </a>
+                <div>
+                    <a class="d-block text-decoration-none" asp-controller="Home" asp-action="aboutus" asp-route-name="@Model.company.CompanyName">About us</a>
+                </div>
+            </div>
+
+
+            <!-- Fourth column contact us -->
+            <!-- colsm -->
+            <div class="py-3 py-lg-0 col-9 col-md-2  justify-content-start align-items-start flex-column footerColSm">
+
+                <a class="text-decoration-none text-white text-uppercase" data-toggle="collapse" href="#fourthColumn"
+                   role="button" aria-expanded="false" aria-controls="fourthColumn"
+                   style="font-size: 1.1rem; font-family: 'Libre Baskerville', serif">
+                    Contact Us
+                </a>
+
+
+                <div class="collapse mt-3 " id="fourthColumn">
+                    <a class="d-block text-decoration-none" href="#"><i class="fas fa-map-marker-alt rounded mr-1" style="width:20px; height:20px;  margin-right:2px"></i>Add:  @Model.company.CompanyAdd</a>
+                    <a class="d-block text-decoration-none" href="tel:@Model.company.CompanyPhone">  <i class="fas fa-phone-volume rounded mr-1" style="width:20px; height:20px;  margin-right:2px"></i>TEL: @Model.company.CompanyPhone </a>
+                    <a class="d-block text-decoration-none" href="mailto: @Model.company.CompanyEmail">    <i class="fas fa-envelope-open-text rounded" style="width:20px; height:20px; margin-right:2px"></i>E-Mail: @Model.company.CompanyEmail </a>
+
+                </div>
+
+
+
+            </div>
+            <!-- colLg -->
+            <div class="py-3 py-lg-0 col-9 col-md-2 justify-content-start align-items-start flex-column footerColLg ">
+                <a class="text-decoration-none text-white text-uppercase py-4"
+                   style="font-size: 1.1rem; font-family: 'Libre Baskerville', serif">
+                    Contact Us
+                </a>
+                <div>
+                    <a class="d-block text-decoration-none" href="#"><i class="fas fa-map-marker-alt rounded" style="width:20px; height:20px;  margin-right:2px"></i>Add: @Model.company.CompanyAdd</a>
+                    <a class="d-block text-decoration-none" href="tel:@Model.company.CompanyPhone"><i class="fas fa-phone-volume rounded" style="width:20px; height:20px;  margin-right:2px"></i>TEL: @Model.company.CompanyPhone</a>
+                    <a class="d-block text-decoration-none" href="mailto: @Model.company.CompanyEmail">    <i class="fas fa-envelope-open-text rounded" style="width:20px; height:20px;  margin-right:2px"></i>E-Mail: @Model.company.CompanyEmail</a>
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+</div>
+
+@section Scripts{
+    <link href="~/css/company.css" rel="stylesheet" />
+
+}

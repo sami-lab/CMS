@@ -1,0 +1,344 @@
+﻿@model WebBuilder.ViewModel.Products.ProductsViewModel
+
+@{
+    ViewData["Title"] = "Create Products";
+}
+
+
+<div class="container">
+
+    <form asp-action="Create" class="bg-light m-3 p-5" enctype="multipart/form-data">
+        <h2 class="text-primary text-center m-1">Register Product</h2>
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="row mx-1">
+            <div class="col-6">
+                <div class="form-group">
+                    <label asp-for="title" class="control-label"></label>
+                    <input asp-for="title" id="input_1" class="form-control" />
+                    <span asp-validation-for="title" class="text-danger"></span>
+                </div>
+
+
+                <div class="form-group form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" asp-for="isSpecial" /> @Html.DisplayNameFor(model => model.isSpecial)
+                    </label>
+                </div>
+
+            </div>
+            <div class="col-6">
+                <div class="form-group">
+                    <label asp-for="CategoryId" class="control-label col-12"></label>
+                    <div class="col-12">
+                        <select asp-for="CategoryId" class="col-12 custom-select mr-sm-2"
+                                asp-items="@(new SelectList( @ViewBag.categories,"id","CategoryName"))">
+                            <option value="">Please Select</option>
+                        </select>
+                    </div>
+                    <span asp-validation-for="CategoryId" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="form-group">
+                <label asp-for="details" class="control-label"></label>
+                <textarea asp-for="details" id="text_1" class="form-control"></textarea>
+                <span asp-validation-for="details" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="form-group">
+                <label asp-for="overviews" class="control-label"></label>
+                <textarea asp-for="overviews" id="text_2" class="form-control"></textarea>
+                <span asp-validation-for="overviews" class="text-danger"></span>
+            </div>
+        </div>
+        <div class=" col-12">
+            <div class="form-group">
+                <label asp-for="Photos" class="col-form-label"></label>
+                <div>
+                    <div class="custom-file">
+                        <input asp-for="Photos" id="file" multiple class="form-control custom-file-input" />
+                        <label class="custom-file-label">Choose File...</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <button type="button" onclick="ClearImages()" class="px-2 py-2 btn btn-info">Clear Images</button>
+        </div>
+        <div class="col-12 form-group">
+            <input type="submit" value="Create" class="btn btn-primary" />
+            <a asp-action="Products" class="px-2">Back to List</a>
+        </div>
+    </form>
+
+</div>
+
+
+
+<!--Live Preview-->
+<div>
+    <!--First Page Started -->
+    <div class=" container-fluid mx-auto">
+        <!-- Row 1 for text  -->
+        <div class="row">
+            <!-- Navbar Second div -->
+            <div class="col-12 text-white text-center py-lg-2 d-flex justify-content-center align-items-center "
+                 style="background-image: url(/Image/background.jpg); background-size: cover;">
+                Company Title will be  displayed here
+            </div>
+        </div>
+
+        <!-- Row 2 for heading -->
+        <div class="row">
+            <!-- First Section of heading -->
+            <div class="col-12 d-flex justify-content-center align-items-center">
+
+                <!-- Desin logo image -->
+                <div class=" p-0" style="height: 6rem;">
+                    <img asp-append-version="true" src="~/Image/companyLogo.png" width="100" height="100" id="image_1" />
+                </div>
+
+
+            </div>
+        </div>
+
+
+        <!--  -->
+        <nav class="navbar navbar-expand-lg navbar-light mb-lg-3">
+            <button class="border border-dark w-100 navbar-toggler ml-auto mb-3" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse " id="navbarSupportedContent">
+                <ul class="navbar-nav  mx-auto">
+                    <li class=" px-5 nav-item active">
+                        <a class="text-uppercase text-center font-weight-bold nav-link " href="#">
+                            Home
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item  px-5">
+                        <a class="text-uppercase text-dark text-center font-weight-bold nav-link"
+                           href="#">
+                            Products
+                        </a>
+                    </li>
+                    <li class="nav-item  px-5">
+                        <a class="text-uppercase text-dark text-center font-weight-bold  nav-link"
+                           href="#">
+                            About Us
+                        </a>
+                    </li>
+                    <li class="nav-item  px-5">
+                        <a class="text-uppercase text-dark text-center font-weight-bold nav-link"
+                           href="#">
+                            Contact Us
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+
+        <!-- First page ifded |  container closing div -->
+    </div>
+
+    @*Product details*@
+    <div class="container pdfPrint">
+
+        <div class="card">
+            <div class="container-fliud">
+                <div class="wrapper row">
+                    <div class="preview col-md-6">
+
+
+
+                        <div class="preview-pic tab-content" id="tabs" style="max-height:333px">
+                            <div class="tab-pane active" id="image-1"><img src="http://placekitten.com/400/252" style="max-height:333px; max-width: 100%;  display:block; margin:auto" asp-append-version="true" /></div>
+                            <div class="tab-pane" id="image-2"><img src="http://placekitten.com/400/252" style="max-width: 100%;  display:block; margin:auto" asp-append-version="true" /></div>
+                            <div class="tab-pane" id="image-3"><img src="http://placekitten.com/400/252" style="max-height:333px; max-width: 100%;  display:block; margin:auto" asp-append-version="true" /></div>
+                            <div class="tab-pane" id="image-4"><img src="http://placekitten.com/400/252" style="max-height:333px; max-width: 100%;  display:block; margin:auto" asp-append-version="true" /></div>
+                        </div>
+                        <ul class="preview-thumbnail nav nav-tabs" id="images">
+                            <li class="active"><a data-target="#image-1" data-toggle="tab"><img src="http://placekitten.com/200/126" width="100" height="100" asp-append-version="true" /></a></li>
+                            <li><a data-target="#image-2" data-toggle="tab"><img src="http://placekitten.com/200/126" width="100" height="100" asp-append-version="true" /></a></li>
+                            <li><a data-target="#image-3" data-toggle="tab"><img src="http://placekitten.com/200/126" width="100" height="100" asp-append-version="true" /></a></li>
+                            <li><a data-target="#image-4" data-toggle="tab"><img src="http://placekitten.com/200/126" width="100" height="100" asp-append-version="true" /></a></li>
+                        </ul>
+
+                    </div>
+                    <div class="details col-md-6">
+                        <h3 class="product-title" id="element_1">Title Here</h3>
+                        <div class="product-description  mr-5">
+                            <div id="html_1">Description Here</div>
+                        </div>
+                        <!-- span for buttons -->
+                        <span>
+                            <a href="#" class="btn text-white text-uppercase px-5 py-1" style="background-color: #3a3a3a">
+                                INQUIRY
+                            </a>
+                            <button class="btn text-white px-5 py-1 my-2 my-lg-0" style="background-color: #3a3a3a">
+                                PDF Format
+                            </button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        @*Description*@
+        <div class="row">
+            <div class="col-12 py-lg-4 d-flex justify-content-center align-items-start flex-column">
+                <hr />
+                <h3 class="font-weight-bold">Description Care</h3>
+                <h5 class="font-weight-bold text-muted">Overview</h5>
+                <div id="html_2"> OverView Here</div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+@*//file_  image_1, input_ element_1 text_1 html_1*@
+@section Scripts {
+
+    <link href="~/lib/summernote/summernote.min.css" rel="stylesheet" />
+    <script src="~/lib/summernote/summernote.min.js" ></script>
+    <link href="~/css/company.css" rel="stylesheet" />
+    <link href="~/css/Product.css" rel="stylesheet" />
+    <style>
+        .note-editable {
+            background-color: white !important;
+            color: black !important;
+        }
+    </style>
+
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script>
+        $(document).ready(function () {
+
+            $('form').each(function () {
+                if ($(this).data('validator'))
+                    $(this).data('validator').settings.ignore = ".note-editor *";
+            });
+
+            const textarea2 = $('#text_2');
+            $('#text_1').summernote({
+                height: 300,
+                minHeight: 100,
+                codemirror: {
+                    theme: 'readable'
+                },
+                toolbar: [
+                    ['style', ['style']],
+                    ['font', ['bold', 'italic', 'underline', 'strikethrough', 'superscript', 'subscript', 'clear']],
+                    ['fontname', ['fontname']],
+                    ['fontsize', ['fontsize']],
+                    ['color', ['color']],
+                    ['para', ['ol', 'ul', 'paragraph', 'height']],
+                    ['table', ['table']],
+                    ['insert', ['link']],
+                    ['view', ['undo', 'redo', 'fullscreen', 'codeview', 'help']]
+                ],
+                callbacks: {
+                    onChange: function (contents, $editable) {
+                        $('#html_1').html(contents)
+                    }
+                }
+            });
+            textarea2.summernote({
+                height: 300,
+                minHeight: 100,
+                codemirror: {
+                    theme: 'default'
+                },
+                toolbar: [
+                    ['style', ['style']],
+                    ['font', ['bold', 'italic', 'underline', 'strikethrough', 'superscript', 'subscript', 'clear']],
+                    ['fontname', ['fontname']],
+                    ['fontsize', ['fontsize']],
+                    ['color', ['color']],
+                    ['para', ['ol', 'ul', 'paragraph', 'height']],
+                    ['table', ['table']],
+                    ['insert', ['link']],
+                    ['view', ['undo', 'redo', 'fullscreen', 'codeview', 'help']]
+                ],
+                callbacks: {
+                    onChange: function (contents, $editable) {
+                        $('#html_2').html(contents)
+                    }
+                }
+            });
+
+
+            $('.custom-file-input').on('change', function () {
+                filePreview(this);
+                var fileLabel = $(this).next('.custom-file-label');
+                var files = $(this)[0].files;
+                if (files.length > 1) {
+                    fileLabel.html(files.length + " files selected");
+                }
+                else {
+                    fileLabel.html(files[0].name);
+                }
+
+            })
+
+            $("[id^='input_']").bind("input change", function () {
+                var inputId = $(this).attr('id').split('_')[1];
+                $(`#element_${inputId}`).text($(this).val())
+
+            });
+
+        });
+
+        function filePreview(input) {
+
+            var files = input.files;
+
+            if (input.files && input.files[0]) {
+                $('#images').empty();
+                $('#tabs').empty();
+                let length = +files.length;
+                if (length > 5) {
+                    alert('Only 5 Images are allowed');
+                    ClearImages();
+                    return;
+                }
+                for (let i = 0; i < length; i++) {
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        //$('#images').append(`<div  style="position:relative;" id="img_${(Date.now().toString(36) + Math.random().toString(36).substr(2, 5)).toUpperCase()}" class="border px-3 mb-3 mr-2 Customs">
+                        //                        <img src=${e.target.result}  height="100" width="80"   asp-append-version="true" />
+                        //               </div>`);
+                        let active = i == 0 ? "active" : "";
+                        $('#tabs').append(` <div class="tab-pane ${active}" id="image-${i + 1}"><img src="${e.target.result}"  style="max-width: 100%;  display:block; margin:auto"/></div>`)
+                        $('#images').append(`<li class="${active}"><a data-target="#image-${i + 1}" data-toggle="tab"><img  height="100" width="100" src="${e.target.result}" /></a></li>`);
+                    };
+                    reader.readAsDataURL(input.files[i]);
+                }
+            }
+        }
+
+
+        function ClearImages() {
+            var input = $("#file");
+
+            $('#tabs').html(`  <div class="tab-pane active" id="image-1"><img src="http://placekitten.com/400/252" /></div>
+                                                                <div class="tab-pane" id="image-2"><img src="http://placekitten.com/400/252" /></div>
+                                                                <div class="tab-pane" id="image-3"><img src="http://placekitten.com/400/252" /></div>
+                                                                <div class="tab-pane" id="image-4"><img src="http://placekitten.com/400/252" /></div>`)
+            $('#images').html(`  <li class="active"><a data-target="#image-1" data-toggle="tab"><img src="http://placekitten.com/200/126" /></a></li>
+                                                                <li><a data-target="#image-2" data-toggle="tab"><img src="http://placekitten.com/200/126" /></a></li>
+                                                                <li><a data-target="#image-3" data-toggle="tab"><img src="http://placekitten.com/200/126" /></a></li>
+                                                                <li><a data-target="#image-4" data-toggle="tab"><img src="http://placekitten.com/200/126" /></a></li>`);
+            $('.custom-file-label').html("Choose File..");
+            input.replaceWith(input.val('').clone(true));
+        }
+    </script>
+}

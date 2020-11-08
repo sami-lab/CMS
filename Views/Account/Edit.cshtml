@@ -1,0 +1,218 @@
+﻿@model WebBuilder.ViewModel.Account.ApplicationUserViewModel
+
+@{
+    ViewData["Title"] = "Edit";
+    string photopath = null;
+    if (Model.Photopath != null)
+    {
+        photopath = "~/Image/User/" + Model.Photopath;
+    }
+    else
+    {
+        photopath = "~/Image/emp.jpg";
+    }
+}
+<div class="container">
+    <div class="register">
+        <input hidden value="@Model.Address.CountryId" id="countryid" />
+        <input hidden value="@Model.Address.StateId" id="stateid" />
+        <input hidden value="@Model.Address.CityId" id="cityid" />
+        <div class="row">
+            <div class="col-md-3 register-left">
+                <img src="https://image.ibb.co/n7oTvU/logo_white.png" asp-append-version="true" alt="" />
+                <h3>Welcome</h3>
+
+                @if (User.IsInRole("Super Admin"))
+                {
+                    <p>You are 30 seconds away to Update @Model.Name</p>
+                    <a asp-controller="Company" asp-action="Index" style="border: none; border-radius: 1.5rem; padding:10px; padding-left:30px; padding-right:30px; background: #f8f9fa; font-weight: bold; color: #383d41; margin-top: 30%; margin-bottom: 3%; cursor: pointer;">All Companies</a><br />
+                }
+                else
+                {
+                    <p>Your are Updating Your Info at the best Web Builder Market</p>
+                    <a asp-controller="Account" asp-action="Profile" asp-route-id="@Model.Id" style="border: none; border-radius: 1.5rem; padding:10px; padding-left:30px; padding-right:30px; background: #f8f9fa; font-weight: bold; color: #383d41; margin-top: 30%; margin-bottom: 3%; cursor: pointer;">Profile</a><br />
+                }
+
+            </div>
+            <div class="col-md-9 register-right">
+                <h3 class="register-heading">Update Account </h3>
+                <form method="post" class="mt-3" enctype="multipart/form-data">
+                    <div class="row register-form">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="col-md-6">
+
+                            <div class="form-group">
+                                <label asp-for="Name" class="control-label"></label>
+                                <input asp-for="Name" placeholder="Full Name *" class="form-control" />
+                                <span asp-validation-for="Name" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Email" class="control-label"></label>
+                                <input asp-for="Email" placeholder="Email *" class="form-control" />
+                                <span asp-validation-for="Email" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="PhoneNumber" class="control-label"></label>
+                                <input asp-for="PhoneNumber" placeholder="Phone" class="form-control" />
+                                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                            </div>
+
+                        </div>
+                        <div class="col-md-6 col-6">
+                            <div class="form-group row">
+                                <div class="col-md-4 d-block mx-auto">
+                                    <img class=" rounded-circle " style="width:10rem; height:10rem;" id="img1" src="@photopath" asp-append-version="true" />
+                                </div>
+                                <label asp-for="Photo" class="col-12 col-form-label"></label>
+                                <div class="col-12">
+                                    <div class="custom-file">
+                                        <input asp-for="Photo" class="form-control custom-file-input">
+                                        <label class="custom-file-label">Choose File...</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            @*Country*@
+                            <div class="form-group col-12">
+                                <label asp-for="Address.Country" class="control-label col-12"></label>
+                                <div class="col-12">
+                                    <select id="Countries" asp-for="Address.CountryId" class="col-12 custom-select mr-sm-2"
+                                            asp-items="@(new SelectList( @ViewBag.Countries,"id","name"))">
+                                        <option value="">Please Select</option>
+                                    </select>
+                                </div>
+                                <input id="Country" asp-for="Address.Country" hidden />
+                                <span asp-validation-for="Address.Country" class="text-danger"></span>
+                            </div>
+                            @*State n City*@
+
+                            <div class="form-group col-6">
+                                <label asp-for="Address.State" class="control-label col-12"></label>
+                                <div class="col-12">
+                                    <select id="States" asp-for="Address.StateId" class="col-12 custom-select mr-sm-2"
+                                            asp-items="@(new SelectList(string.Empty,"id","name","--Select--"))">
+                                        <option value="">Please Select</option>
+                                    </select>
+                                </div>
+                                <input id="State" asp-for="Address.State" hidden />
+                                <span asp-validation-for="Address.State" class="text-danger"></span>
+                            </div>
+                            <div class="form-group col-6">
+                                <label asp-for="Address.City" class="control-label col-12"></label>
+                                <div class="col-12">
+                                    <select id="Cities" asp-for="Address.CityId" class="col-12 custom-select mr-sm-2"
+                                            asp-items="@(new SelectList(string.Empty,"id","name","--Select--"))">
+                                        <option value="">Please Select</option>
+                                    </select>
+                                </div>
+                                <input id="City" asp-for="Address.City" hidden />
+                                <span asp-validation-for="Address.City" class="text-danger"></span>
+                            </div>
+
+
+                            @*Street Adress*@
+                            <div class="form-group col-12">
+                                <label asp-for="Address.StreetAddress" class="control-label col-12"></label>
+                                <div class="col-12">
+                                    <textarea asp-for="Address.StreetAddress" placeholder="Street Adress" class="form-control  mr-sm-2 col-12"></textarea>
+                                </div>
+                                <span asp-validation-for="Address.StreetAddress" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <button type="submit" class="btnRegister">Update</button>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <a asp-action="Profile" asp-route-id="@Model.Id">Back to Profile</a>
+    </div>
+</div>
+@section Scripts {
+
+    <link href="~/css/Register.css" rel="stylesheet" />
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script>
+       
+        $(document).ready(function () {
+            let stateid = $("#stateid").val();
+            let cityId = $("#cityid").val();
+            GetStates($("#countryid").val()).then(x => {
+                GetCities(stateid).then(x => {
+                    $("#States").val(stateid);
+                    $("#Cities").val(cityId);
+                }).catch(error => console.log(error))
+            }).catch(error => console.log(error))
+          
+          
+           
+
+            $('.custom-file-input').on("change", function () {
+                var fileName = $(this).val().split("\\").pop();
+                $(this).next('.custom-file-label').html(fileName);
+                readURL(this);
+            });
+
+            function readURL(input) {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+
+                    reader.onload = function (e) {
+                        //alert(e.target.result);
+                        $('#img1').attr('src', e.target.result);
+                    }
+
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
+
+
+            $("#Countries").change(function () {
+                $("#Country").val('');
+                $("#Country").val($("#Countries option:selected").text());
+                GetStates($("#Countries").val());
+            });
+            $("#States").change(function () {
+                $("#State").val('');
+                $("#State").val($("#States option:selected").text());
+                GetCities($("#States").val());
+            });
+            $("#Cities").change( function () {
+                $("#City").val('');
+                $("#City").val($("#Cities option:selected").text());
+            });
+          
+         
+                
+           
+        });
+       
+       
+        async function GetStates(country_id) {
+            if ($("#Countries").val().length > 0) {
+                $.getJSON("/Account/getStates", { country_id: country_id }, function (data) {
+                    $("#States").empty();
+                    $("#Cities").empty();
+                    $.each(data, function (index, row) {
+                        $("#States").append("<option value='" + row.id + "'>" + row.name + '</option>')
+                    });
+                });
+            }
+        }
+
+         async function GetCities(state_id) {
+             await   $.getJSON("/Account/getCities", { state_id: state_id }, function (data) {
+                    $("#Cities").empty();
+                    $.each(data, function (index, row) {
+                        $("#Cities").append("<option value='" + row.id + "'>" + row.name + '</option>')
+                    });
+                });
+        }
+    </script>
+}

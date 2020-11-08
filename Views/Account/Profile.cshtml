@@ -1,0 +1,40 @@
+﻿@model WebBuilder.ViewModel.Account.ApplicationUserViewModel
+
+@{
+    ViewData["Title"] = "Profile";
+    string photopath = null;
+    if (Model.Photopath != null)
+    {
+        photopath = "~/Image/User/" + Model.Photopath;
+    }
+    else
+    {
+        photopath = "~/Image/emp.jpg";
+    }
+}
+<div class="container">
+    <h1>@Model.Name's Profile</h1>
+
+    <div class="mt-5 mb-5">
+        <div class="card mb-3">
+            <img class="card-img-top img-fluid d-block mx-auto" style="height: 20em; width: 20em" asp-append-version="true" src="@photopath" alt="Card image cap">
+            <div class="card-body">
+                <h3 class="card-title text-center">@Model.Name</h3>
+                <h5 class="card-text text-center">Hey This is @Model.Name </h5>
+                <h3 class="text-primary text-center">Contact Info</h3>
+                <p class="card-text text-center">You can Connect with @Model.Name via Email (@Model.Email) or by Phone @Model.PhoneNumber</p>
+                <p class="card-text text-center">Adress: @Model.Address.StreetAddress - @Model.Address.City  @Model.Address.State  @Model.Address.Country</p>
+                <div class="row justify-content-center">
+                    <p class="text-right m-1"><a asp-controller="Account" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary"><i class="far fa-user"></i> Update Profile</a></p>
+                    @if (User.IsInRole("Super Admin"))
+                    {
+                        <p class="text-right m-1"><a asp-controller="Account" asp-action="ChangePassword" asp-route-id="@Model.Id" class="btn btn-primary"><i class="far fa-user"></i> Change Password</a></p>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Id })
+    </div>
+</div>

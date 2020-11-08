@@ -1,0 +1,34 @@
+﻿body {
+    background-color: #eef9fb !important;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+/* Starting cellphone */
+@media only screen and (min-width: 320px) {
+    .mainHeading {
+        font-size: 30pt;
+    }
+}
+
+/* Starting tablet */
+@media only screen and (min-width: 768px) {
+    .mainHeading {
+        font-size: 45pt;
+    }
+}
+
+/* Starting Laptop */
+@media only screen and (min-width: 1024px) {
+}
+
+/* navbar anchor */
+.navAnchor:hover {
+    transition: 0.3s linear;
+}
+
+.navAnchor:hover {
+    background-color: #8371b3;
+    color: white !important;
+}

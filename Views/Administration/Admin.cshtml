@@ -1,0 +1,526 @@
+﻿@model WebBuilder.ViewModel.Administration.dashboard
+
+@{
+    ViewData["Title"] = "Admin";
+}
+<div class="container">
+    <div class="pt-5">
+        <div class="w-100">
+            <div style="background-image: url('/Image/admin.jpg'); background-repeat:no-repeat; background-size:cover">
+                <div class="row py-3" style="border-left:5px solid blue; background-color:aliceblue;">
+                    <div class="col-md-12">
+                        <div class="d-flex justify-content-between">
+                            <h2 class="font-weight-bold text-capitalize">overview</h2>
+                            @if (User.IsInRole("Admin"))
+                            {
+                                <a asp-controller="Products" asp-action="Create" class="btn btn-primary px-4">
+                                    <i class="fa fa-plus"></i>Add Product
+                                </a>
+                            }
+                            else
+                            {
+                                <a asp-controller="Account" asp-action="Register" class="btn btn-primary px-4">
+                                    <i class="fa fa-plus"></i>Add Company
+                                </a>
+                            }
+
+                        </div>
+                    </div>
+                </div>
+                <div class="" style="padding-top: 80px; padding-bottom: 80px; padding-left:10px; padding-right:5px;">
+                    <div class="row col-md-12">
+
+
+                        @if (User.IsInRole("Super Admin"))
+                        {
+                            <div class="mx-auto col-12 col-sm-5 bg-white shadow col-md-5  mb-3" style="border-left:10px solid blue">
+                                <div class="d-flex justify-content-around  align-items-center p-4">
+
+                                    <div class="font-weight-bolder text-capitalize">
+                                        <h5 class="text-success  mt-0 mb-0">Total Users</h5>
+                                        <h2 class="font-weight-600  mt-1" style="font-size: 30px; font-family: Georgia, 'Times New Roman', Times, serif;">@Model.TotalUsers</h2>
+                                    </div>
+                                    <i class="fas fa-download fa-3x"></i>
+                                </div>
+                            </div>
+                            <div class="mx-auto col-12 col-sm-5 bg-white shadow col-md-5  mb-3" style="border-left:10px solid green">
+                                <div class="d-flex justify-content-around align-items-center p-4">
+
+                                    <div class="font-weight-bolder text-capitalize">
+                                        <h5 class="text-success  mt-0 mb-0">Total Companies </h5>
+                                        <h2 class="font-weight-600  mt-1" style="font-size: 30px; font-family: Georgia, 'Times New Roman', Times, serif;">
+                                            @Model.TotalCompanies
+                                        </h2>
+                                    </div>
+                                    <i class="fas fa-cart-arrow-down fa-3x "></i>
+                                </div>
+                            </div>
+                        }
+                        <div class="mx-auto col-12 col-sm-5 bg-white shadow col-md-5  mb-3" style="border-left:10px solid blue">
+                            <div class="d-flex justify-content-around align-items-center p-4">
+
+                                <div class="font-weight-bolder text-capitalize">
+                                    <h5 class="text-success  mt-0 mb-0">Total Categories</h5>
+                                    <h2 class="font-weight-600  mt-1" style="font-size: 30px; font-family: Georgia, 'Times New Roman', Times, serif;">@Model.TotalCategories</h2>
+                                </div>
+                                <i class="fas fa-comments-dollar fa-3x"></i>
+                            </div>
+                        </div>
+                        <div class="mx-auto col-12 col-sm-5 bg-white shadow col-md-5  mb-3" style="border-left:10px solid green">
+                            <div class="d-flex justify-content-around align-items-center p-4">
+
+                                <div class="font-weight-bolder text-capitalize">
+                                    <h5 class="text-success  mt-0 mb-0">Total Products</h5>
+                                    <h2 class="font-weight-600  mt-1" style="font-size: 30px; font-family: Georgia, 'Times New Roman', Times, serif;">@Model.TotalProducts</h2>
+                                </div>
+                                <i class="fab fa-amazon-pay fa-3x"></i>
+                            </div>
+                        </div>
+                        <div class="mx-auto col-12 col-sm-5 bg-white shadow col-md-5  mb-3" style="border-left:10px solid green">
+                            <div class="d-flex justify-content-around align-items-center p-4">
+
+                                <div class="font-weight-bolder text-capitalize">
+                                    <h5 class="text-success  mt-0 mb-0">Total Visits</h5>
+                                    <h2 class="font-weight-600  mt-1" style="font-size: 30px; font-family: Georgia, 'Times New Roman', Times, serif;">@Model.Visits</h2>
+                                </div>
+                                <i class="fab fa-amazon-pay fa-3x"></i>
+                            </div>
+                        </div>
+                        <div class="mx-auto col-12 col-sm-5 bg-white shadow col-md-5  mb-3" style="border-left:10px solid green">
+                            <div class="d-flex justify-content-around align-items-center p-4">
+
+                                <div class="font-weight-bolder text-capitalize">
+                                    <h5 class="text-success  mt-0 mb-0">Last Month Visit</h5>
+                                    <h2 class="font-weight-600  mt-1" style="font-size: 30px; font-family: Georgia, 'Times New Roman', Times, serif;">@Model.LastMonthsVisits</h2>
+                                </div>
+                                <i class="fab fa-amazon-pay fa-3x"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
+            <script src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
+            <div class="mt-5" id="chartContainer" style="height: 370px; width: 100%;"></div>
+
+            <div class="mt-5" id="chartContainer1" style="height: 370px; width: 100%;"></div>
+
+            <div class="mt-5" id="chartContainer2" style="height: 370px; width: 100%;"></div>
+            @{
+                var p1 = @Html.Raw(Json.Serialize(Model.ProductsGraph));
+                var p2 = @Html.Raw(Json.Serialize(Model.CategoryGraph));
+                var p3 = @Html.Raw(Json.Serialize(Model.UserStatsGraph));
+            }
+
+
+            <input type="hidden" id="PassingToJavaScript1" value=@p1>
+            <input type="hidden" id="PassingToJavaScript2" value=@p2>
+            <input type="hidden" id="PassingToJavaScript3" value=@p3>
+
+            <div class="row mt-5">
+                <div class="col-lg-9 col-sm-12">
+
+                    <div class="rounded" style="background-color:#428BCA; display:flex; justify-content:space-between; align-items:center; margin-top:-20px">
+                        <h3 class="font-weight-bold" style=" color:white; margin-left:5px;">Total Products: @Model.TotalProducts</h3>
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <div style=" background-color:white; margin:10px;">
+                                <a asp-controller="Products" asp-action="ListProducts" class="btn btn-default btn-xs"><i class="fas fa-info-circle" title="Details"></i> Details</a>
+                            </div>
+                        }
+                        else
+                        {
+                            <div style=" background-color:white; margin:10px;">
+                                <a asp-controller="Products" asp-action="Index" class="btn btn-default btn-xs"><i class="fas fa-info-circle" title="Details"></i> Details</a>
+                            </div>
+                        }
+                    </div>
+                    <div class="table-responsive mb-2">
+                        <table class="table table-hover table-striped table-earning">
+                            <thead>
+                                <tr>
+                                    <th>@Html.DisplayNameFor(modelItem => Model.recentProducts.First().title)</th>
+                                    <th>@Html.DisplayNameFor(modelItem => Model.recentProducts.First().CategoryName)</th>
+                                    <th>@Html.DisplayNameFor(modelItem => Model.recentProducts.First().CompanyName)</th>
+                                    <th>Is Special?</th>
+                                    <th>@Html.DisplayNameFor(modelItem => Model.recentProducts.First().launch)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.recentProducts)
+                                {
+                                    <tr>
+                                        <td>@item.title</td>
+                                        <td>@item.CategoryName</td>
+                                        <td>@item.CompanyName</td>
+                                        <td>
+                                            @{bool res = true;}
+                                            @if (item.isSpecial) { res = true; }
+                                            else { res = false; }
+                                            @res
+                                        </td>
+                                        <td>@item.launch.ToShortDateString()</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+                <div class="col-lg-3 col-sm-12">
+                    <h2 class="mb-2">Recent Categories</h2>
+                    <div class="au-card au-card--bg-blue au-card-top-countries m-b-40">
+                        <div class="au-card-inner">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <tbody>
+                                        @foreach (var item in Model.recentCategories)
+                                        {
+
+                                            <tr>
+
+                                                <td> <a asp-controller="Products" asp-action="ProductsInCategory" asp-route-id="@item.id">@item.CategoryName</a></td>
+                                                <td class="text-right">@item.TotalProducts</td>
+
+                                            </tr>
+
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--Recent Visits-->
+            <div class=" mt-5">
+                <div class="panel panel-primary filterable">
+                    <div class="rounded" style="background-color:#428BCA; display:flex; justify-content:space-between; align-items:center; margin-top:-20px">
+                        <h3 class="font-weight-bold" style=" color:white; margin-left:5px;">Last Month Visit: @Model.LastMonthsVisits</h3>
+                        <div style=" background-color:white; margin:10px;">
+                            <a asp-controller="Administration" asp-action="UsersStats" class="btn btn-default btn-xs"><i class="fas fa-info-circle" title="Details"></i> Details</a>
+                        </div>
+                    </div>
+                    <table class="table table-hover table-striped">
+                        <thead>
+
+                            <tr>
+                                <th><input type="text" class="form-control" placeholder="@Html.DisplayNameFor(model => model.recentVisits.First().IP)" disabled></th>
+                                <th><input type="text" class="form-control" placeholder="@Html.DisplayNameFor(model => model.recentVisits.First().Location)" disabled></th>
+                                <th><input type="text" class="form-control" placeholder="@Html.DisplayNameFor(model => model.recentVisits.First().Time)" disabled></th>
+                                <th><input type="text" class="form-control" placeholder=" @Html.DisplayNameFor(model => model.recentVisits.First().Url)" disabled></th>
+                                <th><input type="text" class="form-control" placeholder=" @Html.DisplayNameFor(model => model.recentVisits.First().Browser)" disabled></th>
+                            </tr>
+
+                        </thead>
+                        <tbody>
+
+                            @foreach (var item in Model.recentVisits)
+                            {
+
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.IP)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Location)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Time)
+                                    </td>
+                                    <td>
+                                        <a href="@item.Url" target="_blank">URL</a>
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Browser)
+                                    </td>
+
+
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+            @if (User.IsInRole("Super Admin"))
+            {
+                <!--Total Users-->
+                <div class=" mt-5">
+                    <div class="panel panel-primary filterable">
+                        <div class="rounded" style="background-color:#428BCA; display:flex; justify-content:space-between; align-items:center; margin-top:-20px">
+                            <h3 class="font-weight-bold" style=" color:white; margin-left:5px;">Total Users: @Model.TotalUsers</h3>
+                            <div style=" background-color:white; margin:10px;">
+                                <a asp-controller="Administration" asp-action="ListUsers" class="btn btn-default btn-xs"><i class="fas fa-info-circle" title="Details"></i> Details</a>
+                            </div>
+                        </div>
+                        <table class="table table-hover table-striped">
+                            <thead>
+
+                                <tr>
+                                    <th>#</th>
+                                    <th>@Html.DisplayNameFor(modelItem => Model.Users.First().Name)</th>
+                                    <th>@Html.DisplayNameFor(modelItem => Model.Users.First().Email)</th>
+                                    <th>@Html.DisplayNameFor(modelItem => Model.Users.First().PhoneNumber)</th>
+                                    <th>@Html.DisplayNameFor(modelItem => Model.Users.First().TotaldailyVisits)</th>
+                                    <th>@Html.DisplayNameFor(modelItem => Model.Users.First().TotalMonthlyVisits)</th>
+                                    <th>@Html.DisplayNameFor(modelItem => Model.Users.First().Address.Country)</th>
+                                    <th>@Html.DisplayNameFor(modelItem => Model.Users.First().Address.City)</th>
+                                </tr>
+
+                            </thead>
+                            <tbody>
+                                @{ int ser = 0;}
+                                @foreach (var item in Model.Users)
+                                {
+                                    ser++;
+                                    <tr>
+                                        <td>
+                                            @ser
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Name)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Email)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.PhoneNumber)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.TotaldailyVisits)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.TotalMonthlyVisits)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Address.Country)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Address.City)
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+
+                <!--Total Companies-->
+                <div class=" mt-5 ">
+                    <div class="panel panel-primary filterable">
+                        <div class="rounded" style="background-color:#428BCA; display:flex; justify-content:space-between; align-items:center; margin-top:-20px">
+                            <h3 class="font-weight-bold" style=" color:white; margin-left:5px;">Total Companies: @Model.TotalCompanies</h3>
+                            <div style=" background-color:white; margin:10px;">
+                                <a asp-controller="Company" asp-action="Index" class="btn btn-default btn-xs"><i class="fas fa-info-circle" title="Details"></i> Details</a>
+                            </div>
+                        </div>
+                        <table class="table table-hover table-striped">
+                            <thead>
+
+                                <tr>
+                                    <th>#</th>
+                                    <th>@Html.DisplayNameFor(modelItem => Model.Companies.First().CompanyName)</th>
+                                    <th>@Html.DisplayNameFor(modelItem => Model.Companies.First().CompanyEmail)</th>
+                                    <th>@Html.DisplayNameFor(modelItem => Model.Companies.First().CompanyPhone)</th>
+                                    <th>@Html.DisplayNameFor(modelItem => Model.Companies.First().TotalProducts)</th>
+                                    <th>@Html.DisplayNameFor(modelItem => Model.Companies.First().TotalCategories)</th>
+                                    <th>@Html.DisplayNameFor(modelItem => Model.Companies.First().Date)</th>
+                                    <th>@Html.DisplayNameFor(modelItem => Model.Companies.First().CompanyOwnerName)</th>
+                                </tr>
+
+                            </thead>
+                            <tbody>
+                                @{ int serno = 0;}
+                                @foreach (var item in Model.Companies)
+                                {
+                                    serno++;
+                                    <tr>
+                                        <td>
+                                            @serno
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.CompanyName)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.CompanyEmail)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.CompanyPhone)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.TotalProducts)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.TotalCategories)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Date)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.CompanyOwnerName)
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            }
+
+
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+
+    <script>
+        window.addEventListener ?
+            window.addEventListener("load", graph, false) :
+            window.attachEvent && window.attachEvent("onload", graph);
+        function graph() {
+            let dataPoints1 = [];
+            var dataPoints = [];
+            var dataPoints2 = [];
+
+            var chart = new CanvasJS.Chart("chartContainer", {
+                animationEnabled: true,
+                theme: "light2",
+                title: {
+                    text: "Daily Products Data"
+                },
+                axisY: {
+                    title: "Totals",
+                    titleFontSize: 24,
+                    includeZero: false,
+                    crosshair: {
+                        enabled: true,
+                        valueFormatString: "$#,##0.##",
+                        snapToDataPoint: true
+                    }
+                },
+                axisX: {
+                    crosshair: {
+                        enabled: true,
+                        snapToDataPoint: true
+                    }
+                },
+                data: [{
+                    type: "line",
+                    yValueFormatString: "#,##0.##",
+                    xValueFormatString: "MMM DD YYYY",
+                    dataPoints: dataPoints
+                }]
+            });
+
+            var chart1 = new CanvasJS.Chart("chartContainer1", {
+                animationEnabled: true,
+                theme: "light2",
+                title: {
+                    text: "Daily Categories Data"
+                },
+                axisY: {
+                    title: "Total",
+                    titleFontSize: 24,
+                    includeZero: false,
+                    crosshair: {
+                        enabled: true,
+                        valueFormatString: "$#,##0.##",
+                        snapToDataPoint: true
+                    }
+                },
+                axisX: {
+                    crosshair: {
+                        enabled: true,
+                        snapToDataPoint: true
+                    }
+                },
+                data: [{
+                    type: "line",
+                    yValueFormatString: "#,##0.##",
+                    xValueFormatString: "MMM DD YYYY",
+                    dataPoints: dataPoints1
+                }]
+            });
+
+            var chart2 = new CanvasJS.Chart("chartContainer2", {
+                animationEnabled: true,
+                theme: "light2",
+                title: {
+                    text: "Daily Visits Data"
+                },
+                axisY: {
+                    title: "Visits",
+                    titleFontSize: 24,
+                    includeZero: false,
+                    crosshair: {
+                        enabled: true,
+                        valueFormatString: "$#,##0.##",
+                        snapToDataPoint: true
+                    }
+                },
+                axisX: {
+                    crosshair: {
+                        enabled: true,
+                        snapToDataPoint: true
+                    }
+                },
+                data: [{
+                    type: "line",
+                    yValueFormatString: "#,##0.##",
+                    xValueFormatString: "MMM DD YYYY",
+                    dataPoints: dataPoints1
+                }]
+            });
+            function addData(data, data1,data2) {
+                data = JSON.parse(data);
+                data1 = JSON.parse(data1);
+                data1 = JSON.parse(data2);
+                Array.from(data).forEach(d => {
+                    dataPoints.push({
+                        x: new Date(d.day),
+                        y: d.total
+                    });
+                });
+
+                Array.from(data1).forEach(d => {
+                    dataPoints1.push({
+                        x: new Date(d.day),
+                        y: d.total
+                    });
+                });
+
+                Array.from(data2).forEach(d => {
+                    dataPoints2.push({
+                        x: new Date(d.day),
+                        y: d.total
+                    });
+                });
+                chart.render();
+                chart1.render();
+                chart2.render();
+            }
+
+
+            var p = document.getElementById('PassingToJavaScript1').value;
+            var q = document.getElementById('PassingToJavaScript2').value;
+            var r  = document.getElementById('PassingToJavaScript3').value;
+            addData(p, q,r);
+            //$.getJSON("/home/json", addData);
+
+        }
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('.page-content').css("background-color", "#E5E5E5");
+        });
+
+    </script>
+
+
+
+}

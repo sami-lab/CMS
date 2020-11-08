@@ -1,0 +1,401 @@
+﻿@model WebBuilder.ViewModel.Products.ProductsViewModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+
+<div class="container">
+    <form method="post" class="bg-light m-3 p-5" enctype="multipart/form-data">
+        <input id="length" type="text" hidden value="@Model.Images.Count" />
+        <h2 class="text-primary text-center m-1">Update Product</h2>
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="row mx-1">
+            <div class="col-6">
+                <div class="form-group">
+                    <label asp-for="title" class="control-label"></label>
+                    <input asp-for="title" id="input_1" class="form-control" />
+                    <span asp-validation-for="title" class="text-danger"></span>
+                </div>
+
+
+                <div class="form-group form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" asp-for="isSpecial" /> @Html.DisplayNameFor(model => model.isSpecial)
+                    </label>
+                </div>
+
+            </div>
+            <div class="col-6">
+                <div class="form-group">
+                    <label asp-for="CategoryId" class="control-label col-12"></label>
+                    <div class="col-12">
+                        <select asp-for="CategoryId" class="col-12 custom-select mr-sm-2"
+                                asp-items="@(new SelectList(@ViewBag.categories, "id", "CategoryName"))">
+                            <option value="">Please Select</option>
+                        </select>
+                    </div>
+                    <span asp-validation-for="CategoryId" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="form-group">
+                <label asp-for="details" class="control-label"></label>
+                <textarea asp-for="details" id="text_1" class="form-control"></textarea>
+                <span asp-validation-for="details" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="form-group">
+                <label asp-for="overviews" class="control-label"></label>
+                <textarea asp-for="overviews" id="text_2" class="form-control"></textarea>
+                <span asp-validation-for="overviews" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="form-group row d-flex justify-content-around">
+            <label asp-for="Photos" class="col-sm-2 col-12 col-form-label"></label>
+            <a href="#/" class="btn btn-primary col-6" data-toggle="modal" data-target="#myModal">Edit Images</a>
+        </div>
+
+        <div id="myModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header ">
+                        <h4 class="modal-title">Edit Images</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+
+                        @if (Model.Images.Any())
+                        {
+                            <div class="uploadForm d-flex flex-row flex-nowrap">
+                                @foreach (var item in Model.Images)
+                                {
+                                    var PhotoPath = "~/image/products/" + item.Image_Path;
+                                    <div id="img_@item.id" class="border px-3 mb-3" style="position:relative;">
+                                        <button type="button" class="close" onclick="RemoveImg(this.parentElement)" style="position: absolute; right:0; top:0;">&times;</button>
+                                        <img src="@PhotoPath" alt="Image" height="100" width="80" asp-append-version="true" />
+                                    </div>
+                                }
+                            </div>
+                        }
+                        else
+                        {
+
+                            <div class="uploadForm d-flex flex-row flex-nowrap">
+                                <label>No Existing Image exist</label>
+                            </div>
+                        }
+
+                        <div class="custom-file">
+                            <input asp-for="Photos" multiple accept="image/x-png,image/gif,image/jpeg" class="form-control custom-file-input">
+                            <label class="custom-file-label">Choose File...</label>
+                            <button type="button" class="btn btn-success m-2" onclick="RemoveNewImages()">Reset Uploaded Images</button>
+                            <button type="button" class="btn btn-success m-2" data-dismiss="modal">Done</button>
+                            <br />
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+
+
+        <div class="col-12 form-group">
+            <input type="submit" value="Update" class="btn btn-primary" />
+            <a asp-action="Products" class="px-2">Back to List</a>
+        </div>
+    </form>
+
+</div>
+
+<!--Live Preview-->
+<div>
+    <!--First Page Started -->
+    <div class=" container-fluid mx-auto">
+        <!-- Row 1 for text  -->
+        <div class="row">
+            <!-- Navbar Second div -->
+            <div class="col-12 text-white text-center py-lg-2 d-flex justify-content-center align-items-center "
+                 style="background-image: url(/Image/background.jpg); background-size: cover;">
+                Company Title will be  displayed here
+            </div>
+        </div>
+
+        <!-- Row 2 for heading -->
+        <div class="row">
+            <!-- First Section of heading -->
+            <div class="col-12 d-flex justify-content-center align-items-center">
+
+                <!-- Desin logo image -->
+                <div class=" p-0" style="height: 6rem;">
+                    <img asp-append-version="true" src="~/Image/companyLogo.png" height="150" width="300" id="image_1" />
+                </div>
+
+
+            </div>
+        </div>
+        <!--  -->
+        <nav class="navbar navbar-expand-lg navbar-light mb-lg-3">
+            <button class="border border-dark w-100 navbar-toggler ml-auto mb-3" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse " id="navbarSupportedContent">
+                <ul class="navbar-nav  mx-auto">
+                    <li class=" px-5 nav-item active">
+                        <a class="text-uppercase text-center font-weight-bold nav-link " href="#">
+                            Home
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item  px-5">
+                        <a class="text-uppercase text-dark text-center font-weight-bold nav-link"
+                           href="#">
+                            Products
+                        </a>
+                    </li>
+                    <li class="nav-item  px-5">
+                        <a class="text-uppercase text-dark text-center font-weight-bold  nav-link"
+                           href="#">
+                            About Us
+                        </a>
+                    </li>
+                    <li class="nav-item  px-5">
+                        <a class="text-uppercase text-dark text-center font-weight-bold nav-link"
+                           href="#">
+                            Contact Us
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+
+        <!-- First page ifded |  container closing div -->
+    </div>
+
+    @*Product details*@
+    <div class="container pdfPrint">
+
+        <div class="card">
+            <div class="container-fliud">
+                <div class="wrapper row">
+                    <div class="preview col-md-6">
+
+                        <div class="preview-pic tab-content" id="tabs">
+                            @{var imgkey = 1; }
+                            @foreach (var item in Model.Images.Take(5))
+                            {
+                                string ClassName = "active";
+                                if (imgkey > 1)
+                                { ClassName = ""; }
+                                imgkey++;
+                                string photoPath = "~/image/products/" + (item.Image_Path ?? "download.jpg");
+
+                                <div class="tab-pane @ClassName block__pic" id='image-@item.id'><img src="@photoPath" style="max-height:333px; max-width: 100%;  display:block; margin:auto" asp-append-version="true" /></div>
+                            }
+                        </div>
+                        <ul class="preview-thumbnail nav nav-tabs d-flex flex-nowrap text-nowrap" id="images">
+
+                            @foreach (var item in Model.Images)
+                            {
+                                var photoPath = "~/image/Products/" + (item.Image_Path ?? "download.jpg");
+                                <li class="active" data-id="image-@item.id"><a data-target="#image-@item.id" data-toggle="tab"><img src="@photoPath" width="100" height="100" asp-append-version="true" /></a></li>
+                            }
+                        </ul>
+
+                    </div>
+                    <div class="details col-md-6">
+                        <h3 class="product-title" id="element_1">@Model.title</h3>
+                        <div class="product-description  mr-5">
+                            <div id="html_1">@Html.Raw(Model.details)</div>
+                        </div>
+                        <!-- span for buttons -->
+                        <span>
+                            <a href="#" class="btn text-white text-uppercase px-5 py-1" style="background-color: #3a3a3a">
+                                INQUIRY
+                            </a>
+                            <button class="btn text-white px-5 py-1 my-2 my-lg-0" style="background-color: #3a3a3a">
+                                PDF Format
+                            </button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        @*Description*@
+        <div class="row">
+            <div class="col-12 py-lg-4 d-flex justify-content-center align-items-start flex-column">
+                <hr />
+                <h3 class="font-weight-bold">Description Care</h3>
+                <h5 class="font-weight-bold text-muted">Overview</h5>
+                <div id="html_2"> @Html.Raw(Model.overviews)</div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <link href="~/lib/summernote/summernote.min.css" rel="stylesheet" />
+    <script src="~/lib/summernote/summernote.min.js"></script>
+    <link href="~/css/company.css" rel="stylesheet" />
+    <link href="~/css/Product.css" rel="stylesheet" />
+    <style>
+        .note-editable {
+            background-color: white !important;
+            color: black !important;
+        }
+    </style>
+    <script>
+        var length = @Html.Raw(Model.Images.Count);
+        var orignalLength = length;
+
+        $(document).ready(function () {
+            $('form').each(function () {
+                if ($(this).data('validator'))
+                    $(this).data('validator').settings.ignore = ".note-editor *";
+            });
+            const textarea1 = $('#text_1');
+            const textarea2 = $('#text_2');
+            textarea1.summernote({
+                height: 300,
+                minHeight: 100,
+                codemirror: {
+                    theme: 'default'
+                },
+                toolbar: [
+                    ['style', ['style']],
+                    ['font', ['bold', 'italic', 'underline', 'strikethrough', 'superscript', 'subscript', 'clear']],
+                    ['fontname', ['fontname']],
+                    ['fontsize', ['fontsize']],
+                    ['color', ['color']],
+                    ['para', ['ol', 'ul', 'paragraph', 'height']],
+                    ['table', ['table']],
+                    ['insert', ['link']],
+                    ['view', ['undo', 'redo', 'fullscreen', 'codeview', 'help']]
+                ],
+                callbacks: {
+                    onChange: function (contents, $editable) {
+                        $('#html_1').html(contents)
+                    }
+                }
+            });
+            textarea2.summernote({
+                height: 300,
+                minHeight: 100,
+                codemirror: {
+                    theme: 'default'
+                },
+                toolbar: [
+                    ['style', ['style']],
+                    ['font', ['bold', 'italic', 'underline', 'strikethrough', 'superscript', 'subscript', 'clear']],
+                    ['fontname', ['fontname']],
+                    ['fontsize', ['fontsize']],
+                    ['color', ['color']],
+                    ['para', ['ol', 'ul', 'paragraph', 'height']],
+                    ['table', ['table']],
+                    ['insert', ['link']],
+                    ['view', ['undo', 'redo', 'fullscreen', 'codeview', 'help']]
+                ],
+                callbacks: {
+                    onChange: function (contents, $editable) {
+                        $('#html_2').html(contents)
+                    }
+                }
+            });
+
+            $('.custom-file-input').on('change', function () {
+                filePreview(this);
+                var fileLabel = $(this).next('.custom-file-label');
+                var files = $(this)[0].files;
+                if (files.length > 1) {
+                    fileLabel.html(length + " files selected");
+                }
+                else {
+                    if (length < 4)
+                        fileLabel.html(files[0].name);
+                }
+            })
+
+            $("[id^='input_']").bind("input change", function () {
+                var inputId = $(this).attr('id').split('_')[1];
+                $(`#element_${inputId}`).text($(this).val())
+
+            });
+        })
+        function filePreview(input) {
+
+            var files = input.files;
+
+            if (input.files && input.files[0]) {
+
+
+                for (let i = 0; i < files.length; i++) {
+                    var reader = new FileReader();
+
+                    if (length >= 5) {
+                        alert('Only 5 Images are allowed');
+                        return;
+                    }
+                    length++;
+                    reader.onload = function (e) {
+                        $('.uploadForm label').remove();
+                        $('.uploadForm').append(`<div  style="position:relative;" id="img_${(Date.now().toString(36) + Math.random().toString(36).substr(2, 5)).toUpperCase()}" class="border px-3 mb-3 mr-2 Customs">
+                                                                    <img src=${e.target.result}  height="100" width="80"   asp-append-version="true" />
+                                                           </div>`);
+                        let active = i == 0 && length == 0 ? "active" : "";
+                        let id = (Date.now().toString(36) + Math.random().toString(36).substr(2, 5)).toUpperCase();
+                        $('#tabs').append(` <div class="tab-pane ${active} CustomTabs" id="image_${id}"><img src="${e.target.result}" /></div>`)
+                        const li = `<li data-id="image-${id}" class="active CustomTabs">
+                            <a data-target="#image_${id}" data-toggle="tab">
+                              <img src="${e.target.result}" width="100" height="100" />
+                            </a></li>`;
+                        $('#images').append(li);
+                    };
+                    reader.readAsDataURL(input.files[i]);
+                }
+            }
+        }
+
+        async function RemoveImg(e) {
+
+            await $.post("/Products/RemoveImage", { imgId: e.id.split('_')[1] }, function (data) {
+                if (data == true) {
+                    $('.uploadForm #' + e.id).remove();
+                    $('#image-' + e.id.split('_')[1]).remove();
+                    // $("li [data-id='image-" + e.id.split('_')[1] + "']");
+                    const el= $(`[data-id="image-${e.id.split('_')[1]}"]`);
+                    el.remove();
+                    length--;
+                    orignalLength--;
+                }
+                else { $('.uploadForm label').add("Could not Remove Image"); }
+            });
+
+        }
+        function RemoveNewImages() {
+            var input = $("#Photos");
+            length = orignalLength;
+            $('.Customs').empty();
+            $('.CustomTabs').empty();
+            $('.custom-file-label').html("Choose File..");
+            input.replaceWith(input.val('').clone(true));
+
+        }
+    </script>
+}

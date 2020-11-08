@@ -1,0 +1,22 @@
+{
+  "version": "1.0",
+  "defaultProvider": "cdnjs",
+  "libraries": [
+    {
+      "library": "font-awesome@5.13.0",
+      "destination": "wwwroot/lib/font-awesome/"
+    },
+    {
+      "library": "jspdf@1.5.3",
+      "destination": "wwwroot/lib/JSpdf/"
+    },
+    {
+      "library": "summernote@0.8.18",
+      "destination": "wwwroot/summernote/"
+    },
+    {
+      "library": "zoom.js@0.0.1",
+      "destination": "wwwroot/lib/zoom.js/"
+    }
+  ]
+}

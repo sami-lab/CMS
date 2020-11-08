@@ -1,0 +1,28 @@
+﻿@model WebBuilder.ViewModel.Categories.CategoriesViewModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+<div class="row">
+    <div class="col-md-6 border shadow bg-light d-block mx-auto">
+        <form method="post" class="p-5">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <h5 class="text-primary text-center">Update Your Category</h5>
+            <div class="form-group">
+                <label asp-for="CategoryName" class="control-label"></label>
+                <input asp-for="CategoryName" class="form-control" />
+                <span asp-validation-for="CategoryName" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Update" class="btn btn-primary" />
+                <a asp-action="Categories" class="px-2">Back to List</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

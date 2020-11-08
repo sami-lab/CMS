@@ -1,0 +1,38 @@
+﻿@model WebBuilder.ViewModel.Account.LoginViewModel
+
+@{
+    ViewData["Title"] = "Login";
+}
+
+<div class="container" id="logreg-forms">
+    <div class="social">
+        <h1 class="h3 mb-3 mt-3 font-weight-normal" style="text-align: center"> Sign in</h1>
+    </div>
+    <form class="form-signin" asp-controller="Account" asp-action="Login" method="post">
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="Email"></label>
+            <input asp-for="Email" id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus="" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Password"></label>
+            <input asp-for="Password" id="inputPassword" class="form-control" placeholder="Password" />
+            <span asp-validation-for="Password" class="text-danger"></span>
+        </div>
+
+        <button class="btn btn-success btn-block" type="submit"><i class="fas fa-sign-in-alt"></i> Sign in</button>
+
+        <hr>
+    </form>
+
+
+</div>
+
+
+@section Scripts {
+    <link href="~/css/Login.css" rel="stylesheet" />
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    
+}

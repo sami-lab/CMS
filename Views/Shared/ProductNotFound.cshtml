@@ -1,0 +1,19 @@
+﻿
+
+@model dynamic
+
+@{
+    ViewBag.Title = "404 Error";   
+}
+<div class="d-flex justify-content-center align-items-center flex-column ">
+    <div class="alert alert-danger mt-1 mb-1">
+        <h4 class="text-center">404 Not Found Error :</h4>
+        <hr />
+        <h5 class="text-center">
+            @ViewBag.Name  with ID = @Model cannot be found
+        </h5>
+    </div>
+
+    <a asp-controller="Home" asp-action="index" class="btn btn-outline-success"
+       style="width:auto">Click here to return to Home Page</a>
+</div>

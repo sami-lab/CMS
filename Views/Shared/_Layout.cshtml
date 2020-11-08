@@ -1,0 +1,92 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] | 北京聚盈科技有限公司</title>
+
+    <environment include="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+     
+    </environment>
+    <environment exclude="Development">
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute"
+              crossorigin="anonymous"
+              integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" />
+      
+    </environment>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Libre+Baskerville&family=Roboto:wght@500&display=swap"
+          rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet" />
+    <link href="~/lib/fontawesome-free-5.13.0-web/css/all.min.css" rel="stylesheet" />
+    <script src="~/lib/fontawesome-free-5.13.0-web/js/all.min.js"></script>
+
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body class="mb-0">
+    <header>
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-dark d-flex justify-center flex-column">
+            <!-- Navbar first div -->
+            <div class=" container d-flex justify-content-between align-items-center">
+                <a class="navbar-brand text-white font-weight-bold text-3" asp-controller="Home" asp-action="Index">北京聚盈科技有限公司</a>
+
+                @*<span class="d-flex justify-content-end align-items-end ">
+                        <a href="#" class="text-white px-4  pt-1">
+                            <i class="fas fa-mobile-alt"></i>
+                        </a>
+                        <span class="text-white">|</span>
+                        <a href="#" class="text-white px-4  pt-1">
+                            <i class="fas fa-desktop"></i>
+                        </a>
+
+
+                    </span>*@
+                @if (User.IsInRole("Admin") || User.IsInRole("Super Admin"))
+                {
+                    <a style="width: 150px; height: 32px; font-size: 18px" asp-controller="Administration" asp-action="admin"
+                       class="mx-auto mx-md-0 font-bold display-1 btn-block my-3 my-lg-0 badge badge-pill badge-primary border-0">
+                        Admin Home
+                    </a>
+                }
+                else
+                {
+                    <a style="width: 150px; height: 32px; font-size: 18px" asp-controller="Home" asp-action="contactus"
+                       class="mx-auto mx-md-0 font-bold display-1 btn-block my-3 my-lg-0 badge badge-pill badge-primary border-0">
+                        Connect
+                    </a>
+                }
+
+            </div>
+        </nav>
+    </header>
+    <div class="">
+        <partial name="_CookieConsentPartial" />
+        <main role="main">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer>
+        <div class="row" style="background-color: #282828;">
+            <div class="col-12 text-center mx-auto d-flex justify-content-center align-items-center text-white ">
+                <p class="pt-4 pt-lg-3">北京聚盈科技有限公司 © All Rights Reserved. POWERED BY 北京聚盈科技有限公司  </p>
+
+            </div>
+        </div>
+    </footer>
+
+
+
+    <script src="~/lib/jquery/jquery.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.js"></script>
+
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

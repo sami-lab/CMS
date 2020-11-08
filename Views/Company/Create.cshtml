@@ -1,0 +1,655 @@
+﻿@model WebBuilder.ViewModel.Companies.CompaniesViewModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="container-fluid">
+    <form asp-action="Create" enctype="multipart/form-data">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input asp-for="CompanyOwner" hidden/>
+        <div class="bg-light m-3 p-5">
+            <h1 class="text-center mt-3 text-info">Register Brand</h1>
+            <div class="row">
+
+                <div class="col-md-6 px-1">
+                    <div class="form-group">
+                        <label asp-for="CompanyName" class="control-label"></label>
+                        <input id="input_3" asp-for="CompanyName" class="form-control" />
+                        <span asp-validation-for="CompanyName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="CompanyLogo" class="col-form-label"></label>
+                        <div class="custom-file">
+                            <input asp-for="CompanyLogo" class="form-control custom-file-input" id="file_1">
+                            <label class="custom-file-label">Choose File...</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="CompanyBackgorund" class="col-form-label"></label>
+                        <div class="custom-file">
+                            <input asp-for="CompanyBackgorund" class="form-control custom-file-input" id="file_2">
+                            <label class="custom-file-label">Choose File...</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="CompanyTitle" class="control-label"></label>
+                        <textarea id="input_1" asp-for="CompanyTitle" class="form-control"></textarea>
+                        <span asp-validation-for="CompanyTitle" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="CompanyDesc" class="control-label"></label>
+                        <textarea id="input_4" asp-for="CompanyDesc" class="form-control"></textarea>
+                        <span asp-validation-for="CompanyDesc" class="text-danger"></span>
+                    </div>
+
+                </div>
+                <div class="col-md-6 px-1">
+                    @*WhyChooseUS*@
+                    <div class="form-group">
+                        <label asp-for="whyCooseUsImage" class="col-form-label"></label>
+                        <div class="custom-file">
+                            <input asp-for="whyCooseUsImage" class="form-control custom-file-input" id="file_3">
+                            <label class="custom-file-label">Choose File...</label>
+                        </div>
+                    </div>
+                    @*Phone*@
+                    <div class="form-group">
+                        <label asp-for="CompanyPhone" class="control-label"></label>
+                        <input id="input_6" asp-for="CompanyPhone" class="form-control" />
+                        <span asp-validation-for="CompanyPhone" class="text-danger"></span>
+                    </div>
+
+                    @*Email*@
+                    <div class="form-group">
+                        <label asp-for="CompanyEmail" class="control-label"></label>
+                        <input id="input_7" asp-for="CompanyEmail" class="form-control" />
+                        <span asp-validation-for="CompanyEmail" class="text-danger"></span>
+                    </div>
+                    @*Contact Address*@
+                    <div class="form-group">
+                        <label asp-for="CompanyAdd" class="control-label"></label>
+                        <textarea id="input_5" asp-for="CompanyAdd" class="form-control"></textarea>
+                        <span asp-validation-for="CompanyAdd" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="whyCooseUsText" class="control-label"></label>
+                        <textarea id="input_2" asp-for="whyCooseUsText" class="form-control"></textarea>
+                        <span asp-validation-for="whyCooseUsText" class="text-danger"></span>
+                    </div>
+
+                </div>
+
+                <button type="submit" class="d-block mx-auto" style=" float: left;
+    margin-top: 5%;
+    border: none;
+    border-radius: 1.5rem;
+    padding: 2%;
+    background: #0062cc;
+    color: #fff;
+    font-weight: 600;
+    width: 30%;
+    cursor: pointer;
+    ">
+                    Register
+                </button>
+
+            </div>
+        </div>
+    </form>
+</div>
+<div class="w-100 px-0 mx-0 container-fluid">
+
+    <!--First Page Started -->
+    <div class=" container-fluid mx-auto">
+        <!-- Row 1 for text  -->
+        <div class="row">
+            <!-- Navbar Second div -->
+            <div class="col-12 text-white text-center py-lg-2 d-flex justify-content-center align-items-center element_1"
+                 style="background-image: url(/Image/background.jpg); background-size: cover;">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex, eos.
+            </div>
+        </div>
+        <!-- Row 2 for heading -->
+        <div class="row">
+            <!-- First Section of heading -->
+            <div class="col-12 d-flex justify-content-center align-items-center">
+
+                <div class="d-flex justify-content-between align-items-center">
+                    <span class="mx-3">
+                        <i class="fas fa-gem" style="color: #B97A57;"></i>
+                    </span>
+                    @*<h1 class="text-uppercase pt-5 pb-4"
+                            style="font-family: 'Libre Baskerville', serif; color: #B97A57 ;">
+                            Hoten
+                        </h1>*@
+                    <img asp-append-version="true" src="~/Image/companyLogo.png" height="120" width="200" id="image_1" />
+                    <span class="mx-3">
+                        <i class="fas fa-gem" style="color: #B97A57;"></i>
+                    </span>
+                </div>
+            </div>
+        </div>
+
+
+
+        <!--  -->
+        <nav class="navbar navbar-expand-lg navbar-light mb-lg-3">
+            <button class="border border-dark w-100 navbar-toggler ml-auto mb-3" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse " id="navbarSupportedContent">
+                <ul class="navbar-nav  mx-auto">
+                    <li class=" px-5 nav-item active">
+                        <a class="text-uppercase text-center font-weight-bold bg-light nav-link" href="#">
+                            Home
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item  px-5">
+                        <a class="text-uppercase text-dark text-center font-weight-bold bg-light nav-link"
+                           href="#">
+                            Products
+                        </a>
+                    </li>
+                    <li class="nav-item  px-5">
+                        <a class="text-uppercase text-dark text-center font-weight-bold bg-light nav-link"
+                           href="#">
+                            About Us
+                        </a>
+                    </li>
+                    <li class="nav-item  px-5">
+                        <a class="text-uppercase text-dark text-center font-weight-bold bg-light nav-link"
+                           href="#">
+                            Contact Us
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+
+
+
+
+        <!-- Row 3 for buttons -->
+        <!-- <div class="collapse navbar-collapse row mb-4 d-flex justify-content-center align-items-center"> -->
+        <!-- buttons section -->
+        <!-- <div class="col-2 d-flex justify-content-center align-items-center text-uppercase">
+                <a class="text-decoration-none text-dark" href="#"> home </a>
+            </div>
+            <div class="col-2 d-flex justify-content-center align-items-center text-uppercase">
+                <a class="text-decoration-none text-dark" href="#"> products </a>
+            </div>
+
+            <div class="col-2 d-flex justify-content-center align-items-center text-uppercase">
+                <a class="text-decoration-none text-dark" href="#"> about us </a>
+            </div>
+            <div class="col-2 d-flex justify-content-center align-items-center text-uppercase">
+                <a class="text-decoration-none text-dark" href="#"> contact us </a>
+            </div>
+        </div> -->
+        <!-- Row 4 hero image-->
+        <div class="row p-0">
+            <div class="col-12 p-0 d-flex justify-content-center align-items-center">
+                <img class="w-100" id="image_2" src="https://blackwellglobal.com/wp-content/uploads/2018/07/SGX-1183x420.jpg"
+                     alt="" asp-append-version="true" />
+            </div>
+        </div>
+
+        <!-- First page Ended |  container closing div -->
+    </div>
+    <div class=" container-fluid my-2 my-lg-5 ">
+        <!-- Row for three cards -->
+        <div class="row d-flex my-lg-5 justify-content-around align-items-center p-0">
+            <!-- Card one -->
+            <div class="col-10 my-2 py-md-0 col-md-4 d-flex justify-content-center align-items-center overflow-hidden  specialCol"
+                 style="height:10rem;">
+                <img src="https://t235.web.ueeshop.com/u_file/1905/photo/8e92409799.jpg" alt=""
+                     style="width: 100%;height: 100%;" class="cardImages " />
+            </div>
+            <!-- Card Two -->
+            <div class="col-10 my-2 py-md-0 col-md-4 d-flex justify-content-center align-items-center overflow-hidden  specialCol"
+                 style="height:10rem;">
+                <img src="https://t235.web.ueeshop.com/u_file/1905/photo/8e92409799.jpg" alt=""
+                     style="width: 100%;height: 100%;" class="cardImages " />
+            </div>
+            <!-- Card Three -->
+            <div class="col-10 my-2 py-md-0 col-md-4 d-flex justify-content-center align-items-center overflow-hidden  specialCol"
+                 style="height:10rem;">
+                <img src="https://t235.web.ueeshop.com/u_file/1905/photo/8e92409799.jpg" alt=""
+                     style="width: 100%;height: 100%;" class="cardImages " />
+            </div>
+
+
+            <!-- Card Two -->
+            <!-- <div class="col-9 py-2 py-md-0 col-md-4 d-flex justify-content-center align-items-center overflow-hidden">
+                <img src="https://i.warosu.org/data/vr/img/0004/92/1366383963292.png" alt=""
+                    style="width: 100%;height: 100%;" class="cardImages" />
+            </div> -->
+            <!-- Card Three -->
+            <!-- <div class="col-9 py-2 py-md-0 col-md-4 d-flex justify-content-center align-items-center overflow-hidden">
+                <img src="https://i.warosu.org/data/vr/img/0004/92/1366383963292.png" alt=""
+                    style="width: 100%;height: 100%;" class="cardImages" />
+            </div> -->
+
+        </div>
+    </div>
+
+    @*----------------Why choose us Section--------------*@
+    <div class=" container-fluid my-2 my-lg-5">
+        <div class="row">
+            <!-- Left for image -->
+            <div class="col-12 col-md-6 p-0 d-flex justify-content-center align-items-center">
+                <img src="https://t235.web.ueeshop.com/u_file/1905/photo/8e92409799.jpg" id="image_3" alt=""
+                     style="width: 100%; height: 100%;" asp-append-version="true">
+            </div>
+            <!-- Right for text  -->
+            <div class="lightGray py-5 px-4 col-12 col-md-6 d-flex justify-content-center align-items-start flex-column"
+                 style="background: url(/Image/leafbg.png); background-repeat: no-repeat; background-position: right; background-color: #F4F4F4;">
+                <h1 class="text-uppercase " style="font-family: 'Libre Baskerville', serif; font-size: 1.8rem;">
+                    why
+                    choose
+                    us
+                </h1>
+                <span class="mt-lg-2"><img src="~/Image/greyDesign.png" asp-append-version="true" alt="designPhoto"></span>
+                <p class="mt-lg-2 text-muted element_2 ">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    Accusantium voluptatum sapiente sint quod, at qui vero illo, ducimus
+                    molestias tenetur explicabo praesentium in fugit neque, eos ullam ab
+                    delectus sunt?
+                </p>
+                <a class="px-5 py-2 mt-lg-3 buttonHover text-uppercase" href="#">
+                    view more
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- Popular Products -->
+    <div class=" container-fluid d-flex justify-content-center align-items-center flex-column">
+        <!-- Hot sale -->
+        <div class="row">
+            <div class="col-12">
+                <h1 class="pt-lg-2" style="font-family: 'Great Vibes', cursive;">Hot Sale</h1>
+            </div>
+        </div>
+        <!-- Popular products -->
+        <div class="row">
+            <div class="col-12  text-center">
+                <h3 class="mx-auto pt-lg-2 text-uppercase font-weight-bold"
+                    style="font-family: 'Libre Baskerville', serif;">
+                    Popular
+                    products
+                </h3>
+            </div>
+        </div>
+        <!-- design -->
+        <div class="row">
+            <div class="col-12 mb-lg-5 mt-lg-2">
+                <img src="~/Image/TransparentDesign.png" alt="">
+            </div>
+        </div>
+        <!-- Images div -->
+        <div class="row d-flex justify-content-center align-items-center">
+            <div class="py-3  py-md-0 col-12 col-md-6 col-lg-3 d-flex justify-content-center align-items-center flex-column">
+                <img class="popularProductsImages"
+                     src="https://www.dodsandmcnair.com/include/site_storage/193388/defaultImage/converted/center-258x262-4141989.jpg"
+                     alt="" style="position: relative; z-index: 1" />
+                <p style="
+              position: absolute;
+              font-size: 4rem;
+              color: #9b562e;
+              top: 80px;
+              background: transparent;
+            ">
+                    <span>+</span>
+                </p>
+                <p class="pt-3">Outdoor Rugs</p>
+                <a href="#" class="text-decoration-none text-uppercase"
+                   style="border-bottom: 2px solid #9b562e; color: #9b562e ;">
+                    View
+                    more
+                </a>
+            </div>
+            <div class="py-3 py-md-0 col-12 col-md-6 col-lg-3 d-flex justify-content-center align-items-center flex-column">
+                <img class="popularProductsImages"
+                     src="https://www.dodsandmcnair.com/include/site_storage/193388/defaultImage/converted/center-258x262-4141989.jpg"
+                     alt="" style="position: relative; z-index: 1" />
+                <p style="
+              position: absolute;
+              font-size: 4rem;
+              color: #9b562e;
+              top: 80px;
+              background: transparent;
+            ">
+                    <span>+</span>
+                </p>
+
+                <p class="pt-3">Outdoor Rugs</p>
+                <a href="#" class="text-decoration-none text-uppercase"
+                   style="border-bottom: 2px solid #9b562e; color: #9b562e ;">
+                    View
+                    more
+                </a>
+
+            </div>
+            <div class="py-3 py-md-0 col-12 col-md-6 col-lg-3 d-flex justify-content-center align-items-center flex-column">
+                <img class="popularProductsImages"
+                     src="https://www.dodsandmcnair.com/include/site_storage/193388/defaultImage/converted/center-258x262-4141989.jpg"
+                     alt="" style="position: relative; z-index: 1" />
+                <p style="
+              position: absolute;
+              font-size: 4rem;
+              color: #9b562e;
+              top: 80px;
+              background: transparent;
+            ">
+                    <span>+</span>
+                </p>
+
+                <p class="pt-3">Outdoor Rugs</p>
+
+
+                <a href="#" class="text-decoration-none text-uppercase"
+                   style="border-bottom: 2px solid #9b562e; color: #9b562e ;">
+                    View
+                    more
+                </a>
+
+            </div>
+            <div class="py-3 py-md-0 col-12 col-md-6 col-lg-3  d-flex justify-content-center align-items-center flex-column">
+                <img class="popularProductsImages"
+                     src="https://www.dodsandmcnair.com/include/site_storage/193388/defaultImage/converted/center-258x262-4141989.jpg"
+                     alt="" style="position: relative; z-index: 1" />
+                <p style="
+              position: absolute;
+              font-size: 4rem;
+              color: #9b562e;
+              top: 80px;
+              background: transparent;
+            ">
+                    <span>+</span>
+                </p>
+
+                <p class="pt-3">Outdoor Rugs</p>
+
+
+                <a href="#" class="text-decoration-none text-uppercase"
+                   style="border-bottom: 2px solid #9b562e; color: #9b562e ;">
+                    View
+                    more
+                </a>
+
+
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- Popular case  container -->
+    <div class=" container-fluid pt-lg-4  d-flex justify-content-center align-items-center flex-column p-0">
+
+
+        <!-- Hot sale -->
+        <div class="row w-100 "
+             style="background-image: url(/Image/background.jpg);
+    background-size: cover;
+    background-repeat: no-repeat">
+            <div class="col-12 d-flex justify-content-center align-items-center flex-column">
+                <h1 class="pt-lg-2 pt-4 my-lg-4 text-white" style="font-family: 'Great Vibes', cursive;">Home Decia</h1>
+                <h3 class="mx-auto pt-lg-2 text-uppercase text-white font-weight-bold mb-lg-4"
+                    style="font-family: 'Libre Baskerville', serif;">
+                    Popular
+                    case
+                </h3>
+
+                <span class="text-white mb-lg-5 mb-5 pb-5">
+
+                    --------
+                    <img src="~/Image/diamond-white-desin.png" alt="">
+
+                </span>
+
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="container-fluid" style="position: relative; top: -4rem;">
+
+        <!-- First five images -->
+        <div class="row d-flex justify-content-center align-items-center ">
+            <div class="col-6  col-md-2 overflow-hidden  p-0">
+                <img src="https://officefurniturefirst.co.nz/wp-content/uploads/apollo-sofa-1-226x226.jpg" alt=""
+                     class="popularCaseImage">
+            </div>
+            <div class="col-6  col-md-2 overflow-hidden p-0">
+                <img src="https://officefurniturefirst.co.nz/wp-content/uploads/apollo-sofa-1-226x226.jpg" alt=""
+                     class="popularCaseImage">
+            </div>
+            <div class="col-6  col-md-2 overflow-hidden p-0">
+                <img src="https://officefurniturefirst.co.nz/wp-content/uploads/apollo-sofa-1-226x226.jpg" alt=""
+                     class="popularCaseImage">
+            </div>
+            <div class="col-6  col-md-2 overflow-hidden p-0">
+                <img src="https://officefurniturefirst.co.nz/wp-content/uploads/apollo-sofa-1-226x226.jpg" alt=""
+                     class="popularCaseImage">
+            </div>
+            <div class="col-6  col-md-2 overflow-hidden p-0">
+                <img src="https://officefurniturefirst.co.nz/wp-content/uploads/apollo-sofa-1-226x226.jpg" alt=""
+                     class="popularCaseImage">
+            </div>
+        </div>
+
+
+        <!-- Second five images -->
+        <div class="row d-flex justify-content-center align-items-center">
+            <div class=" col-6 col-md-2 overflow-hidden p-0">
+                <img src="https://officefurniturefirst.co.nz/wp-content/uploads/apollo-sofa-1-226x226.jpg" alt=""
+                     class="popularCaseImage">
+            </div>
+            <div class="col-6  col-md-2 overflow-hidden p-0">
+                <img src="https://officefurniturefirst.co.nz/wp-content/uploads/apollo-sofa-1-226x226.jpg" alt=""
+                     class="popularCaseImage">
+            </div>
+            <div class="col-6  col-md-2 overflow-hidden p-0">
+                <img src="https://officefurniturefirst.co.nz/wp-content/uploads/apollo-sofa-1-226x226.jpg" alt=""
+                     class="popularCaseImage">
+            </div>
+            <div class="col-6  col-md-2 overflow-hidden p-0">
+                <img src="https://officefurniturefirst.co.nz/wp-content/uploads/apollo-sofa-1-226x226.jpg" alt=""
+                     class="popularCaseImage">
+            </div>
+            <div class="col-6  col-md-2 overflow-hidden p-0">
+                <img src="https://officefurniturefirst.co.nz/wp-content/uploads/apollo-sofa-1-226x226.jpg" alt=""
+                     class="popularCaseImage">
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+
+
+    <div class=" container-fluid ">
+        <div class="row py-lg-5 d-flex justify-content-center align-items-center" style="background-color: #282828;">
+
+            <!-- First column -->
+            <div class="py-3 py-lg-0 col-9 col-md-4 d-flex justify-content-center align-items-start flex-column ">
+                <div class="row">
+                    <div class="col-12 d-flex justify-content-between align-items-center ">
+                        <span class="mx-3">
+                            <i class="fas fa-gem" style="color: #B97A57;"></i>
+                        </span>
+                        <h1 class="text-uppercase text-center mx-auto pb-lg-3 element_3"
+                            style="color: #B97A57; border-bottom: 4px dotted #9b562e;" >
+                            Lorem ipsum dolor si
+                        </h1>
+                        <span class="mx-3">
+                            <i class="fas fa-gem" style="color: #B97A57;"></i>
+                        </span>
+                    </div>
+                    <div class="col-12">
+                        <p class="text-muted text-center element_4">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                            Totam
+                            debitis quo
+                            quibusdam libero odio
+                            doloremque nihil eius tempora culpa, doloribus, cumque ab dignissimos neque nemo dicta
+                            iure
+                            repudiandae fuga sed.
+                        </p>
+                    </div>
+                    <div class="col-12  d-flex justify-center align-items-center">
+                        <a href="#" class=" text-decoration-none mx-auto text-uppercase"
+                           style="border-bottom: 2px solid #9b562e; color: #9b562e ;">
+                            View
+                            more
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Second column -->
+            <!-- footer col sm -->
+            <div class="py-3 py-lg-0 col-9 col-md-2 justify-content-start align-items-start flex-column footerColSm">
+                <a class="text-decoration-none text-white text-uppercase " data-toggle="collapse" href="#firstColumn"
+                   role="button" aria-expanded="false" aria-controls="firstColumn"
+                   style="font-size: 1.1rem; font-family: 'Libre Baskerville', serif">
+                    Products
+                </a>
+                <div class="collapse mt-3 " id="firstColumn">
+                    <a class="d-block text-decoration-none" href="#">Dining & Kitchen</a>
+                    <a class="d-block text-decoration-none" href="#">Dining & Kitchen</a>
+                    <a class="d-block text-decoration-none" href="#">Dining & Kitchen</a>
+                    <a class="d-block text-decoration-none" href="#">Dining & Kitchen</a>
+                </div>
+            </div>
+            <!-- footer col lg -->
+            <div class="py-3 py-lg-0 col-9 col-md-2 justify-content-start align-items-start flex-column footerColLg ">
+                <a class="text-decoration-none text-white text-uppercase py-4"
+                   style="font-size: 1.1rem; font-family: 'Libre Baskerville', serif">
+                    Products
+                </a>
+                <div>
+                    <a class="d-block text-decoration-none" href="#">Dining & Kitchen</a>
+                    <a class="d-block text-decoration-none" href="#">Dining & Kitchen</a>
+                    <a class="d-block text-decoration-none" href="#">Dining & Kitchen</a>
+                    <a class="d-block text-decoration-none" href="#">Dining & Kitchen</a>
+                </div>
+            </div>
+
+            <!-- Third column About-->
+            <!-- footer col sm -->
+            <div class="py-3 py-lg-0 col-9 col-md-2  justify-content-start align-items-start flex-column footerColSm">
+
+                <a class="text-decoration-none text-white text-uppercase" data-toggle="collapse" href="#thridColumn"
+                   role="button" aria-expanded="false" aria-controls="thridColumn"
+                   style="font-size: 1.1rem; font-family: 'Libre Baskerville', serif">
+                    About Us
+                </a>
+
+
+                <div class="collapse mt-3 " id="thridColumn">
+                    <a class="d-block text-decoration-none" href="#">Dining & Kitchen</a>
+                    <a class="d-block text-decoration-none" href="#">Dining & Kitchen</a>
+                    <a class="d-block text-decoration-none" href="#">Dining & Kitchen</a>
+                    <a class="d-block text-decoration-none" href="#">Dining & Kitchen</a>
+                </div>
+
+
+
+            </div>
+
+
+            <!-- footer col lg -->
+            <div class="py-3 py-lg-0 col-9 col-md-2 justify-content-start align-items-start flex-column footerColLg ">
+                <a class="text-decoration-none text-white text-uppercase py-4"
+                   style="font-size: 1.1rem; font-family: 'Libre Baskerville', serif">
+                    About Us
+                </a>
+                <div>
+                    <a class="d-block text-decoration-none" href="#">Dining & Kitchen</a>
+                    <a class="d-block text-decoration-none" href="#">Dining & Kitchen</a>
+                    <a class="d-block text-decoration-none" href="#">Dining & Kitchen</a>
+                    <a class="d-block text-decoration-none" href="#">Dining & Kitchen</a>
+                </div>
+            </div>
+
+
+            <!-- Fourth column contact us -->
+            <!-- colsm -->
+            <div class="py-3 py-lg-0 col-9 col-md-2  justify-content-start align-items-start flex-column footerColSm">
+
+                <a class="text-decoration-none text-white text-uppercase" data-toggle="collapse" href="#fourthColumn"
+                   role="button" aria-expanded="false" aria-controls="fourthColumn"
+                   style="font-size: 1.1rem; font-family: 'Libre Baskerville', serif">
+                    Contact Us
+                </a>
+
+
+                <div class="collapse mt-3 " id="fourthColumn">
+                    <a class="d-block text-decoration-none" href="#"><i class="fas fa-map-marker-alt rounded mr-1" style="width:20px; height:20px;  margin-right:2px"></i>Add:<span id="element_5">Jinde Building, Wende Street, Yuexiu District</span></a>
+                    <a class="d-block text-decoration-none" href="tel:02083226791">  <i class="fas fa-phone-volume rounded mr-1" style="width:20px; height:20px;  margin-right:2px"></i>TEL:<span id="element_6"> 02083226791</span></a>
+                    <a class="d-block text-decoration-none" href="mailto:320006220@qq.com">    <i class="fas fa-envelope-open-text rounded" style="width:20px; height:20px; margin-right:2px"></i>E-Mail:<span id="element_7"> 320006220@qq.com </span></a>
+
+                </div>
+
+
+
+            </div>
+            <!-- colLg -->
+            <div class="py-3 py-lg-0 col-9 col-md-2 justify-content-start align-items-start flex-column footerColLg ">
+                <a class="text-decoration-none text-white text-uppercase py-4"
+                   style="font-size: 1.1rem; font-family: 'Libre Baskerville', serif">
+                    Contact Us
+                </a>
+                <div>
+                    <a class="d-block text-decoration-none" href="#"><i class="fas fa-map-marker-alt rounded" style="width:20px; height:20px;  margin-right:2px"></i>Add:<span class="element_5">Jinde Building, Wende Street, Yuexiu District</span></a>
+                    <a class="d-block text-decoration-none" href="tel:02083226791"><i class="fas fa-phone-volume rounded" style="width:20px; height:20px;  margin-right:2px"></i>TEL:<span class="element_6"> 02083226791</span></a>
+                    <a class="d-block text-decoration-none" href="mailto:320006220@qq.com">    <i class="fas fa-envelope-open-text rounded" style="width:20px; height:20px;  margin-right:2px"></i>E-Mail:<span class="element_7"> 320006220@qq.com</span></a>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+@section Scripts {
+    <link rel="stylesheet" href="~/css/company.css" />
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    @*//file_  image_1, input_ element_1*@
+    <script>
+        $(document).ready(function () {
+            $("[id^='file_']").on("change", function () {
+                var fileName = $(this).val().split("\\").pop();
+                $(this).next('.custom-file-label').html(fileName);
+                readURL(this, $(this).attr('id').split('_')[1]);
+            });
+            $("[id^='input_']").bind("input change", function () {
+                var inputId = $(this).attr('id').split('_')[1];
+                $(`.element_${inputId}`).text($(this).val())
+
+            });
+        });
+
+        function readURL(input, elementID) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    //alert(e.target.result);
+                    $(`#image_${elementID}`).attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
+}

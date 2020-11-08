@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="IIS Web Application Name" description="" value="sami1234-001-site1" tags="IisApp">
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^D:\\Files\ and\ Softwares\\ass\\backend\\WebBuilder\\obj\\Debug\\netcoreapp2\.2\\PubTmp\\Out\\$" />
+  </parameter>
+  <parameter name="WebBuilder.Data.ApplicationDbContext" description="" value="Server=MYSQL5030.site4now.net;Database=db_a69e1c_cms;Uid=a69e1c_cms;Pwd=Sameer123456@" tags="dbfullsql">
+    <parameterEntry kind="ProviderPath" scope="dbfullsql" match="^D:\\Files\ and\ Softwares\\ass\\backend\\WebBuilder\\obj\\Debug\\netcoreapp2\.2\\PubTmp\\EFSQLScripts\\WebBuilder\.Data\.ApplicationDbContext\.sql$" />
+  </parameter>
+</parameters>

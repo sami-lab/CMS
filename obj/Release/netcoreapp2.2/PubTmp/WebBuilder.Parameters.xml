@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="IIS Web Application Name" description="" value="JuyingTech" tags="IisApp">
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^D:\\Files\ and\ Softwares\\ass\\backend\\WebBuilder\\obj\\Release\\netcoreapp2\.2\\PubTmp\\Out\\$" />
+  </parameter>
+  <parameter name="WebBuilder.Data.ApplicationDbContext" description="" value="Server=45.77.77.153;Database=cms;Uid=root;Pwd=NeSrziFHnXJNwsmf" tags="dbfullsql">
+    <parameterEntry kind="ProviderPath" scope="dbfullsql" match="^D:\\Files\ and\ Softwares\\ass\\backend\\WebBuilder\\obj\\Release\\netcoreapp2\.2\\PubTmp\\EFSQLScripts\\WebBuilder\.Data\.ApplicationDbContext\.sql$" />
+  </parameter>
+</parameters>

@@ -1,0 +1,372 @@
+﻿@model WebBuilder.ViewModel.Products.ProductsViewModel
+
+@{
+    ViewData["Title"] = Model.title + "-" + Model.CompanyName;
+    <meta name="description"
+          key="description"
+          content="@Model.title - @Model.CompanyTitle" />
+    string CompanyLogoPath = null;
+    if (Model.CompanyLogoPath != null)
+    {
+        CompanyLogoPath = "~/Image/Companies/" + Model.CompanyLogoPath;
+    }
+    else
+    {
+        CompanyLogoPath = "~/Image/companyLogo.png";
+    }
+}
+
+<div>
+    <!--First Page Started -->
+    <div class=" container-fluid mx-auto">
+        <!-- Row 1 for text  -->
+        <div class="row">
+            <!-- Navbar Second div -->
+            <div class="col-12 text-white text-center py-lg-2 d-flex justify-content-center align-items-center "
+                 style="background-image: url(/Image/background.jpg); background-size: cover;">
+                @Model.CompanyTitle
+            </div>
+        </div>
+        <!-- Row 2 for heading -->
+        <div class="row">
+            <!-- First Section of heading -->
+            <div class="col-12 d-flex justify-content-center align-items-center">
+
+                <!-- Desin logo image -->
+                <div class=" p-0" style="height: 6rem;">
+                    <img asp-append-version="true" src="@CompanyLogoPath" style="width: 100%; height: 100%;" id="image_1" />
+                </div>
+
+
+            </div>
+        </div>
+
+        <!--  -->
+        <nav class="navbar navbar-expand-lg navbar-light mb-lg-3">
+            <button class="border border-dark w-100 navbar-toggler ml-auto mb-3" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse " id="navbarSupportedContent">
+                <ul class="navbar-nav  mx-auto">
+                    <li class=" px-5 nav-item active">
+                        <a class="text-uppercase text-center font-weight-bold nav-link " asp-controller="Company" asp-action="Details" asp-route-name="@Model.CompanyName">
+                            Home
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item  px-5">
+                        <a class="text-uppercase text-dark text-center font-weight-bold nav-link"
+                           asp-controller="Products" asp-action="Products" asp-route-name="@Model.CompanyName">
+                            Products
+                        </a>
+                    </li>
+                    <li class="nav-item  px-5">
+                        <a class="text-uppercase text-dark text-center font-weight-bold  nav-link"
+                           asp-controller="Home" asp-action="aboutus" asp-route-name="@Model.CompanyName">
+                            About Us
+                        </a>
+                    </li>
+                    <li class="nav-item  px-5">
+                        <a class="text-uppercase text-dark text-center font-weight-bold nav-link"
+                           asp-controller="Home" asp-action="contactus" asp-route-name="@Model.CompanyName">
+                            Contact Us
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- Row 4 title  -->
+        <nav class="row" aria-label="breadcrumb">
+            <ol class="breadcrumb col-12 px-3">
+                <li class="breadcrumb-item ml-5"><a asp-controller="Company" asp-action="Details" asp-route-name="@Model.CompanyName">Home</a></li>
+                <li class="breadcrumb-item"><a asp-controller="Products" asp-action="Products" asp-route-name="@Model.CompanyName">Products</a></li>
+                <li class="breadcrumb-item active" aria-current="page"> @Model.title</li>
+            </ol>
+        </nav>
+        @if (User.IsInRole("Admin"))
+        {
+            <div class="row d-flex justify-content-center mx-auto">
+
+                @*<h5>  @await Html.PartialAsync("~/Views/Shared/Modal.cshtml", Model.id)</h5>*@
+                <form method="post" asp-action="Delete" asp-route-id="@Model.id">
+                    <h5 class="text-center mx-2"><a asp-controller="Products" asp-action="Edit" asp-route-id="@Model.id">Edit</a></h5>
+                    <span id="confirmDeleteSpan_@Model.id" style="display:none">
+                        <span><b>Are you sure you want to delete?</b></span>
+                        <button type="submit" class="btn btn-danger">Yes</button>
+                        <a href="#/" class="btn btn-primary"
+                           onclick="confirmDelete('@Model.id', false)">No</a>
+                    </span>
+
+                    <span id="deleteSpan_@Model.id">
+                        <a href="#/" class="btn btn-danger"
+                           onclick="confirmDelete('@Model.id', true)">Delete</a>
+                    </span>
+                </form>
+            </div>
+        }
+        <!-- First page ifded |  container closing div -->
+    </div>
+
+    @*Product details*@
+    <div class="container pdfPrint">
+
+        <div class="card">
+            <div class="container-fliud">
+                <div class=" row">
+                    <div class="preview col-md-6">
+
+                        @if (Model.Images.Any())
+                        {
+                            var imgkey = 1;
+
+                            <div class="preview-pic tab-content" style="max-height:333px">
+                                @foreach (var item in Model.Images.Take(5))
+                                {
+                                    string ClassName = "active";
+                                    if (imgkey > 1)
+                                    { ClassName = ""; }
+                                    imgkey++;
+                                    var photoPath = "~/image/products/" + (item.Image_Path ?? "download.jpg");
+                                    <div class="tab-pane @ClassName" id='pic-@item.id'><img class="block__pic" src="@photoPath" style="max-height:333px; max-width: 100%;  display:block; margin:auto" asp-append-version="true" /></div>
+                                }
+                            </div>
+                            <ul class="preview-thumbnail nav nav-tabs d-flex justify-content-around">
+
+                                @foreach (var item in Model.Images.Take(5))
+                                {
+                                    var photoPath = "~/image/Products/" + (item.Image_Path ?? "download.jpg");
+                                    <li class="active"><a data-target="#pic-@item.id" data-toggle="tab"><img src="@photoPath" width="100" height="100" asp-append-version="true" /></a></li>
+                                }
+                            </ul>
+
+                        }
+                        else
+                        {
+                            <img src="~/Image/download.png" class="block__pic" />
+                        }
+
+
+                    </div>
+                    <div class="details col-md-6">
+                        <h3 class="product-title" id="title">@Model.title.ToUpper()</h3>
+                        <div class="product-description  mr-5">
+                            <p class="text-muted">   @Html.Raw(@Model.details)</p>
+                        </div>
+                        <!-- span for buttons -->
+                        <span>
+                            <a asp-controller="Home" asp-action="contactus" asp-route-name="@Model.CompanyName" class="btn text-white text-uppercase px-5 py-1" style="background-color: #3a3a3a">
+                                INQUIRY
+                            </a>
+                            <button id="pdf" class="btn text-white px-5 py-1 my-2 my-lg-0" style="background-color: #3a3a3a">
+                                PDF Format
+                            </button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        @*Description*@
+        <div class="row">
+            <div class="col-12 py-lg-4 d-flex justify-content-center align-items-start flex-column">
+                <hr />
+                <h3 class="font-weight-bold">Description Care</h3>
+                <h5 class="font-weight-bold text-muted">Overview</h5>
+                @Html.Raw(@Model.overviews)
+            </div>
+        </div>
+    </div>
+
+    <!--Footer-->
+    <div class="container-fliud">
+        <div class="row py-lg-5 d-flex justify-content-center" style="background-color: #282828;">
+
+            <!-- First column -->
+            <div class="py-3 py-lg-0 col-9 col-md-4 d-flex justify-content-start align-items-start flex-column">
+                <div class="row">
+                    <div class="col-12 d-flex justify-content-between align-items-center ">
+                        <h1 class="text-uppercase text-center mx-auto pb-lg-3"
+                            style="color: #B97A57; border-bottom: 4px dotted #9b562e;">
+                            <span class="mr-3">
+                                <i class="fas fa-gem small" style="color: #B97A57;"></i>
+                            </span>
+                            @Model.CompanyName
+
+                            <span class="ml-3">
+                                <i class="fas fa-gem small" style="color: #B97A57;"></i>
+                            </span>
+                        </h1>
+
+                    </div>
+                    <div class="col-12">
+                        <p class="text-muted text-center">
+                            @Model.CompanyDesc
+                        </p>
+                    </div>
+                    <div class="col-12  d-flex justify-center align-items-center">
+                        <a asp-controller="Home" asp-action="aboutus" asp-route-name="@Model.CompanyName" class=" text-decoration-none mx-auto text-uppercase"
+                           style="border-bottom: 2px solid #9b562e; color: #9b562e ;">
+                            View
+                            more
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Second column -->
+            <!-- footer col sm -->
+            <div class="py-3 py-lg-0 col-9 col-md-2 justify-content-start align-items-start flex-column footerColSm">
+                <a class="text-decoration-none text-white text-uppercase " data-toggle="collapse" href="#firstColumn"
+                   role="button" aria-expanded="false" aria-controls="firstColumn"
+                   style="font-size: 1.1rem; font-family: 'Libre Baskerville', serif">
+                    Products
+                </a>
+                <div class="collapse mt-3 " id="firstColumn">
+                    @foreach (var category in ViewBag.Categories)
+                    {
+                        <a class="d-block text-decoration-none" asp-controller="Products" asp-action="ProductsInCategory" asp-route-categoryId="@category.id" asp-route-name="@Model.CompanyName">@category.CategoryName</a>
+                    }
+
+                </div>
+            </div>
+            <!-- footer col lg -->
+            <div class="py-3 py-lg-0 col-9 col-md-2 justify-content-start align-items-start flex-column footerColLg ">
+                <a class="text-decoration-none text-white text-uppercase py-4"
+                   style="font-size: 1.1rem; font-family: 'Libre Baskerville', serif">
+                    Products
+                </a>
+                <div>
+                    @foreach (var category in ViewBag.Categories)
+                    {
+                        <a class="d-block text-decoration-none" asp-controller="Products" asp-action="ProductsInCategory" asp-route-categoryId="@category.id" asp-route-name="@Model.CompanyName">@category.CategoryName</a>
+                    }
+                </div>
+            </div>
+
+            <!-- Third column About-->
+            <!-- footer col sm -->
+            <div class="py-3 py-lg-0 col-9 col-md-2  justify-content-start align-items-start flex-column footerColSm">
+
+                <a class="text-decoration-none text-white text-uppercase" data-toggle="collapse" href="#thridColumn"
+                   role="button" aria-expanded="false" aria-controls="thridColumn"
+                   style="font-size: 1.1rem; font-family: 'Libre Baskerville', serif">
+                    About Us
+                </a>
+
+
+                <div class="collapse mt-3 " id="thridColumn">
+                    <a class="d-block text-decoration-none" asp-controller="Home" asp-action="aboutus" asp-route-name="@Model.CompanyName">About us</a>
+
+                </div>
+
+
+
+            </div>
+
+
+            <!-- footer col lg -->
+            <div class="py-3 py-lg-0 col-9 col-md-2 justify-content-start align-items-start flex-column footerColLg ">
+                <a class="text-decoration-none text-white text-uppercase py-4"
+                   style="font-size: 1.1rem; font-family: 'Libre Baskerville', serif">
+                    About Us
+                </a>
+                <div>
+                    <a class="d-block text-decoration-none" asp-controller="Home" asp-action="aboutus" asp-route-name="@Model.CompanyName">About us</a>
+                </div>
+            </div>
+
+
+            <!-- Fourth column contact us -->
+            <!-- colsm -->
+            <div class="py-3 py-lg-0 col-9 col-md-2  justify-content-start align-items-start flex-column footerColSm">
+
+                <a class="text-decoration-none text-white text-uppercase" data-toggle="collapse" href="#fourthColumn"
+                   role="button" aria-expanded="false" aria-controls="fourthColumn"
+                   style="font-size: 1.1rem; font-family: 'Libre Baskerville', serif">
+                    Contact Us
+                </a>
+
+
+                <div class="collapse mt-3 " id="fourthColumn">
+                    <a class="d-block text-decoration-none" href="#"><i class="fas fa-map-marker-alt rounded mr-1" style="width:20px; height:20px;  margin-right:2px"></i>Add:  @Model.CompanyAdd</a>
+                    <a class="d-block text-decoration-none" href="tel:@Model.CompanyPhone">  <i class="fas fa-phone-volume rounded mr-1" style="width:20px; height:20px;  margin-right:2px"></i>TEL: @Model.CompanyPhone </a>
+                    <a class="d-block text-decoration-none" href="mailto: @Model.CompanyEmail">    <i class="fas fa-envelope-open-text rounded" style="width:20px; height:20px; margin-right:2px"></i>E-Mail: @Model.CompanyEmail </a>
+
+                </div>
+
+
+
+            </div>
+            <!-- colLg -->
+            <div class="py-3 py-lg-0 col-9 col-md-2 justify-content-start align-items-start flex-column footerColLg ">
+                <a class="text-decoration-none text-white text-uppercase py-4"
+                   style="font-size: 1.1rem; font-family: 'Libre Baskerville', serif">
+                    Contact Us
+                </a>
+                <div>
+                    <a class="d-block text-decoration-none" href="#"><i class="fas fa-map-marker-alt rounded" style="width:20px; height:20px;  margin-right:2px"></i>Add: @Model.CompanyAdd</a>
+                    <a class="d-block text-decoration-none" href="tel:@Model.CompanyPhone"><i class="fas fa-phone-volume rounded" style="width:20px; height:20px;  margin-right:2px"></i>TEL: @Model.CompanyPhone</a>
+                    <a class="d-block text-decoration-none" href="mailto: @Model.CompanyEmail">    <i class="fas fa-envelope-open-text rounded" style="width:20px; height:20px;  margin-right:2px"></i>E-Mail: @Model.CompanyEmail</a>
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+@section Scripts{
+    <script src="~/js/zoomsl.js"></script>
+    <link href="~/css/company.css" rel="stylesheet" />
+    <link href="~/css/Product.css" rel="stylesheet" />
+    <link href="~/css/zoom.css" rel="stylesheet" />
+
+
+    <script src="~/lib/JSpdf/jspdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-alpha1/html2canvas.min.js" integrity="sha512-Ih/6Hivj+361PNhdTq03BrGbzCpetyokxTKSqohHw8GSsGD6jGzp4E5Wl8nayPWN3iUpZpfRNE/25q5BuaUd8Q==" crossorigin="anonymous"></script>
+
+    <script>
+        $(document).ready(function () {
+
+            $("#pdf").click(function () {
+                var Pagewidth = $('.pdfPrint').width();
+                var Pageheight = $('.pdfPrint').height();
+                var eleme = document.querySelector('.pdfPrint');
+                html2canvas(eleme).then(function (canvas) {
+                    var img = canvas.toDataURL('image/png');
+                    var doc = new jsPDF('p', 'px', [Pagewidth, Pageheight]);
+
+                    doc.addImage(img, 'JPEG', 5, 5);
+                    let productName = document.getElementById('title').innerText;
+                    doc.save(`${productName}.pdf`);
+                });
+
+            });
+
+            $(".block__pic").imagezoomsl({
+                zoomrange: [3, 3]
+            });
+        });
+        function confirmDelete(uniqueId, isDeleteClicked) {
+            var deleteSpan = 'deleteSpan_' + uniqueId;
+            var confirmDeleteSpan = 'confirmDeleteSpan_' + uniqueId;
+
+            if (isDeleteClicked) {
+                $('#' + deleteSpan).hide();
+                $('#' + confirmDeleteSpan).show();
+            } else {
+                $('#' + deleteSpan).show();
+                $('#' + confirmDeleteSpan).hide();
+            }
+        }
+    </script>
+
+}

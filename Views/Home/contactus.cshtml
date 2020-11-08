@@ -1,0 +1,646 @@
+﻿@model WebBuilder.ViewModel.Companies.CompaniesViewModel
+@inject IConfiguration Configuration
+
+@{
+    if (Model != null && Model.CompanyName != null)
+    {
+        ViewData["Title"] = "Contact Us | " + Model.CompanyName;
+        <meta name="description"
+              key="description"
+              content="Connect with @Model.CompanyName now!" />
+    }
+    else
+    {
+        ViewData["Title"] = "About Us";
+        <meta name="description"
+              key="description"
+              content="中国跨境电商&出口贸易卖家独立站建站平台" />
+    }
+
+}
+
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>  @TempData["Message"]</strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+}
+@if (Model != null)
+{
+    <!--First Page Started -->
+    <div class=" container-fluid mx-auto">
+        <!-- Row 1 for text  -->
+        <div class="row">
+            <!-- Navbar Second div -->
+            <div class="col-12 text-white text-center py-lg-2 d-flex justify-content-center align-items-center "
+                 style="background-image: url(/Image/background.jpg); background-size: cover;">
+                @Model.CompanyTitle
+            </div>
+        </div>
+
+        <!-- Row 2 for heading -->
+        <div class="row">
+            <!-- First Section of heading -->
+            <div class="col-12 d-flex justify-content-center align-items-center">
+                @{
+                    string CompanyLogoPath = null;
+                    if (Model.CompanyLogoPath != null)
+                    {
+                        CompanyLogoPath = "~/Image/Companies/" + Model.CompanyLogoPath;
+                    }
+                    else
+                    {
+                        CompanyLogoPath = "~/Image/companyLogo.png";
+                    }
+                }
+                <!-- Desin logo image -->
+                <div class="mb-5 p-0" style="height: 6rem;">
+                    <img asp-append-version="true" src="@CompanyLogoPath" style="width: 100%; height: 100%;" id="image_1" />
+                </div>
+
+
+            </div>
+        </div>
+        <!--  -->
+        <nav class="navbar navbar-expand-lg navbar-light mb-lg-3">
+            <button class="border border-dark w-100 navbar-toggler ml-auto mb-3" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse " id="navbarSupportedContent">
+                <ul class="navbar-nav  mx-auto">
+                    <li class=" px-5 nav-item active">
+                        <a class="text-uppercase text-center font-weight-bold nav-link " asp-controller="Company" asp-action="Details" asp-route-name="@Model.CompanyName">
+                            Home
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item  px-5">
+                        <a class="text-uppercase text-dark text-center font-weight-bold nav-link"
+                           asp-controller="Products" asp-action="Products" asp-route-name="@Model.CompanyName">
+                            Products
+                        </a>
+                    </li>
+                    <li class="nav-item  px-5">
+                        <a class="text-uppercase text-dark text-center font-weight-bold  nav-link"
+                           asp-controller="Home" asp-action="aboutus" asp-route-name="@Model.CompanyName">
+                            About Us
+                        </a>
+                    </li>
+                    <li class="nav-item  px-5">
+                        <a class="text-uppercase text-dark text-center font-weight-bold nav-link"
+                           asp-controller="Home" asp-action="contactus" asp-route-name="@Model.CompanyName">
+                            Contact Us
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- Row 4 title  -->
+        <nav class="row" aria-label="breadcrumb">
+            <ol class="breadcrumb col-12 px-3">
+                <li class="breadcrumb-item ml-5"><a asp-controller="Company" asp-action="Details" asp-route-name="@Model.CompanyName">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page"> Contact Us</li>
+            </ol>
+        </nav>
+
+        <!-- First page ifded |  container closing div -->
+    </div>
+
+    <div class="container  my-5">
+        <!--First row for heading -->
+        <div class="row py-lg-3">
+            <div class="col-12 text-center">
+                <h3 class="mt-4 mt-md-0 font-weight-normal">Contact Us</h3>
+            </div>
+        </div>
+        <!-- Row for anchors -->
+        <div class=" row">
+            <div class="col-md-4 my-4 my-md-0 col-12 pt-lg-3 pb-lg-5 mx-auto d-flex justify-content-around">
+                <a class="text-decoration-none text-muted" asp-controller="Company" asp-action="Details" asp-route-name="@Model.CompanyName">Home</a>
+                <a class="text-decoration-none text-muted" asp-controller="Home" asp-action="contactus" asp-route-name="@Model.CompanyName">Contact</a>
+                <a class="text-decoration-none text-muted" asp-controller="Home" asp-action="aboutus" asp-route-name="@Model.CompanyName">About us</a>
+            </div>
+        </div>
+        <!-- Row for address of offices -->
+        <div class="row">
+            <!-- Column for  office -->
+            <div class="col-12 pl-lg-4">
+                <h3 class="text-muted">Office</h3>
+                <div class="row my-2">
+                    <div class="col-3 ">
+                        Company Name:
+                    </div>
+                    <div class="col-9 col-md-5 ">
+                        @Model.CompanyName
+                    </div>
+                </div>
+                <div class="row my-2">
+                    <div class="col-3">
+                        Company Moto:
+                    </div>
+                    <div class="col-9 col-md-5  ">
+                        @Model.CompanyDesc
+                    </div>
+                </div>
+                <div class="row my-2">
+                    <div class="col-3 ">
+                        Owner:
+                    </div>
+                    <div class="col-9 col-md-5 ">
+                        @Model.CompanyOwnerName
+                    </div>
+                </div>
+                <div class="row my-2">
+                    <div class="col-3  ">
+                        Add:
+                    </div>
+                    <div class="col-9 col-md-5 ">
+                        @Model.CompanyAdd
+                    </div>
+                </div>
+                <div class="row my-2">
+                    <div class="col-3 ">
+                        Tel:
+                    </div>
+                    <div class="col-9 col-md-5 ">
+                        @Model.CompanyPhone
+                    </div>
+                </div>
+                <div class="row my-2">
+                    <div class="col-3  ">
+                        Email:
+                    </div>
+                    <div class="col-9 col-md-5  ">
+                        @Model.CompanyPhone
+                    </div>
+                </div>
+                <div class="row my-2">
+                    <div class="col-3 ">
+                        Company:
+                    </div>
+                    <div class="col-9 col-md-5 ">
+                        @Model.CompanyTitle
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div>
+
+        @*<!-- Row for icons -->
+            <div class="row">
+                <div class="col-12 col-md-5 ml-lg-1">
+                    <!-- span for all social media accounts -->
+                    <span class="text-danger" style="font-size: 2rem">
+                        <i class="fab fa-facebook-square"></i>
+                        <i class="fab fa-facebook-square"></i>
+                        <i class="fab fa-facebook-square"></i>
+                        <i class="fab fa-facebook-square"></i>
+                    </span>
+                </div>
+            </div>*@
+        <!-- Container closing tag -->
+    </div>
+
+
+    <!-- Message container -->
+    <div class="container px-3 py-5">
+        <!-- Row for heading and text -->
+        <div class="row">
+            <div class="col-12 text-center">
+                <h3 class="">Message</h3>
+                <p>
+                    If you have any suggestions or question for us.Please contact us.
+                </p>
+            </div>
+        </div>
+
+        <form asp-controller="Home" asp-action="Contact" method="post" class="form-reset">
+            <!-- Row for two text boxes -->
+            <div class="my-lg-3 row d-flex justify-content-center align-items-center">
+                <div class="col-md-5 col-11 my-2 my-md-0 d-flex justify-content-center align-items-center">
+                    <input type="text" required placeholder="Name" name="Name" class="text-muted border w-100 py-2 px-3" />
+                </div>
+                <div class="col-md-5 col-11 my-2 my-md-0 d-flex justify-content-center align-items-center">
+                    <input type="text" required placeholder="Email" name="Email" class="text-muted border w-100 py-2 px-3" />
+                </div>
+            </div>
+            <!-- Row for two text boxes -->
+            <div class="my-lg-3 row d-flex justify-content-center align-items-center">
+                <div class="col-md-5 col-11 my-2 my-md-0 d-flex justify-content-center align-items-center">
+                    <input type="text" required placeholder="Phone" name="Phone" class="text-muted border w-100 py-2 px-3" />
+                </div>
+                <div class="col-md-5 col-11 my-2 my-md-0 d-flex justify-content-center align-items-center">
+                    <input type="text" placeholder="Subject" name="Subject" class="text-muted border w-100 py-2 px-3" />
+                </div>
+            </div>
+
+            <!-- Row for two text boxes -->
+            <div class="my-lg-3 row d-flex justify-content-center align-items-center">
+                <div class="col-11 col-md-10 d-flex justify-content-center align-items-center">
+                    <textarea name="Message" id="" cols="30" rows="7" class="text-muted border w-100 py-2 px-3"
+                              placeholder="If you have any suggestions or question for us.Please contact us"></textarea>
+                </div>
+            </div>
+            <input hidden name="CompanyId" value="@Model.id" />
+
+            <!-- Row for Button -->
+
+            <div class="my-lg-3 row d-flex justify-content-start align-items-start">
+                <div class="col-md-8 col-11 mx-auto mt-lg-2">
+                    <button type="submit"
+                            class="bg-dark btn btn-block text-white px-5 py-2 text-uppercase font-weight-normal">
+                        Submit
+                    </button>
+                </div>
+            </div>
+        </form>
+        <!-- Message container closing tag -->
+    </div>
+
+
+    <!--Footer-->
+    <div class="container-fluid">
+        <div class="row py-lg-5 d-flex justify-content-center" style="background-color: #282828;">
+
+            <!-- First column -->
+            <div class="py-3 py-lg-0 col-9 col-md-4 d-flex justify-content-start align-items-start flex-column">
+                <div class="row">
+                    <div class="col-12 d-flex justify-content-between align-items-center ">
+                        <h1 class="text-uppercase text-center mx-auto pb-lg-3"
+                            style="color: #B97A57; border-bottom: 4px dotted #9b562e;">
+                            <span class="mr-3">
+                                <i class="fas fa-gem small" style="color: #B97A57;"></i>
+                            </span>
+                            @Model.CompanyName
+
+                            <span class="ml-3">
+                                <i class="fas fa-gem small" style="color: #B97A57;"></i>
+                            </span>
+                        </h1>
+
+                    </div>
+                    <div class="col-12">
+                        <p class="text-muted text-center">
+                            @Model.CompanyDesc
+                        </p>
+                    </div>
+                    <div class="col-12  d-flex justify-center align-items-center">
+                        <a asp-controller="Home" asp-action="aboutus" asp-route-name="@Model.CompanyName" class=" text-decoration-none mx-auto text-uppercase"
+                           style="border-bottom: 2px solid #9b562e; color: #9b562e ;">
+                            View
+                            more
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Second column -->
+            <!-- footer col sm -->
+            <div class="py-3 py-lg-0 col-9 col-md-2 justify-content-start align-items-start flex-column footerColSm">
+                <a class="text-decoration-none text-white text-uppercase " data-toggle="collapse" href="#firstColumn"
+                   role="button" aria-expanded="false" aria-controls="firstColumn"
+                   style="font-size: 1.1rem; font-family: 'Libre Baskerville', serif">
+                    Products
+                </a>
+                <div class="collapse mt-3 " id="firstColumn">
+                    @foreach (var category in Model.Categories.Take(4))
+                    {
+                        <a class="d-block text-decoration-none" asp-controller="Products" asp-action="ProductsInCategory" asp-route-categoryId="@category.id" asp-route-name="@Model.CompanyName">@category.CategoryName</a>
+                    }
+                </div>
+            </div>
+            <!-- footer col lg -->
+            <div class="py-3 py-lg-0 col-9 col-md-2 justify-content-start align-items-start flex-column footerColLg ">
+                <a class="text-decoration-none text-white text-uppercase py-4"
+                   style="font-size: 1.1rem; font-family: 'Libre Baskerville', serif">
+                    Products
+                </a>
+                <div>
+                    @foreach (var category in Model.Categories.Take(4))
+                    {
+                        <a class="d-block text-decoration-none" asp-controller="Products" asp-action="ProductsInCategory" asp-route-categoryId="@category.id" asp-route-name="@Model.CompanyName">@category.CategoryName</a>
+                    }
+                </div>
+            </div>
+
+            <!-- Third column About-->
+            <!-- footer col sm -->
+            <div class="py-3 py-lg-0 col-9 col-md-2  justify-content-start align-items-start flex-column footerColSm">
+
+                <a class="text-decoration-none text-white text-uppercase" data-toggle="collapse" href="#thridColumn"
+                   role="button" aria-expanded="false" aria-controls="thridColumn"
+                   style="font-size: 1.1rem; font-family: 'Libre Baskerville', serif">
+                    About Us
+                </a>
+
+
+                <div class="collapse mt-3 " id="thridColumn">
+                    <a class="d-block text-decoration-none" asp-controller="Home" asp-action="aboutus" asp-route-name="@Model.CompanyName">About us</a>
+
+                </div>
+
+
+
+            </div>
+
+
+            <!-- footer col lg -->
+            <div class="py-3 py-lg-0 col-9 col-md-2 justify-content-start align-items-start flex-column footerColLg ">
+                <a class="text-decoration-none text-white text-uppercase py-4"
+                   style="font-size: 1.1rem; font-family: 'Libre Baskerville', serif">
+                    About Us
+                </a>
+                <div>
+                    <a class="d-block text-decoration-none" asp-controller="Home" asp-action="aboutus" asp-route-name="@Model.CompanyName">About us</a>
+                </div>
+            </div>
+
+
+            <!-- Fourth column contact us -->
+            <!-- colsm -->
+            <div class="py-3 py-lg-0 col-9 col-md-2  justify-content-start align-items-start flex-column footerColSm">
+
+                <a class="text-decoration-none text-white text-uppercase" data-toggle="collapse" href="#fourthColumn"
+                   role="button" aria-expanded="false" aria-controls="fourthColumn"
+                   style="font-size: 1.1rem; font-family: 'Libre Baskerville', serif">
+                    Contact Us
+                </a>
+
+
+                <div class="collapse mt-3 " id="fourthColumn">
+                    <a class="d-block text-decoration-none" href="#"><i class="fas fa-map-marker-alt rounded mr-1" style="width:20px; height:20px;  margin-right:2px"></i>Add:  @Model.CompanyAdd</a>
+                    <a class="d-block text-decoration-none" href="tel:@Model.CompanyPhone">  <i class="fas fa-phone-volume rounded mr-1" style="width:20px; height:20px;  margin-right:2px"></i>TEL: @Model.CompanyPhone </a>
+                    <a class="d-block text-decoration-none" href="mailto: @Model.CompanyEmail">    <i class="fas fa-envelope-open-text rounded" style="width:20px; height:20px; margin-right:2px"></i>E-Mail: @Model.CompanyEmail </a>
+
+                </div>
+
+
+
+            </div>
+            <!-- colLg -->
+            <div class="py-3 py-lg-0 col-9 col-md-2 justify-content-start align-items-start flex-column footerColLg ">
+                <a class="text-decoration-none text-white text-uppercase py-4"
+                   style="font-size: 1.1rem; font-family: 'Libre Baskerville', serif">
+                    Contact Us
+                </a>
+                <div>
+                    <a class="d-block text-decoration-none" href="#"><i class="fas fa-map-marker-alt rounded" style="width:20px; height:20px;  margin-right:2px"></i>Add: @Model.CompanyAdd</a>
+                    <a class="d-block text-decoration-none" href="tel:@Model.CompanyPhone"><i class="fas fa-phone-volume rounded" style="width:20px; height:20px;  margin-right:2px"></i>TEL: @Model.CompanyPhone</a>
+                    <a class="d-block text-decoration-none" href="mailto: @Model.CompanyEmail">    <i class="fas fa-envelope-open-text rounded" style="width:20px; height:20px;  margin-right:2px"></i>E-Mail: @Model.CompanyEmail</a>
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+}
+else
+{
+    <!--First Page Started -->
+    <div class=" container-fluid mx-auto">
+        <!-- Row 1 for text  -->
+        <div class="row">
+            <!-- Navbar Second div -->
+            <div class="col-12 text-white text-center py-lg-2 d-flex justify-content-center align-items-center "
+                 style="background-image: url(/Image/background.jpg); background-size: cover;">
+                Independent website building platform for trade sellers
+            </div>
+        </div>
+
+        <!-- Row 2 for heading -->
+        <div class="row">
+            <!-- First Section of heading -->
+            <div class="col-12 d-flex justify-content-center align-items-center">
+
+                <!-- Desin logo image -->
+                <div class="mb-5 p-0" style="height: 6rem;">
+                    <img asp-append-version="true" src="~/Image/companyLogo.png" height="150" width="300" id="image_1" />
+                </div>
+
+
+            </div>
+        </div>
+
+        <!--  -->
+        <nav class="navbar navbar-expand-lg navbar-light mb-lg-3">
+            <button class="border border-dark w-100 navbar-toggler ml-auto mb-3" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse " id="navbarSupportedContent">
+                <ul class="navbar-nav  mx-auto">
+                    <li class=" px-5 nav-item active">
+                        <a class="text-uppercase text-center font-weight-bold nav-link " asp-controller="Home" asp-action="Index">
+                            Home
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item  px-5">
+                        <a class="text-uppercase text-dark text-center font-weight-bold  nav-link"
+                           asp-controller="Home" asp-action="aboutus">
+                            About Us
+                        </a>
+                    </li>
+                    <li class="nav-item  px-5">
+                        <a class="text-uppercase text-dark text-center font-weight-bold nav-link"
+                           asp-controller="Home" asp-action="contactus">
+                            Contact Us
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- Row 4 title  -->
+        <nav class="row" aria-label="breadcrumb">
+            <ol class="breadcrumb col-12 px-3">
+                <li class="breadcrumb-item ml-5"><a asp-controller="Home" asp-action="Index">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page"> Contact Us</li>
+            </ol>
+        </nav>
+
+        <!-- First page ifded |  container closing div -->
+    </div>
+
+    <div class="container  my-5">
+        <!--First row for heading -->
+        <div class="row py-lg-3">
+            <div class="col-12 text-center">
+                <h3 class="mt-4 mt-md-0 font-weight-normal">Contact Us</h3>
+            </div>
+        </div>
+        <!-- Row for anchors -->
+        <div class=" row">
+            <div class="col-md-4 my-4 my-md-0 col-12 pt-lg-3 pb-lg-5 mx-auto d-flex justify-content-around">
+                <a class="text-decoration-none text-muted" asp-controller="Home" asp-action="Index">Home</a>
+                <a class="text-decoration-none text-muted" asp-controller="Home" asp-action="contactus">Contact</a>
+                <a class="text-decoration-none text-muted" asp-controller="Home" asp-action="aboutus">About us</a>
+            </div>
+        </div>
+        <!-- Row for address of offices -->
+        <div class="row">
+            <!-- Column for  office -->
+            <div class="col-12 pl-lg-4">
+                <h3 class="text-muted">Office</h3>
+                <div class="row">
+                    <div class="col-3 ">
+                        Company Name:
+                    </div>
+                    <div class="col-9 col-md-5  ">
+                        北京聚盈科技有限公司
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-3  ">
+                        Company Message:
+                    </div>
+                    <div class="col-9 col-md-5 ">
+                        北京聚盈科技有限公司成立于2015年，由四位程序员共同创办，2015-2020年研发并运营过多个企业服务类的SaaS产品，为团队累积多方面的产品及系统架构经验。从2019年开始专注于跨境电商建站平台Eshop的研发与运营，为出口贸易及跨境电商卖家提供自建站服
+                        务，非凡企服团队坚持用技术驱动发展，持续优化产品的体验，为用户创造更大的价值。
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-3  ">
+                        Owner:
+                    </div>
+                    <div class="col-9 col-md-5">
+                        薛凡伟
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-3  ">
+                        Add:
+                    </div>
+                    <div class="col-9 col-md-5 ">
+                        @{ string add = null;
+                            add = Configuration["Address"] != null ? @Configuration["Address"] : "北京聚盈科技有限公司 is located in China";
+                        }
+                        @add
+                    </div>
+                </div>
+                @{ string email = null;
+                    email = Configuration["Email"] != null ? @Configuration["Email"] : "85575687@qq.com";
+
+                    string phone = null;
+                    phone = Configuration["Phone"] != null ? @Configuration["Phone"] : "85575687@qq.com";
+                }
+                <div class="row">
+                    <div class="col-3   ">
+                        Tel:
+                    </div>
+                    <div class="col-9 col-md-5  ">
+                        @phone
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-3  ">
+                        Email:
+                    </div>
+                    <div class="col-9 col-md-5  ">
+                        @email
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-3  ">
+                        Company:
+                    </div>
+                    <div class="col-9 col-md-5  ">
+                        Independent website building platform for trade sellers
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div>
+
+        @*<!-- Row for icons -->
+            <div class="row">
+                <div class="col-12 col-md-5 ml-lg-1">
+                    <!-- span for all social media accounts -->
+                    <span class="text-danger" style="font-size: 2rem">
+                        <i class="fab fa-facebook-square"></i>
+                        <i class="fab fa-facebook-square"></i>
+                        <i class="fab fa-facebook-square"></i>
+                        <i class="fab fa-facebook-square"></i>
+                    </span>
+                </div>
+            </div>*@
+        <!-- Container closing tag -->
+    </div>
+
+
+    <!-- Message container -->
+    <div class="container px-3 py-5">
+        <!-- Row for heading and text -->
+        <div class="row">
+            <div class="col-12 text-center">
+                <h3 class="">Message</h3>
+                <p>
+                    If you have any suggestions or question for us. Please contact us.
+                </p>
+            </div>
+        </div>
+
+        <form asp-controller="Home" asp-action="Contact" method="post" class="form-reset">
+            <!-- Row for two text boxes -->
+            <div class="my-lg-3 row d-flex justify-content-center align-items-center">
+                <div class="col-md-5 col-11 my-2 my-md-0 d-flex justify-content-center align-items-center">
+                    <input type="text" required placeholder="Name" name="Name" class="text-muted border w-100 py-2 px-3" />
+                </div>
+                <div class="col-md-5 col-11 my-2 my-md-0 d-flex justify-content-center align-items-center">
+                    <input type="text" required placeholder="Email" name="Email" class="text-muted border w-100 py-2 px-3" />
+                </div>
+            </div>
+            <!-- Row for two text boxes -->
+            <div class="my-lg-3 row d-flex justify-content-center align-items-center">
+                <div class="col-md-5 col-11 my-2 my-md-0 d-flex justify-content-center align-items-center">
+                    <input type="text" required placeholder="Phone" name="Phone" class="text-muted border w-100 py-2 px-3" />
+                </div>
+                <div class="col-md-5 col-11 my-2 my-md-0 d-flex justify-content-center align-items-center">
+                    <input type="text" placeholder="Subject" name="Subject" class="text-muted border w-100 py-2 px-3" />
+                </div>
+            </div>
+
+            <!-- Row for two text boxes -->
+            <div class="my-lg-3 row d-flex justify-content-center align-items-center">
+                <div class="col-11 col-md-10 d-flex justify-content-center align-items-center">
+                    <textarea name="Message" id="" cols="30" rows="7" class="text-muted border w-100 py-2 px-3"
+                              placeholder="If you have any suggestions or question for us.Please contact us"></textarea>
+                </div>
+            </div>
+
+            <!-- Row for Button -->
+
+            <div class="my-lg-3 row d-flex justify-content-start align-items-start">
+                <div class="col-md-8 col-11 mx-auto mt-lg-2">
+                    <button type="submit"
+                            class="bg-dark btn btn-block text-white px-5 py-2 text-uppercase font-weight-normal">
+                        Submit
+                    </button>
+                </div>
+            </div>
+        </form>
+        <!-- Message container closing tag -->
+    </div>
+
+}
+
+@section Scripts{
+
+    <link href="~/css/company.css" rel="stylesheet" />
+}

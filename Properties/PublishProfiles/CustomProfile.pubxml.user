@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAit+HxUyvIUKx7Z9lBig3CwAAAAACAAAAAAAQZgAAAAEAACAAAAD0tqntDepLN3e9MU6wMlgj09HGfEcCPKVYXN1Aw3/57gAAAAAOgAAAAAIAACAAAACoUjySAUAApCpRP4hDDmv4Pgf3XCdMnT7YyHXeo30+pCAAAABi+SP8B7iMVZNWBHQpm+iMcGvbsGykctpSwb1vHHIYBkAAAABBYeDxzDhcG91ew+2tep4f6cPq2EJUlvasrAHGfjSrWAl5PXzE6lthFF+tAnd8XvuT08hUsaJ4/4v7ld3AucbD</EncryptedPassword>
+  </PropertyGroup>
+  <ItemGroup>
+    <EFMigrations Include="WebBuilder.Data.ApplicationDbContext">
+      <Value>Server=MYSQL5030.site4now.net%3bDatabase=db_a69e1c_cms%3bUid=a69e1c_cms%3bPwd=Sameer123456%40</Value>
+    </EFMigrations>
+  </ItemGroup>
+</Project>

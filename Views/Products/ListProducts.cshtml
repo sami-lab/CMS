@@ -1,0 +1,282 @@
+﻿@model WebBuilder.ViewModel.Products.ProductsCategoriesViewModel
+
+@{
+    ViewData["Title"] = "Products";
+}
+
+<div class="container">
+    <h1>All Producs</h1>
+
+
+    @if (Model.Products.Any())
+    {
+        <div class="row">
+            <form class="col-6" id="searchForm"  asp-controller="Products" asp-action="SearcProducts" method="get" asp-route-companyId="@Model.company.id">
+                <p>
+                    <label class="custom-control">Find By: </label>
+                    <select name="searchList" id="searchList" class="form-control mb-1" style="border:1px solid #cccccc">
+                        <option value="">--Select--</option>
+                        <option value="title">Title</option>
+                        <option value="details">Details</option>
+                        <option value="overviews">overviews</option>
+                    </select>
+                    <input type="text" name="companyId" hidden value="@Model.company.id" />
+                    <input type="text" class="form-control search" autocomplete="off" style="display: none;" id="title" placeholder="Search By title" name="title">
+                    <input type="text" class="form-control search" autocomplete="off" style="display: none;" id="details" placeholder="Search By details keyword" name="details">
+                    <input type="text" class="form-control search" autocomplete="off" style="display: none;" id="overviews" placeholder="Search By overview" name="overviews">
+
+                    <input id="submit" class="btn btn-primary mt-1" disabled type="submit" value="Filter" />
+                </p>
+            </form>
+            <form class="col-6" id="sortForm" asp-controller="Products" asp-route-companyId="@Model.company.id" asp-action="Sort" method="get">
+                <p>
+                    <input type="text" name="companyId" hidden value="@Model.company.id" />
+                    <label>Sort By: </label>
+                    <select name="sortBy" class="form-control mb-1" style="border:1px solid #cccccc">
+                        <option value="title">Title</option>
+                        <option value="CategoryName">Category Name</option>
+                        <option value="id">id</option>
+                    </select>
+                    <select name="order" class="form-control mb-1" style="border:1px solid #cccccc">
+                        <option value="Asc" selected>Ascending Order</option>
+                        <option value="Des">Descending Order</option>
+                    </select>
+                    <input class="btn btn-primary" type="submit" value="Filter" />
+                </p>
+            </form>
+        </div>
+
+        <div class="row">
+            <div class="panel panel-primary filterable">
+                <div class="panel-heading rounded">
+                    <h3 class="panel-title font-weight-bold">Products</h3>
+                    <div class="pull-right">
+                        <button class="btn btn-default btn-xs btn-filter"><i class="fas fa-filter"></i> Filter</button>
+                    </div>
+                </div>
+                <table class="table table-responsive ">
+                    <thead>
+                        <tr class="filters">
+                            <th><input type="text" class="form-control" placeholder="Id" disabled></th>
+                            <th><input type="text" class="form-control" placeholder="Title" disabled></th>
+                            <th><input type="text" class="form-control" placeholder="Category Name" disabled></th>
+                            <th><input type="text" class="form-control" placeholder="Is Special" disabled></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.Products)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.id)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.title)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CategoryName)
+                                </td>
+                                <td>
+                                    @{ string res = item.isSpecial ? "Yes" : "NO";
+                                    }
+                                    @res
+                                </td>
+                                <td>
+
+                                    <a asp-controller="Products" asp-action="Details" asp-route-id="@item.id" asp-route-name="@Model.company.CompanyName"><i class="fas fa-info-circle" title="Details"></i></a><span>|</span>
+                                    <a asp-action="Edit" asp-controller="Products" 
+                                       asp-route-id="@item.id" class="btn btn-primary"><i class="fas fa-edit" title="Edit"></i></a>
+                                    @await Html.PartialAsync("~/Views/Shared/Modal.cshtml", item.id)<span>|</span>
+
+                                </td>
+
+                            </tr>
+
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <nav class="table-responsive">
+                <ul class="pagination justify-content-center d-flex flex-wrap">
+                    @if (ViewBag.CurrentPage > 1)
+                    {
+                        <li class="page-item">
+                            <a class="page-link" asp-controller="Products" asp-action="ListProducts" asp-route-companyId="@Model.company.id">First</a>
+                        </li>
+                        <li class="page-item">
+                            @{ var pageNo = ViewBag.CurrentPage - 1; }
+                            <a class="page-link" asp-controller="Products" asp-action="ListProducts" asp-route-companyId="@Model.company.id" asp-route-pageNo="@pageNo">&laquo;</a>
+                        </li>
+                    }
+
+                    @for (int i = 1; i <= ViewBag.TotalPages; i++)
+                    {
+
+                        <li class="page-item @(i == ViewBag.CurrentPage ? "active" : "")">
+                            <a class="page-link" asp-controller="Products" asp-action="ListProducts" asp-route-companyId="@Model.company.id" asp-route-pageNo="@i">@i</a>
+                        </li>
+                    }
+
+                    @if (ViewBag.CurrentPage < ViewBag.TotalPages)
+                    {
+                        <li class="page-item">
+                            @{ var pageNo = ViewBag.CurrentPage + 1; }
+                            <a class="page-link" asp-controller="Products" asp-action="ListProducts" asp-route-companyId="@Model.company.id" asp-route-pageNo="@pageNo">&raquo;</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" asp-controller="Products" asp-action="ListProducts" asp-route-companyId="@Model.company.id" asp-route-pageNo="@ViewBag.TotalPages">Last</a>
+                        </li>
+                    }
+                </ul>
+            </nav>
+        </div>
+
+    }
+    else
+    {
+        <div class="card">
+            <div class="card-header">
+                No Products created yet
+            </div>
+            @if (User.IsInRole("Admin"))
+            {
+
+                <div class="card-body">
+                    <h5 class="card-title">
+                        Use the button below to create a Product
+                    </h5>
+                    <a class="btn btn-primary" style="width:auto"
+                       asp-controller="Products" asp-action="Create">
+                        Add new Products
+                    </a>
+                </div>
+            }
+        </div>
+    }
+</div>
+
+<div class="container py-5">
+    <h1>All Categories</h1>
+
+
+    @if (Model.Categories.Any())
+    {
+
+        <div class="row">
+            <div class="panel panel-primary filterable">
+                <div class="panel-heading rounded">
+                    <h3 class="panel-title font-weight-bold">Categories</h3>
+                    <div class="pull-right">
+                        <button class="btn btn-default btn-xs btn-filter"><i class="fas fa-filter"></i> Filter</button>
+                    </div>
+                </div>
+                <table class="table table-responsive ">
+                    <thead>
+                        <tr class="filters">
+                            <th><input type="text" class="form-control" placeholder="Id" disabled></th>
+                            <th><input type="text" class="form-control" placeholder="Category Name" disabled></th>
+                            <th><input type="text" class="form-control" placeholder="Total Products" disabled></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.Categories)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.id)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CategoryName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TotalProducts)
+                                </td>
+                                <td>
+                                    <a asp-controller="Category" asp-action="Details" asp-route-id="@item.id" class="card-link">Details</a>
+                                    <a asp-controller="Company" asp-action="Details" asp-route-id="@item.CompanyId" class="card-link">Company Details</a>
+                                    <a asp-controller="Products" asp-action="ProductsInCategory" asp-route-id="@item.id"  class="card-link">Products</a>
+                                    @if (User.IsInRole("Admin"))
+                                    {
+                                        <a asp-action="Edit" asp-controller="Category"
+                                           asp-route-id="@item.id" class="btn btn-primary"><i class="fas fa-edit" title="Edit"></i></a>
+                                    }
+
+                                </td>
+
+                            </tr>
+
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+
+    }
+    else
+    {
+        <div class="card">
+            <div class="card-header">
+                No Category created yet
+            </div>
+            @if (User.IsInRole("Admin"))
+            {
+
+                <div class="card-body">
+                    <h5 class="card-title">
+                        Use the button below to create a Cateory
+                    </h5>
+                    <a class="btn btn-primary" style="width:auto"
+                       asp-controller="Category" asp-action="Create">
+                        Add new Category
+                    </a>
+                </div>
+            }
+        </div>
+    }
+</div>
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            var selectedVal;
+            $('#searchForm').on('submit', function (event) {
+                var searchVal = $("#searchList").find("option:selected").val();
+                if (searchVal != null) {
+                    if ($('#' + searchVal) == null) {
+                        event.preventDefault();
+                        alert('Input Field Could not be null');
+                    }
+                }
+                else {
+                    event.preventDefault();
+                    alert('please select Value to search');
+                }
+            });
+            $("#searchList").change(function () {
+                $('#submit').attr("disabled", "false");
+                selectedVal = $(this).find("option:selected").val();
+                if (selectedVal == null) {
+                    $('#submit').attr("disabled", "true");
+                    return;
+                }
+                $("#searchForm :input.search").each(function () {
+                    $(this).val("");
+                    $(this).hide();
+                });
+                $('#' + selectedVal).show();
+                $("#searchForm :input.search").filter('#searchForm :input[id="' + selectedVal + '"]').on('change keyup keydown', function () {
+                    if ($(this).val().length > 0) {
+                        $('#submit').attr("disabled", false);
+                    }
+                    else $('#submit').attr("disabled", true);
+                })
+            })
+
+
+        });
+    </script>
+    <link href="~/css/Table.css" rel="stylesheet" />
+    <script src="~/js/Filter.js"></script>
+}

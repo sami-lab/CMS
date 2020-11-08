@@ -1,0 +1,128 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+}
+
+.customFullHeight {
+    /* height: 90vh !important; */
+    border: 4px dotted blue !important;
+}
+
+.cardImages {
+    transition: linear 0.3s;
+    cursor: pointer;
+}
+
+    .cardImages:hover {
+        transform: scale(1.1);
+    }
+
+.buttonHover {
+    transition: linear 0.2s;
+    border: 2px solid #9b562e;
+    background-color: transparent;
+}
+
+    .buttonHover:hover {
+        background-color: #9b562e;
+        color: white;
+    }
+
+.popularProductsImages {
+    transition: linear 0.2s;
+}
+
+    .popularProductsImages:hover {
+        /* border: 2px solid #9b562e; */
+        cursor: pointer;
+        opacity: 0.5;
+    }
+
+.customWidth {
+    width: 230px;
+}
+.popularCaseImage {
+    transition: linear 0.2s;
+    width: 100%;
+    height: 100%;
+}
+
+    .popularCaseImage:hover {
+        cursor: pointer;
+        transform: scale(1.05);
+    }
+/* ****************************** Testing **********************/
+
+.imageMainDiv:hover .popularProductsImages {
+    /* border: 2px solid green !important; */
+    cursor: pointer;
+    transform: scale(1.05);
+    opacity: 0.5;
+}
+
+/* ****************************** Testing **********************/
+
+/* cellphone */
+@media only screen and (min-width: 320px) {
+    .footerColLg {
+        display: none;
+        /* border: 8px dotted red !important; */
+    }
+
+    .footerColSm {
+        display: block;
+        /* border: 4px solid yellow; */
+    }
+
+    .specialColImages2 {
+        height: 10rem !important;
+        /* display: none; */
+    }
+    .customWidth {
+        width: 100%;
+    }
+}
+
+/* Tablet */
+@media only screen and (min-width: 425px) {
+    .specialCol {
+        height: 10rem !important;
+        /* display: none; */
+    }
+
+    .specialColImages {
+        height: 22rem !important;
+        /* display: none; */
+    }
+
+    .specialColImages2 {
+        height: 18rem !important;
+        /* display: none; */
+    }
+}
+
+/* laptop */
+@media only screen and (min-width: 768px) {
+    .specialCol {
+        height: 20rem !important;
+        /* border: 8px dotted red !important; */
+    }
+
+    .specialColImages {
+        height: 22rem !important;
+        /* border: 8px dotted red !important; */
+    }
+
+    .specialColImages2 {
+        height: 12rem !important;
+        /* border: 8px dotted red !important; */
+    }
+
+    .footerColLg {
+        display: block;
+    }
+
+    .footerColSm {
+        display: none;
+    }
+}

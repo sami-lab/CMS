@@ -1,0 +1,82 @@
+﻿@model IEnumerable<WebBuilder.ViewModel.Home.ContactViewModel>
+
+@{
+    ViewData["Title"] = "Contacts";
+}
+
+<h1>Contacts</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Phone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Subject)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Message)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    <a class=" text-decoration-none" href="mailto: @item.Email">    @Html.DisplayFor(modelItem => item.Email)</a>
+                </td>
+                <td>
+                    <a class=" text-decoration-none" href="tel: @item.Phone">   @Html.DisplayFor(modelItem => item.Phone)</a>
+</td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Subject)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Message)
+                </td>
+                <td>
+                    <form method="post" asp-action="DeleteContact" asp-route-id="@item.id">
+                        <span id="confirmDeleteSpan_@item.id" style="display:none">
+                            <span><b>Are you sure you want to delete?</b></span>
+                            <button type="submit" class="btn btn-danger">Yes</button>
+                            <a href="#/" class="btn btn-primary"
+                               onclick="confirmDelete('@item.id', false)">No</a>
+                        </span>
+
+                        <span id="deleteSpan_@item.id">
+                            <a href="#/" class="btn btn-danger"
+                               onclick="confirmDelete('@item.id', true)">Delete</a>
+                        </span>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<script>
+    function confirmDelete(uniqueId, isDeleteClicked) {
+        var deleteSpan = 'deleteSpan_' + uniqueId;
+        var confirmDeleteSpan = 'confirmDeleteSpan_' + uniqueId;
+
+        if (isDeleteClicked) {
+            $('#' + deleteSpan).hide();
+            $('#' + confirmDeleteSpan).show();
+        } else {
+            $('#' + deleteSpan).show();
+            $('#' + confirmDeleteSpan).hide();
+        }
+    }
+</script>

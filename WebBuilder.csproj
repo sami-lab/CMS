@@ -1,0 +1,69 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
+    <UserSecretsId>c87b07c1-fc65-4df9-a0eb-3e349ba183b8</UserSecretsId>
+    <DockerDefaultTargetOS>Windows</DockerDefaultTargetOS>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Migrations\20201023185926_Added initial DB.cs" />
+    <Compile Remove="Migrations\20201023185926_Added initial DB.Designer.cs" />
+    <Compile Remove="Migrations\20201023193512_initailDb.cs" />
+    <Compile Remove="Migrations\20201023193512_initailDb.Designer.cs" />
+    <Compile Remove="Migrations\20201023194036_Added Contraint Products.cs" />
+    <Compile Remove="Migrations\20201023194036_Added Contraint Products.Designer.cs" />
+    <Compile Remove="Migrations\20201030183220_Added Contact Schema.cs" />
+    <Compile Remove="Migrations\20201030183220_Added Contact Schema.Designer.cs" />
+    <Compile Remove="Migrations\20201101190850_Updated User Stats.cs" />
+    <Compile Remove="Migrations\20201101190850_Updated User Stats.Designer.cs" />
+    <Compile Remove="Migrations\20201103125104_Added Users Location.cs" />
+    <Compile Remove="Migrations\20201103125104_Added Users Location.Designer.cs" />
+    <Compile Remove="Migrations\20201106143034_Added mysql db.cs" />
+    <Compile Remove="Migrations\20201106143034_Added mysql db.Designer.cs" />
+    <Compile Remove="Migrations\20201106143620_Added mysql db.cs" />
+    <Compile Remove="Migrations\20201106143620_Added mysql db.Designer.cs" />
+    <Compile Remove="Migrations\20201106143852_Added mysql db.cs" />
+    <Compile Remove="Migrations\20201106143852_Added mysql db.Designer.cs" />
+    <Compile Remove="Migrations\20201106150449_Added mysql db.cs" />
+    <Compile Remove="Migrations\20201106150449_Added mysql db.Designer.cs" />
+    <Compile Remove="Migrations\20201106164901_Added db.cs" />
+    <Compile Remove="Migrations\20201106164901_Added db.Designer.cs" />
+    <Compile Remove="Migrations\20201106170231_mysql db final.cs" />
+    <Compile Remove="Migrations\20201106170231_mysql db final.Designer.cs" />
+    <Compile Remove="Migrations\20201106184023_Final mysql b.cs" />
+    <Compile Remove="Migrations\20201106184023_Final mysql b.Designer.cs" />
+    <Compile Remove="Migrations\20201106185255_mysql db.cs" />
+    <Compile Remove="Migrations\20201106185255_mysql db.Designer.cs" />
+    <Compile Remove="Migrations\20201106193602_Added db.cs" />
+    <Compile Remove="Migrations\20201106193602_Added db.Designer.cs" />
+    <Compile Remove="Migrations\20201106195049_Added db.cs" />
+    <Compile Remove="Migrations\20201106195049_Added db.Designer.cs" />
+    <Compile Remove="Migrations\20201106210820_Added db.cs" />
+    <Compile Remove="Migrations\20201106210820_Added db.Designer.cs" />
+    <Compile Remove="Migrations\20201106211649_Added db.cs" />
+    <Compile Remove="Migrations\20201106211649_Added db.Designer.cs" />
+    <Compile Remove="Migrations\20201106211849_Added db.cs" />
+    <Compile Remove="Migrations\20201106211849_Added db.Designer.cs" />
+    <Compile Remove="Migrations\20201106213100_Added db.cs" />
+    <Compile Remove="Migrations\20201106213100_Added db.Designer.cs" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Abstractions" Version="2.2.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Analyzers" Version="2.2.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.3" />
+    <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="2.2.0" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <Folder Include="wwwroot\Image\Companies\" />
+    <Folder Include="wwwroot\Image\User\" />
+  </ItemGroup>
+
+</Project>

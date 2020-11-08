@@ -1,0 +1,35 @@
+﻿@model dynamic
+
+
+<span>
+    <a href="#/" data-toggle="modal" data-target="#myModal_@Model"><i class="fas fa-trash-alt" title="Delete"></i></a>
+</span>
+
+<div id="myModal_@Model" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header ">
+                <h4 class="modal-title">Warning</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form asp-action="Delete" asp-route-id="@Model" method="post">
+                    <span>
+                        <span><b>Are you sure you want to delete??</b></span>
+                        <button type="submit" class="btn btn-danger">Yes</button>
+                        <a href="#/" class="btn btn-primary" data-dismiss="modal">No</a>
+                    </span>
+                </form>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+
+
+

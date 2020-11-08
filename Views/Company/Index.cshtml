@@ -1,0 +1,121 @@
+﻿@model IEnumerable<WebBuilder.ViewModel.Companies.CompaniesViewModel>
+
+@{
+    ViewData["Title"] = "Brands";
+}
+
+<section class="jumbotron text-center text-light" style="background-image:url('/Image/bg.jpg'); margin-left: calc(-50vw + 50% - 8px);  width:100vw;">
+    <div>
+        <h1 class="jumbotron-heading">All Brand's</h1>
+    </div>
+    <p>
+        <a class="btn btn-primary mb-3" style="width:auto" asp-action="Register"
+           asp-controller="Account">Register new Brand</a>
+    </p>
+</section>
+<div class="container">
+    @if (Model.Any())
+    {
+        <div class="row">
+            <div class="panel panel-primary filterable">
+                <div class="panel-heading rounded">
+                    <h3 class="panel-title font-weight-bold">Brands</h3>
+                    <div class="pull-right">
+                        <button class="btn btn-default btn-xs btn-filter"><i class="fas fa-filter"></i> Filter</button>
+                    </div>
+                </div>
+                <table class="table table-striped">
+                    <thead>
+
+                        <tr class="filters">
+                            <th><input type="text" class="form-control" placeholder="#" disabled></th>
+                            <th><input type="text" class="form-control" placeholder="Name" disabled></th>
+                            <th><input type="text" class="form-control" placeholder="Company Email" disabled></th>
+                            <th><input type="text" class="form-control" placeholder="Company Phone" disabled></th>
+                            <th><input type="text" class="form-control" placeholder="Owner" disabled></th>
+                            <th><input type="text" class="form-control" placeholder="Joining Date" disabled></th>
+                            <th><input type="text" class="form-control" placeholder="Total Categories" disabled></th>
+                            <th><input type="text" class="form-control" placeholder="Total Products" disabled></th>
+                            <th></th>
+                        </tr>
+
+                    </thead>
+                    <tbody>
+                        @{var ind = 0;}
+                        @foreach (var item in Model)
+                        {
+                            ind++;
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => ind)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CompanyName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CompanyEmail)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CompanyPhone)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CompanyOwnerName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Date)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TotalCategories)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TotalProducts)
+                                </td>
+
+                                <td class="d-flex flex-row flex-nowrap justify-content-around">
+                                    @if (User.IsInRole("Super Admin"))
+                                    {
+
+                                        <a asp-controller="Products" asp-action="ListProducts" asp-route-companyId="@item.id">
+                                            List Products
+                                        </a>
+
+                                        <a asp-controller="Category" asp-action="Categories" asp-route-userId="@item.CompanyOwner"><i class="far fa-edit" title="Categories"></i></a><span>|</span>
+                                        <a asp-action="Details" asp-route-name="@item.CompanyName"><i class="fas fa-info-circle" title="Details"></i></a>
+                                        <a asp-action="Edit" asp-route-id="@item.id"><i class="far fa-edit" title="Edit"></i></a><span>|</span>
+                                        @await Html.PartialAsync("~/Views/Shared/Modal.cshtml", item.id)<span>|</span>
+                                    }
+
+
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    }
+    else
+    {
+        <div class="card">
+            <div class="card-header">
+                No Brand Registered yet
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">
+                    Use the button below to Add new Brand
+                </h5>
+                <a class="btn btn-primary mb-3" style="width:auto" asp-action="Register"
+                   asp-controller="Account">Create new Brand</a>
+            </div>
+        </div>
+    }
+</div>
+@section Scripts{
+    <link href="~/css/Table.css" rel="stylesheet" />
+    <script src="~/js/Filter.js"></script>
+}
+
+
+
+
