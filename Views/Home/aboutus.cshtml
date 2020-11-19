@@ -130,14 +130,7 @@
                 <h3 class="mt-4 mt-md-0 font-weight-normal">About Us</h3>
             </div>
         </div>
-        <!-- Row for anchors -->
-        <div class=" row">
-            <div class="col-md-4 my-4 my-md-0 col-12 pt-lg-3 pb-lg-5 mx-auto d-flex justify-content-around">
-                <a class="text-decoration-none text-muted" asp-controller="Company" asp-action="Details" asp-route-name="@Model.CompanyName">Home</a>
-                <a class="text-decoration-none text-muted" asp-controller="Home" asp-action="contactus" asp-route-name="@Model.CompanyName">Contact</a>
-                <a class="text-decoration-none text-muted" asp-controller="Home" asp-action="aboutus" asp-route-name="@Model.CompanyName">About us</a>
-            </div>
-        </div>
+      
 
         <!-- Row for text and image -->
         <div class="row ">
@@ -155,8 +148,8 @@
                     @Model.CompanyAdd
                 </p>
                 <p class="text-muted  text-md-left  text-sm-center ">
-                    You can connect with @Model.CompanyName either via Email :   <a class="text-decoration-none" href="mailto: @Model.CompanyEmail">    <i class="fas fa-envelope-open-text rounded" style="width:20px; height:20px;  margin-right:2px"></i>E-Mail: @Model.CompanyEmail</a>
-                    or By phone :     <a class=" text-decoration-none" href="tel:@Model.CompanyPhone"><i class="fas fa-phone-volume rounded" style="width:20px; height:20px;  margin-right:2px"></i>TEL: @Model.CompanyPhone</a>
+                    You can connect with @Model.CompanyName either via Email :   <a class="text-decoration-none" href="mailto: @Model.CompanyEmail">  @Model.CompanyEmail</a>
+                    or By phone :     <a class=" text-decoration-none" href="tel:@Model.CompanyPhone"> @Model.CompanyPhone</a>
                 </p>
             </div>
             <!-- Right side column | Image column -->
@@ -433,7 +426,7 @@ else
             <!-- Navbar Second div -->
             <div class="col-12 text-white text-center py-lg-2 d-flex justify-content-center align-items-center "
                  style="background-image: url(/Image/background.jpg); background-size: cover;">
-                Independent website building platform for trade sellers
+                面向卖家的独立网站建设平台
             </div>
         </div>
 
@@ -463,20 +456,20 @@ else
                 <ul class="navbar-nav  mx-auto">
                     <li class=" px-5 nav-item active">
                         <a class="text-uppercase text-center font-weight-bold nav-link border-bottom" asp-controller="Home" asp-action="Index">
-                            Home
+                            主页
                             <span class="sr-only">(current)</span>
                         </a>
                     </li>
                     <li class="nav-item  px-5">
                         <a class="text-uppercase text-dark text-center font-weight-bold  nav-link border-bottom"
                            asp-controller="Home" asp-action="aboutus">
-                            About Us
+                            关于我们
                         </a>
                     </li>
                     <li class="nav-item  px-5">
                         <a class="text-uppercase text-dark text-center font-weight-bold nav-link border-bottom"
                            asp-controller="Home" asp-action="contactus">
-                            Contact Us
+                            联系我们
                         </a>
                     </li>
                 </ul>
@@ -486,8 +479,14 @@ else
         <!-- Row 4 title  -->
         <nav class="row" aria-label="breadcrumb">
             <ol class="breadcrumb col-12 px-3">
-                <li class="breadcrumb-item ml-5"><a asp-controller="Home" asp-action="Index">Home</a></li>
-                <li class="breadcrumb-item active" aria-current="page"> Contact Us</li>
+                <li class="breadcrumb-item ml-5">
+                    <a asp-controller="Home" asp-action="Index">
+                        家
+                    </a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">
+                    关于我们
+                </li>
             </ol>
         </nav>
 
@@ -500,23 +499,17 @@ else
         <!--First row for heading -->
         <div class="row py-lg-3">
             <div class="col-12 text-center">
-                <h3 class="mt-4 mt-md-0 font-weight-normal">About Us</h3>
+                <h3 class="mt-4 mt-md-0 font-weight-normal">
+                    关于我们
+                </h3>
             </div>
         </div>
 
-        <!-- Row for anchors -->
-        <div class=" row">
-            <div class="col-md-4 my-4 my-md-0 col-12 pt-lg-3 pb-lg-5 mx-auto d-flex justify-content-around">
-                <a class="text-decoration-none text-muted" asp-controller="Home" asp-action="Index">Home</a>
-                <a class="text-decoration-none text-muted" asp-controller="Home" asp-action="contactus">Contact</a>
-                <a class="text-decoration-none text-muted" asp-controller="Home" asp-action="aboutus">About us</a>
-            </div>
-        </div>
 
         <!-- Row for text and image -->
         <div class="row ">
             <div class="col-12 col-md-6  d-flex justify-content-between align-items-md-start align-items-sm-center flex-column">
-                <h5 class="text-muted text-md-left  text-sm-center">北京聚盈科技有限公司 is a multinational corporation group</h5>
+                <h5 class="text-muted text-md-left  text-sm-center">北京聚盈科技有限公司 是一家跨国公司集团</h5>
 
                 <p class="text-muted text-md-left text-sm-center">
                     北京聚盈科技有限公司成立于2015年，由四位程序员共同创办，2015-2020年研发并运营过多个企业服务类的SaaS产品，为团队累积多方面的产品及系统架构经验。从2019年开始专注于跨境电商建站平台Eshop的研发与运营，为出口贸易及跨境电商卖家提供自建站服务，非凡企服团队坚持用技术驱动发展，持续优化产品的体验，为用户创造更大的价值。
@@ -534,8 +527,10 @@ else
                         string phone = null;
                         phone = Configuration["Phone"] != null ? @Configuration["Phone"] : "18101078787";
                     }
-                    You can connect with 北京聚盈科技有限公司 either via Email :   <a class=" text-decoration-none" href="mailto: @email">    <i class="fas fa-envelope-open-text rounded" style="width:20px; height:20px;  margin-right:2px"></i>E-Mail: @email</a>
-                    or By phone :     <a class=" text-decoration-none" href="tel: @phone"><i class="fas fa-phone-volume rounded" style="width:20px; height:20px;  margin-right:2px"></i>TEL: @phone</a>
+                    您可以与 北京聚盈科技有限公司 通过电子邮件 :   <a class=" text-decoration-none" href="mailto: @email">
+                         @email
+                    </a>
+                    或通过电话 :     <a class=" text-decoration-none" href="tel: @phone"> @phone</a>
                 </p>
             </div>
             <!-- Right side column | Image column -->
@@ -554,9 +549,11 @@ else
         <!-- Row for heading and text -->
         <div class="row">
             <div class="col-12 text-center">
-                <h3 class="">Message</h3>
+                <h3 class="">
+                    信息
+                </h3>
                 <p>
-                    If you have any suggestions or question for us. Please contact us.
+                    如果您对我们有任何建议或问题。请联系我们。
                 </p>
             </div>
         </div>
@@ -565,19 +562,19 @@ else
             <!-- Row for two text boxes -->
             <div class="my-lg-3 row d-flex justify-content-center align-items-center">
                 <div class="col-md-5 col-11 my-2 my-md-0 d-flex justify-content-center align-items-center">
-                    <input type="text" required placeholder="Name" name="Name" class="text-muted border w-100 py-2 px-3" />
+                    <input type="text" required placeholder="名称" name="Name" class="text-muted border w-100 py-2 px-3" />
                 </div>
                 <div class="col-md-5 col-11 my-2 my-md-0 d-flex justify-content-center align-items-center">
-                    <input type="text" required placeholder="Email" name="Email" class="text-muted border w-100 py-2 px-3" />
+                    <input type="text" required placeholder="电子邮件" name="Email" class="text-muted border w-100 py-2 px-3" />
                 </div>
             </div>
             <!-- Row for two text boxes -->
             <div class="my-lg-3 row d-flex justify-content-center align-items-center">
                 <div class="col-md-5 col-11 my-2 my-md-0 d-flex justify-content-center align-items-center">
-                    <input type="text" required placeholder="Phone" name="Phone" class="text-muted border w-100 py-2 px-3" />
+                    <input type="text" required placeholder="电话" name="Phone" class="text-muted border w-100 py-2 px-3" />
                 </div>
                 <div class="col-md-5 col-11 my-2 my-md-0 d-flex justify-content-center align-items-center">
-                    <input type="text" placeholder="Subject" name="Subject" class="text-muted border w-100 py-2 px-3" />
+                    <input type="text" placeholder="学科" name="Subject" class="text-muted border w-100 py-2 px-3" />
                 </div>
             </div>
 
@@ -585,7 +582,7 @@ else
             <div class="my-lg-3 row d-flex justify-content-center align-items-center">
                 <div class="col-11 col-md-10 d-flex justify-content-center align-items-center">
                     <textarea name="Message" id="" cols="30" rows="7" class="text-muted border w-100 py-2 px-3"
-                              placeholder="If you have any suggestions or question for us.Please contact us"></textarea>
+                              placeholder="如果您对我们有任何建议或疑问，请联系我们"></textarea>
                 </div>
             </div>
 
@@ -595,7 +592,7 @@ else
                 <div class="col-md-8 col-11 mx-auto mt-lg-2">
                     <button type="submit"
                             class="bg-dark btn btn-block text-white px-5 py-2 text-uppercase font-weight-normal">
-                        Submit
+                        提交
                     </button>
                 </div>
             </div>

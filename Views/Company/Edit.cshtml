@@ -23,7 +23,7 @@
                         <label asp-for="CompanyLogo" class="col-form-label"></label>
                         <div class="custom-file">
                             <input asp-for="CompanyLogo" class="form-control custom-file-input" id="file_1">
-                            <label class="custom-file-label">Choose File...</label>
+                            <label class="custom-file-label">@Model.CompanyLogoPath</label>
                         </div>
                     </div>
 
@@ -41,7 +41,7 @@
                         <label asp-for="CompanyBackgorund" class="col-form-label"></label>
                         <div class="custom-file">
                             <input asp-for="CompanyBackgorund" class="form-control custom-file-input" id="file_2">
-                            <label class="custom-file-label">Choose File...</label>
+                            <label class="custom-file-label">@Model.CompanyBackgorundPath</label>
                         </div>
                     </div>
                 </div>
@@ -51,7 +51,7 @@
                         <label asp-for="whyCooseUsImage" class="col-form-label"></label>
                         <div class="custom-file">
                             <input asp-for="whyCooseUsImage" class="form-control custom-file-input" id="file_3">
-                            <label class="custom-file-label">Choose File...</label>
+                            <label class="custom-file-label">@Model.whyCooseUsImagePath</label>
                         </div>
                     </div>
                     <div class="form-group">
@@ -100,7 +100,7 @@
                 </div>
               
                 <div class="form-group d-flex mx-auto">
-                    <a class="btn btn-primary rounded px-2" asp-controller="Company" asp-action="Details" asp-route-name="@Model.CompanyName">背部</a>
+                    <a class="btn btn-primary rounded px-2" asp-controller="Company" asp-action="Details" asp-route-name="@Model.CompanyName">返回</a>
                     <input type="submit" value="更新资料" class="btn btn-success rounded px-2 mx-1" />
                 </div>
             </div>

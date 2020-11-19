@@ -1,653 +1,399 @@
-﻿CREATE TABLE IF NOT EXISTS `__EFMigrationsHistory` (
-    `MigrationId` varchar(95) NOT NULL,
-    `ProductVersion` varchar(32) NOT NULL,
-    CONSTRAINT `PK___EFMigrationsHistory` PRIMARY KEY (`MigrationId`)
-);
-
-
-DROP PROCEDURE IF EXISTS MigrationsScript;
-DELIMITER //
-CREATE PROCEDURE MigrationsScript()
+﻿IF OBJECT_ID(N'[__EFMigrationsHistory]') IS NULL
 BEGIN
-    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20201106213311_Added db') THEN
-
-    CREATE TABLE `AspNetRoles` (
-        `Id` varchar(85) NOT NULL,
-        `Name` varchar(256) NULL,
-        `NormalizedName` varchar(85) NULL,
-        `ConcurrencyStamp` longtext NULL,
-        CONSTRAINT `PK_AspNetRoles` PRIMARY KEY (`Id`)
+    CREATE TABLE [__EFMigrationsHistory] (
+        [MigrationId] nvarchar(150) NOT NULL,
+        [ProductVersion] nvarchar(32) NOT NULL,
+        CONSTRAINT [PK___EFMigrationsHistory] PRIMARY KEY ([MigrationId])
     );
+END;
 
-    END IF;
-END //
-DELIMITER ;
-CALL MigrationsScript();
-DROP PROCEDURE MigrationsScript;
+GO
 
-
-DROP PROCEDURE IF EXISTS MigrationsScript;
-DELIMITER //
-CREATE PROCEDURE MigrationsScript()
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20201108115030_InitialDb')
 BEGIN
-    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20201106213311_Added db') THEN
-
-    CREATE TABLE `IdentityUser` (
-        `Id` varchar(85) NOT NULL,
-        `UserName` longtext NULL,
-        `NormalizedUserName` varchar(85) NULL,
-        `Email` longtext NULL,
-        `NormalizedEmail` varchar(85) NULL,
-        `EmailConfirmed` bit NOT NULL,
-        `PasswordHash` longtext NULL,
-        `SecurityStamp` longtext NULL,
-        `ConcurrencyStamp` longtext NULL,
-        `PhoneNumber` longtext NULL,
-        `PhoneNumberConfirmed` bit NOT NULL,
-        `TwoFactorEnabled` bit NOT NULL,
-        `LockoutEnd` datetime(6) NULL,
-        `LockoutEnabled` bit NOT NULL,
-        `AccessFailedCount` int NOT NULL,
-        CONSTRAINT `PK_IdentityUser` PRIMARY KEY (`Id`)
+    CREATE TABLE [AspNetRoles] (
+        [Id] nvarchar(450) NOT NULL,
+        [Name] nvarchar(256) NULL,
+        [NormalizedName] nvarchar(256) NULL,
+        [ConcurrencyStamp] nvarchar(max) NULL,
+        CONSTRAINT [PK_AspNetRoles] PRIMARY KEY ([Id])
     );
+END;
 
-    END IF;
-END //
-DELIMITER ;
-CALL MigrationsScript();
-DROP PROCEDURE MigrationsScript;
+GO
 
-
-DROP PROCEDURE IF EXISTS MigrationsScript;
-DELIMITER //
-CREATE PROCEDURE MigrationsScript()
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20201108115030_InitialDb')
 BEGIN
-    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20201106213311_Added db') THEN
-
-    CREATE TABLE `UserAddresses` (
-        `id` int NOT NULL AUTO_INCREMENT,
-        `Country` longtext NULL,
-        `State` longtext NULL,
-        `City` longtext NULL,
-        `StreetAddress` longtext NULL,
-        CONSTRAINT `PK_UserAddresses` PRIMARY KEY (`id`)
+    CREATE TABLE [UserAddresses] (
+        [id] int NOT NULL IDENTITY,
+        [Country] nvarchar(max) NULL,
+        [State] nvarchar(max) NULL,
+        [City] nvarchar(max) NULL,
+        [StreetAddress] nvarchar(max) NULL,
+        CONSTRAINT [PK_UserAddresses] PRIMARY KEY ([id])
     );
+END;
 
-    END IF;
-END //
-DELIMITER ;
-CALL MigrationsScript();
-DROP PROCEDURE MigrationsScript;
+GO
 
-
-DROP PROCEDURE IF EXISTS MigrationsScript;
-DELIMITER //
-CREATE PROCEDURE MigrationsScript()
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20201108115030_InitialDb')
 BEGIN
-    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20201106213311_Added db') THEN
-
-    CREATE TABLE `UsersLocations` (
-        `id` int NOT NULL AUTO_INCREMENT,
-        `IP` longtext NULL,
-        `Location` longtext NULL,
-        `Time` datetime(6) NOT NULL,
-        `Url` longtext NULL,
-        `Browser` longtext NULL,
-        CONSTRAINT `PK_UsersLocations` PRIMARY KEY (`id`)
+    CREATE TABLE [UsersLocations] (
+        [id] int NOT NULL IDENTITY,
+        [IP] nvarchar(max) NULL,
+        [Location] nvarchar(max) NULL,
+        [Time] datetime2 NOT NULL,
+        [Url] nvarchar(max) NULL,
+        [Browser] nvarchar(max) NULL,
+        CONSTRAINT [PK_UsersLocations] PRIMARY KEY ([id])
     );
+END;
 
-    END IF;
-END //
-DELIMITER ;
-CALL MigrationsScript();
-DROP PROCEDURE MigrationsScript;
+GO
 
-
-DROP PROCEDURE IF EXISTS MigrationsScript;
-DELIMITER //
-CREATE PROCEDURE MigrationsScript()
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20201108115030_InitialDb')
 BEGIN
-    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20201106213311_Added db') THEN
-
-    CREATE TABLE `AspNetRoleClaims` (
-        `Id` int NOT NULL AUTO_INCREMENT,
-        `RoleId` varchar(85) NOT NULL,
-        `ClaimType` longtext NULL,
-        `ClaimValue` longtext NULL,
-        CONSTRAINT `PK_AspNetRoleClaims` PRIMARY KEY (`Id`),
-        CONSTRAINT `FK_AspNetRoleClaims_AspNetRoles_RoleId` FOREIGN KEY (`RoleId`) REFERENCES `AspNetRoles` (`Id`) ON DELETE CASCADE
+    CREATE TABLE [AspNetRoleClaims] (
+        [Id] int NOT NULL IDENTITY,
+        [RoleId] nvarchar(450) NOT NULL,
+        [ClaimType] nvarchar(max) NULL,
+        [ClaimValue] nvarchar(max) NULL,
+        CONSTRAINT [PK_AspNetRoleClaims] PRIMARY KEY ([Id]),
+        CONSTRAINT [FK_AspNetRoleClaims_AspNetRoles_RoleId] FOREIGN KEY ([RoleId]) REFERENCES [AspNetRoles] ([Id]) ON DELETE CASCADE
     );
+END;
 
-    END IF;
-END //
-DELIMITER ;
-CALL MigrationsScript();
-DROP PROCEDURE MigrationsScript;
+GO
 
-
-DROP PROCEDURE IF EXISTS MigrationsScript;
-DELIMITER //
-CREATE PROCEDURE MigrationsScript()
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20201108115030_InitialDb')
 BEGIN
-    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20201106213311_Added db') THEN
-
-    CREATE TABLE `AspNetUsers` (
-        `Id` varchar(255) NOT NULL,
-        `UserName` varchar(256) NULL,
-        `NormalizedUserName` varchar(256) NULL,
-        `Email` varchar(256) NULL,
-        `NormalizedEmail` varchar(256) NULL,
-        `EmailConfirmed` bit NOT NULL,
-        `PasswordHash` longtext NULL,
-        `SecurityStamp` longtext NULL,
-        `ConcurrencyStamp` longtext NULL,
-        `PhoneNumber` longtext NULL,
-        `PhoneNumberConfirmed` bit NOT NULL,
-        `TwoFactorEnabled` bit NOT NULL,
-        `LockoutEnd` datetime(6) NULL,
-        `LockoutEnabled` bit NOT NULL,
-        `AccessFailedCount` int NOT NULL,
-        `Name` longtext NOT NULL,
-        `Photopath` longtext NULL,
-        `AddressId` int NOT NULL,
-        CONSTRAINT `PK_AspNetUsers` PRIMARY KEY (`Id`),
-        CONSTRAINT `FK_AspNetUsers_UserAddresses_AddressId` FOREIGN KEY (`AddressId`) REFERENCES `UserAddresses` (`id`) ON DELETE CASCADE
+    CREATE TABLE [AspNetUsers] (
+        [Id] nvarchar(450) NOT NULL,
+        [UserName] nvarchar(256) NULL,
+        [NormalizedUserName] nvarchar(256) NULL,
+        [Email] nvarchar(256) NULL,
+        [NormalizedEmail] nvarchar(256) NULL,
+        [EmailConfirmed] bit NOT NULL,
+        [PasswordHash] nvarchar(max) NULL,
+        [SecurityStamp] nvarchar(max) NULL,
+        [ConcurrencyStamp] nvarchar(max) NULL,
+        [PhoneNumber] nvarchar(max) NULL,
+        [PhoneNumberConfirmed] bit NOT NULL,
+        [TwoFactorEnabled] bit NOT NULL,
+        [LockoutEnd] datetimeoffset NULL,
+        [LockoutEnabled] bit NOT NULL,
+        [AccessFailedCount] int NOT NULL,
+        [Name] nvarchar(max) NOT NULL,
+        [Photopath] nvarchar(max) NULL,
+        [AddressId] int NOT NULL,
+        CONSTRAINT [PK_AspNetUsers] PRIMARY KEY ([Id]),
+        CONSTRAINT [FK_AspNetUsers_UserAddresses_AddressId] FOREIGN KEY ([AddressId]) REFERENCES [UserAddresses] ([id]) ON DELETE CASCADE
     );
+END;
 
-    END IF;
-END //
-DELIMITER ;
-CALL MigrationsScript();
-DROP PROCEDURE MigrationsScript;
+GO
 
-
-DROP PROCEDURE IF EXISTS MigrationsScript;
-DELIMITER //
-CREATE PROCEDURE MigrationsScript()
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20201108115030_InitialDb')
 BEGIN
-    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20201106213311_Added db') THEN
-
-    CREATE TABLE `AspNetUserClaims` (
-        `Id` int NOT NULL AUTO_INCREMENT,
-        `UserId` varchar(85) NOT NULL,
-        `ClaimType` longtext NULL,
-        `ClaimValue` longtext NULL,
-        CONSTRAINT `PK_AspNetUserClaims` PRIMARY KEY (`Id`),
-        CONSTRAINT `FK_AspNetUserClaims_AspNetUsers_UserId` FOREIGN KEY (`UserId`) REFERENCES `AspNetUsers` (`Id`) ON DELETE CASCADE
+    CREATE TABLE [AspNetUserClaims] (
+        [Id] int NOT NULL IDENTITY,
+        [UserId] nvarchar(450) NOT NULL,
+        [ClaimType] nvarchar(max) NULL,
+        [ClaimValue] nvarchar(max) NULL,
+        CONSTRAINT [PK_AspNetUserClaims] PRIMARY KEY ([Id]),
+        CONSTRAINT [FK_AspNetUserClaims_AspNetUsers_UserId] FOREIGN KEY ([UserId]) REFERENCES [AspNetUsers] ([Id]) ON DELETE CASCADE
     );
+END;
 
-    END IF;
-END //
-DELIMITER ;
-CALL MigrationsScript();
-DROP PROCEDURE MigrationsScript;
+GO
 
-
-DROP PROCEDURE IF EXISTS MigrationsScript;
-DELIMITER //
-CREATE PROCEDURE MigrationsScript()
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20201108115030_InitialDb')
 BEGIN
-    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20201106213311_Added db') THEN
-
-    CREATE TABLE `AspNetUserLogins` (
-        `LoginProvider` varchar(85) NOT NULL,
-        `ProviderKey` varchar(85) NOT NULL,
-        `ProviderDisplayName` longtext NULL,
-        `UserId` varchar(85) NOT NULL,
-        CONSTRAINT `PK_AspNetUserLogins` PRIMARY KEY (`LoginProvider`, `ProviderKey`),
-        CONSTRAINT `FK_AspNetUserLogins_AspNetUsers_UserId` FOREIGN KEY (`UserId`) REFERENCES `AspNetUsers` (`Id`) ON DELETE CASCADE
+    CREATE TABLE [AspNetUserLogins] (
+        [LoginProvider] nvarchar(450) NOT NULL,
+        [ProviderKey] nvarchar(450) NOT NULL,
+        [ProviderDisplayName] nvarchar(max) NULL,
+        [UserId] nvarchar(450) NOT NULL,
+        CONSTRAINT [PK_AspNetUserLogins] PRIMARY KEY ([LoginProvider], [ProviderKey]),
+        CONSTRAINT [FK_AspNetUserLogins_AspNetUsers_UserId] FOREIGN KEY ([UserId]) REFERENCES [AspNetUsers] ([Id]) ON DELETE CASCADE
     );
+END;
 
-    END IF;
-END //
-DELIMITER ;
-CALL MigrationsScript();
-DROP PROCEDURE MigrationsScript;
+GO
 
-
-DROP PROCEDURE IF EXISTS MigrationsScript;
-DELIMITER //
-CREATE PROCEDURE MigrationsScript()
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20201108115030_InitialDb')
 BEGIN
-    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20201106213311_Added db') THEN
-
-    CREATE TABLE `AspNetUserRoles` (
-        `UserId` varchar(85) NOT NULL,
-        `RoleId` varchar(85) NOT NULL,
-        CONSTRAINT `PK_AspNetUserRoles` PRIMARY KEY (`UserId`, `RoleId`),
-        CONSTRAINT `FK_AspNetUserRoles_AspNetRoles_RoleId` FOREIGN KEY (`RoleId`) REFERENCES `AspNetRoles` (`Id`) ON DELETE CASCADE,
-        CONSTRAINT `FK_AspNetUserRoles_AspNetUsers_UserId` FOREIGN KEY (`UserId`) REFERENCES `AspNetUsers` (`Id`) ON DELETE CASCADE
+    CREATE TABLE [AspNetUserRoles] (
+        [UserId] nvarchar(450) NOT NULL,
+        [RoleId] nvarchar(450) NOT NULL,
+        CONSTRAINT [PK_AspNetUserRoles] PRIMARY KEY ([UserId], [RoleId]),
+        CONSTRAINT [FK_AspNetUserRoles_AspNetRoles_RoleId] FOREIGN KEY ([RoleId]) REFERENCES [AspNetRoles] ([Id]) ON DELETE CASCADE,
+        CONSTRAINT [FK_AspNetUserRoles_AspNetUsers_UserId] FOREIGN KEY ([UserId]) REFERENCES [AspNetUsers] ([Id]) ON DELETE CASCADE
     );
+END;
 
-    END IF;
-END //
-DELIMITER ;
-CALL MigrationsScript();
-DROP PROCEDURE MigrationsScript;
+GO
 
-
-DROP PROCEDURE IF EXISTS MigrationsScript;
-DELIMITER //
-CREATE PROCEDURE MigrationsScript()
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20201108115030_InitialDb')
 BEGIN
-    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20201106213311_Added db') THEN
-
-    CREATE TABLE `AspNetUserTokens` (
-        `UserId` varchar(85) NOT NULL,
-        `LoginProvider` varchar(85) NOT NULL,
-        `Name` varchar(85) NOT NULL,
-        `Value` longtext NULL,
-        CONSTRAINT `PK_AspNetUserTokens` PRIMARY KEY (`UserId`, `LoginProvider`, `Name`),
-        CONSTRAINT `FK_AspNetUserTokens_AspNetUsers_UserId` FOREIGN KEY (`UserId`) REFERENCES `AspNetUsers` (`Id`) ON DELETE CASCADE
+    CREATE TABLE [AspNetUserTokens] (
+        [UserId] nvarchar(450) NOT NULL,
+        [LoginProvider] nvarchar(450) NOT NULL,
+        [Name] nvarchar(450) NOT NULL,
+        [Value] nvarchar(max) NULL,
+        CONSTRAINT [PK_AspNetUserTokens] PRIMARY KEY ([UserId], [LoginProvider], [Name]),
+        CONSTRAINT [FK_AspNetUserTokens_AspNetUsers_UserId] FOREIGN KEY ([UserId]) REFERENCES [AspNetUsers] ([Id]) ON DELETE CASCADE
     );
+END;
 
-    END IF;
-END //
-DELIMITER ;
-CALL MigrationsScript();
-DROP PROCEDURE MigrationsScript;
+GO
 
-
-DROP PROCEDURE IF EXISTS MigrationsScript;
-DELIMITER //
-CREATE PROCEDURE MigrationsScript()
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20201108115030_InitialDb')
 BEGIN
-    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20201106213311_Added db') THEN
-
-    CREATE TABLE `Companies` (
-        `id` int NOT NULL AUTO_INCREMENT,
-        `Date` Date NOT NULL,
-        `CompanyName` varchar(255) NOT NULL,
-        `CompanyTitle` longtext NOT NULL,
-        `CompanyDesc` longtext NOT NULL,
-        `CompanyLogo` longtext NOT NULL,
-        `CompanyBackgorund` longtext NOT NULL,
-        `whyCooseUsImage` longtext NOT NULL,
-        `whyCooseUsText` longtext NOT NULL,
-        `CompanyAdd` longtext NOT NULL,
-        `CompanyPhone` longtext NOT NULL,
-        `CompanyEmail` longtext NOT NULL,
-        `CompanyOwner` varchar(255) NOT NULL,
-        CONSTRAINT `PK_Companies` PRIMARY KEY (`id`),
-        CONSTRAINT `FK_Companies_AspNetUsers_CompanyOwner` FOREIGN KEY (`CompanyOwner`) REFERENCES `AspNetUsers` (`Id`) ON DELETE CASCADE
+    CREATE TABLE [Companies] (
+        [id] int NOT NULL IDENTITY,
+        [Date] Date NOT NULL,
+        [CompanyName] nvarchar(450) NOT NULL,
+        [CompanyTitle] nvarchar(max) NOT NULL,
+        [CompanyDesc] nvarchar(max) NOT NULL,
+        [CompanyLogo] nvarchar(max) NOT NULL,
+        [CompanyBackgorund] nvarchar(max) NOT NULL,
+        [whyCooseUsImage] nvarchar(max) NOT NULL,
+        [whyCooseUsText] nvarchar(max) NOT NULL,
+        [CompanyAdd] nvarchar(max) NOT NULL,
+        [CompanyPhone] nvarchar(max) NOT NULL,
+        [CompanyEmail] nvarchar(max) NOT NULL,
+        [CompanyOwner] nvarchar(450) NOT NULL,
+        CONSTRAINT [PK_Companies] PRIMARY KEY ([id]),
+        CONSTRAINT [FK_Companies_AspNetUsers_CompanyOwner] FOREIGN KEY ([CompanyOwner]) REFERENCES [AspNetUsers] ([Id]) ON DELETE CASCADE
     );
+END;
 
-    END IF;
-END //
-DELIMITER ;
-CALL MigrationsScript();
-DROP PROCEDURE MigrationsScript;
+GO
 
-
-DROP PROCEDURE IF EXISTS MigrationsScript;
-DELIMITER //
-CREATE PROCEDURE MigrationsScript()
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20201108115030_InitialDb')
 BEGIN
-    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20201106213311_Added db') THEN
-
-    CREATE TABLE `UserStats` (
-        `id` int NOT NULL AUTO_INCREMENT,
-        `Count` int NOT NULL,
-        `When` datetime(6) NOT NULL,
-        `UserId` varchar(255) NULL,
-        CONSTRAINT `PK_UserStats` PRIMARY KEY (`id`),
-        CONSTRAINT `FK_UserStats_AspNetUsers_UserId` FOREIGN KEY (`UserId`) REFERENCES `AspNetUsers` (`Id`) ON DELETE CASCADE
+    CREATE TABLE [UserStats] (
+        [id] int NOT NULL IDENTITY,
+        [Count] int NOT NULL,
+        [When] datetime2 NOT NULL,
+        [UserId] nvarchar(450) NULL,
+        CONSTRAINT [PK_UserStats] PRIMARY KEY ([id]),
+        CONSTRAINT [FK_UserStats_AspNetUsers_UserId] FOREIGN KEY ([UserId]) REFERENCES [AspNetUsers] ([Id]) ON DELETE CASCADE
     );
+END;
 
-    END IF;
-END //
-DELIMITER ;
-CALL MigrationsScript();
-DROP PROCEDURE MigrationsScript;
+GO
 
-
-DROP PROCEDURE IF EXISTS MigrationsScript;
-DELIMITER //
-CREATE PROCEDURE MigrationsScript()
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20201108115030_InitialDb')
 BEGIN
-    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20201106213311_Added db') THEN
-
-    CREATE TABLE `Categories` (
-        `id` int NOT NULL AUTO_INCREMENT,
-        `launch` Date NOT NULL,
-        `CategoryName` longtext NOT NULL,
-        `CompanyId` int NOT NULL,
-        CONSTRAINT `PK_Categories` PRIMARY KEY (`id`),
-        CONSTRAINT `FK_Categories_Companies_CompanyId` FOREIGN KEY (`CompanyId`) REFERENCES `Companies` (`id`) ON DELETE CASCADE
+    CREATE TABLE [Categories] (
+        [id] int NOT NULL IDENTITY,
+        [launch] Date NOT NULL,
+        [CategoryName] nvarchar(max) NOT NULL,
+        [CompanyId] int NOT NULL,
+        CONSTRAINT [PK_Categories] PRIMARY KEY ([id]),
+        CONSTRAINT [FK_Categories_Companies_CompanyId] FOREIGN KEY ([CompanyId]) REFERENCES [Companies] ([id]) ON DELETE CASCADE
     );
+END;
 
-    END IF;
-END //
-DELIMITER ;
-CALL MigrationsScript();
-DROP PROCEDURE MigrationsScript;
+GO
 
-
-DROP PROCEDURE IF EXISTS MigrationsScript;
-DELIMITER //
-CREATE PROCEDURE MigrationsScript()
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20201108115030_InitialDb')
 BEGIN
-    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20201106213311_Added db') THEN
-
-    CREATE TABLE `Contact` (
-        `id` int NOT NULL AUTO_INCREMENT,
-        `Name` longtext NOT NULL,
-        `Email` longtext NOT NULL,
-        `Phone` longtext NOT NULL,
-        `Subject` longtext NULL,
-        `Message` longtext NULL,
-        `CompanyId` int NULL,
-        CONSTRAINT `PK_Contact` PRIMARY KEY (`id`),
-        CONSTRAINT `FK_Contact_Companies_CompanyId` FOREIGN KEY (`CompanyId`) REFERENCES `Companies` (`id`) ON DELETE RESTRICT
+    CREATE TABLE [Contact] (
+        [id] int NOT NULL IDENTITY,
+        [Name] nvarchar(max) NOT NULL,
+        [Email] nvarchar(max) NOT NULL,
+        [Phone] nvarchar(max) NOT NULL,
+        [Subject] nvarchar(max) NULL,
+        [Message] nvarchar(max) NULL,
+        [CompanyId] int NULL,
+        CONSTRAINT [PK_Contact] PRIMARY KEY ([id]),
+        CONSTRAINT [FK_Contact_Companies_CompanyId] FOREIGN KEY ([CompanyId]) REFERENCES [Companies] ([id]) ON DELETE NO ACTION
     );
+END;
 
-    END IF;
-END //
-DELIMITER ;
-CALL MigrationsScript();
-DROP PROCEDURE MigrationsScript;
+GO
 
-
-DROP PROCEDURE IF EXISTS MigrationsScript;
-DELIMITER //
-CREATE PROCEDURE MigrationsScript()
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20201108115030_InitialDb')
 BEGIN
-    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20201106213311_Added db') THEN
-
-    CREATE TABLE `Products` (
-        `id` int NOT NULL AUTO_INCREMENT,
-        `launch` Date NOT NULL,
-        `title` longtext NOT NULL,
-        `details` longtext NOT NULL,
-        `overviews` longtext NOT NULL,
-        `CategoryId` int NOT NULL,
-        `isSpecial` bit NOT NULL,
-        `CompanyId` int NOT NULL,
-        CONSTRAINT `PK_Products` PRIMARY KEY (`id`),
-        CONSTRAINT `FK_Products_Categories_CategoryId` FOREIGN KEY (`CategoryId`) REFERENCES `Categories` (`id`) ON DELETE RESTRICT,
-        CONSTRAINT `FK_Products_Companies_CompanyId` FOREIGN KEY (`CompanyId`) REFERENCES `Companies` (`id`) ON DELETE CASCADE
+    CREATE TABLE [Products] (
+        [id] int NOT NULL IDENTITY,
+        [launch] Date NOT NULL,
+        [title] nvarchar(max) NOT NULL,
+        [details] nvarchar(max) NOT NULL,
+        [overviews] nvarchar(max) NOT NULL,
+        [CategoryId] int NOT NULL,
+        [isSpecial] bit NOT NULL,
+        [CompanyId] int NOT NULL,
+        CONSTRAINT [PK_Products] PRIMARY KEY ([id]),
+        CONSTRAINT [FK_Products_Categories_CategoryId] FOREIGN KEY ([CategoryId]) REFERENCES [Categories] ([id]) ON DELETE NO ACTION,
+        CONSTRAINT [FK_Products_Companies_CompanyId] FOREIGN KEY ([CompanyId]) REFERENCES [Companies] ([id]) ON DELETE CASCADE
     );
+END;
 
-    END IF;
-END //
-DELIMITER ;
-CALL MigrationsScript();
-DROP PROCEDURE MigrationsScript;
+GO
 
-
-DROP PROCEDURE IF EXISTS MigrationsScript;
-DELIMITER //
-CREATE PROCEDURE MigrationsScript()
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20201108115030_InitialDb')
 BEGIN
-    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20201106213311_Added db') THEN
-
-    CREATE TABLE `Images` (
-        `id` int NOT NULL AUTO_INCREMENT,
-        `Image_Path` longtext NULL,
-        `productId` int NOT NULL,
-        CONSTRAINT `PK_Images` PRIMARY KEY (`id`),
-        CONSTRAINT `FK_Images_Products_productId` FOREIGN KEY (`productId`) REFERENCES `Products` (`id`) ON DELETE CASCADE
+    CREATE TABLE [Images] (
+        [id] int NOT NULL IDENTITY,
+        [Image_Path] nvarchar(max) NULL,
+        [productId] int NOT NULL,
+        CONSTRAINT [PK_Images] PRIMARY KEY ([id]),
+        CONSTRAINT [FK_Images_Products_productId] FOREIGN KEY ([productId]) REFERENCES [Products] ([id]) ON DELETE CASCADE
     );
+END;
 
-    END IF;
-END //
-DELIMITER ;
-CALL MigrationsScript();
-DROP PROCEDURE MigrationsScript;
+GO
 
-
-DROP PROCEDURE IF EXISTS MigrationsScript;
-DELIMITER //
-CREATE PROCEDURE MigrationsScript()
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20201108115030_InitialDb')
 BEGIN
-    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20201106213311_Added db') THEN
+    CREATE INDEX [IX_AspNetRoleClaims_RoleId] ON [AspNetRoleClaims] ([RoleId]);
+END;
 
-    CREATE INDEX `IX_AspNetRoleClaims_RoleId` ON `AspNetRoleClaims` (`RoleId`);
+GO
 
-    END IF;
-END //
-DELIMITER ;
-CALL MigrationsScript();
-DROP PROCEDURE MigrationsScript;
-
-
-DROP PROCEDURE IF EXISTS MigrationsScript;
-DELIMITER //
-CREATE PROCEDURE MigrationsScript()
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20201108115030_InitialDb')
 BEGIN
-    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20201106213311_Added db') THEN
+    CREATE UNIQUE INDEX [RoleNameIndex] ON [AspNetRoles] ([NormalizedName]) WHERE [NormalizedName] IS NOT NULL;
+END;
 
-    CREATE UNIQUE INDEX `RoleNameIndex` ON `AspNetRoles` (`NormalizedName`);
+GO
 
-    END IF;
-END //
-DELIMITER ;
-CALL MigrationsScript();
-DROP PROCEDURE MigrationsScript;
-
-
-DROP PROCEDURE IF EXISTS MigrationsScript;
-DELIMITER //
-CREATE PROCEDURE MigrationsScript()
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20201108115030_InitialDb')
 BEGIN
-    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20201106213311_Added db') THEN
+    CREATE INDEX [IX_AspNetUserClaims_UserId] ON [AspNetUserClaims] ([UserId]);
+END;
 
-    CREATE INDEX `IX_AspNetUserClaims_UserId` ON `AspNetUserClaims` (`UserId`);
+GO
 
-    END IF;
-END //
-DELIMITER ;
-CALL MigrationsScript();
-DROP PROCEDURE MigrationsScript;
-
-
-DROP PROCEDURE IF EXISTS MigrationsScript;
-DELIMITER //
-CREATE PROCEDURE MigrationsScript()
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20201108115030_InitialDb')
 BEGIN
-    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20201106213311_Added db') THEN
+    CREATE INDEX [IX_AspNetUserLogins_UserId] ON [AspNetUserLogins] ([UserId]);
+END;
 
-    CREATE INDEX `IX_AspNetUserLogins_UserId` ON `AspNetUserLogins` (`UserId`);
+GO
 
-    END IF;
-END //
-DELIMITER ;
-CALL MigrationsScript();
-DROP PROCEDURE MigrationsScript;
-
-
-DROP PROCEDURE IF EXISTS MigrationsScript;
-DELIMITER //
-CREATE PROCEDURE MigrationsScript()
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20201108115030_InitialDb')
 BEGIN
-    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20201106213311_Added db') THEN
+    CREATE INDEX [IX_AspNetUserRoles_RoleId] ON [AspNetUserRoles] ([RoleId]);
+END;
 
-    CREATE INDEX `IX_AspNetUserRoles_RoleId` ON `AspNetUserRoles` (`RoleId`);
+GO
 
-    END IF;
-END //
-DELIMITER ;
-CALL MigrationsScript();
-DROP PROCEDURE MigrationsScript;
-
-
-DROP PROCEDURE IF EXISTS MigrationsScript;
-DELIMITER //
-CREATE PROCEDURE MigrationsScript()
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20201108115030_InitialDb')
 BEGIN
-    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20201106213311_Added db') THEN
+    CREATE UNIQUE INDEX [IX_AspNetUsers_AddressId] ON [AspNetUsers] ([AddressId]);
+END;
 
-    CREATE UNIQUE INDEX `IX_AspNetUsers_AddressId` ON `AspNetUsers` (`AddressId`);
+GO
 
-    END IF;
-END //
-DELIMITER ;
-CALL MigrationsScript();
-DROP PROCEDURE MigrationsScript;
-
-
-DROP PROCEDURE IF EXISTS MigrationsScript;
-DELIMITER //
-CREATE PROCEDURE MigrationsScript()
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20201108115030_InitialDb')
 BEGIN
-    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20201106213311_Added db') THEN
+    CREATE INDEX [EmailIndex] ON [AspNetUsers] ([NormalizedEmail]);
+END;
 
-    CREATE INDEX `EmailIndex` ON `AspNetUsers` (`NormalizedEmail`);
+GO
 
-    END IF;
-END //
-DELIMITER ;
-CALL MigrationsScript();
-DROP PROCEDURE MigrationsScript;
-
-
-DROP PROCEDURE IF EXISTS MigrationsScript;
-DELIMITER //
-CREATE PROCEDURE MigrationsScript()
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20201108115030_InitialDb')
 BEGIN
-    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20201106213311_Added db') THEN
+    CREATE UNIQUE INDEX [UserNameIndex] ON [AspNetUsers] ([NormalizedUserName]) WHERE [NormalizedUserName] IS NOT NULL;
+END;
 
-    CREATE UNIQUE INDEX `UserNameIndex` ON `AspNetUsers` (`NormalizedUserName`);
+GO
 
-    END IF;
-END //
-DELIMITER ;
-CALL MigrationsScript();
-DROP PROCEDURE MigrationsScript;
-
-
-DROP PROCEDURE IF EXISTS MigrationsScript;
-DELIMITER //
-CREATE PROCEDURE MigrationsScript()
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20201108115030_InitialDb')
 BEGIN
-    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20201106213311_Added db') THEN
+    CREATE INDEX [IX_Categories_CompanyId] ON [Categories] ([CompanyId]);
+END;
 
-    CREATE INDEX `IX_Categories_CompanyId` ON `Categories` (`CompanyId`);
+GO
 
-    END IF;
-END //
-DELIMITER ;
-CALL MigrationsScript();
-DROP PROCEDURE MigrationsScript;
-
-
-DROP PROCEDURE IF EXISTS MigrationsScript;
-DELIMITER //
-CREATE PROCEDURE MigrationsScript()
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20201108115030_InitialDb')
 BEGIN
-    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20201106213311_Added db') THEN
+    CREATE UNIQUE INDEX [IX_Companies_CompanyName] ON [Companies] ([CompanyName]);
+END;
 
-    CREATE UNIQUE INDEX `IX_Companies_CompanyName` ON `Companies` (`CompanyName`);
+GO
 
-    END IF;
-END //
-DELIMITER ;
-CALL MigrationsScript();
-DROP PROCEDURE MigrationsScript;
-
-
-DROP PROCEDURE IF EXISTS MigrationsScript;
-DELIMITER //
-CREATE PROCEDURE MigrationsScript()
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20201108115030_InitialDb')
 BEGIN
-    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20201106213311_Added db') THEN
+    CREATE UNIQUE INDEX [IX_Companies_CompanyOwner] ON [Companies] ([CompanyOwner]);
+END;
 
-    CREATE UNIQUE INDEX `IX_Companies_CompanyOwner` ON `Companies` (`CompanyOwner`);
+GO
 
-    END IF;
-END //
-DELIMITER ;
-CALL MigrationsScript();
-DROP PROCEDURE MigrationsScript;
-
-
-DROP PROCEDURE IF EXISTS MigrationsScript;
-DELIMITER //
-CREATE PROCEDURE MigrationsScript()
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20201108115030_InitialDb')
 BEGIN
-    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20201106213311_Added db') THEN
+    CREATE INDEX [IX_Contact_CompanyId] ON [Contact] ([CompanyId]);
+END;
 
-    CREATE INDEX `IX_Contact_CompanyId` ON `Contact` (`CompanyId`);
+GO
 
-    END IF;
-END //
-DELIMITER ;
-CALL MigrationsScript();
-DROP PROCEDURE MigrationsScript;
-
-
-DROP PROCEDURE IF EXISTS MigrationsScript;
-DELIMITER //
-CREATE PROCEDURE MigrationsScript()
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20201108115030_InitialDb')
 BEGIN
-    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20201106213311_Added db') THEN
+    CREATE INDEX [IX_Images_productId] ON [Images] ([productId]);
+END;
 
-    CREATE INDEX `IX_Images_productId` ON `Images` (`productId`);
+GO
 
-    END IF;
-END //
-DELIMITER ;
-CALL MigrationsScript();
-DROP PROCEDURE MigrationsScript;
-
-
-DROP PROCEDURE IF EXISTS MigrationsScript;
-DELIMITER //
-CREATE PROCEDURE MigrationsScript()
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20201108115030_InitialDb')
 BEGIN
-    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20201106213311_Added db') THEN
+    CREATE INDEX [IX_Products_CategoryId] ON [Products] ([CategoryId]);
+END;
 
-    CREATE INDEX `IX_Products_CategoryId` ON `Products` (`CategoryId`);
+GO
 
-    END IF;
-END //
-DELIMITER ;
-CALL MigrationsScript();
-DROP PROCEDURE MigrationsScript;
-
-
-DROP PROCEDURE IF EXISTS MigrationsScript;
-DELIMITER //
-CREATE PROCEDURE MigrationsScript()
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20201108115030_InitialDb')
 BEGIN
-    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20201106213311_Added db') THEN
+    CREATE INDEX [IX_Products_CompanyId] ON [Products] ([CompanyId]);
+END;
 
-    CREATE INDEX `IX_Products_CompanyId` ON `Products` (`CompanyId`);
+GO
 
-    END IF;
-END //
-DELIMITER ;
-CALL MigrationsScript();
-DROP PROCEDURE MigrationsScript;
-
-
-DROP PROCEDURE IF EXISTS MigrationsScript;
-DELIMITER //
-CREATE PROCEDURE MigrationsScript()
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20201108115030_InitialDb')
 BEGIN
-    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20201106213311_Added db') THEN
+    CREATE INDEX [IX_UserStats_UserId] ON [UserStats] ([UserId]);
+END;
 
-    CREATE INDEX `IX_UserStats_UserId` ON `UserStats` (`UserId`);
+GO
 
-    END IF;
-END //
-DELIMITER ;
-CALL MigrationsScript();
-DROP PROCEDURE MigrationsScript;
-
-
-DROP PROCEDURE IF EXISTS MigrationsScript;
-DELIMITER //
-CREATE PROCEDURE MigrationsScript()
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20201108115030_InitialDb')
 BEGIN
-    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20201106213311_Added db') THEN
+    INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+    VALUES (N'20201108115030_InitialDb', N'2.2.6-servicing-10079');
+END;
 
-    INSERT INTO `__EFMigrationsHistory` (`MigrationId`, `ProductVersion`)
-    VALUES ('20201106213311_Added db', '2.2.6-servicing-10079');
+GO
 
-    END IF;
-END //
-DELIMITER ;
-CALL MigrationsScript();
-DROP PROCEDURE MigrationsScript;
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20201112115843_Added social Links companies')
+BEGIN
+    ALTER TABLE [Companies] ADD [FbProfile] nvarchar(max) NOT NULL DEFAULT N'';
+END;
+
+GO
+
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20201112115843_Added social Links companies')
+BEGIN
+    ALTER TABLE [Companies] ADD [linkedinProfile] nvarchar(max) NOT NULL DEFAULT N'';
+END;
+
+GO
+
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20201112115843_Added social Links companies')
+BEGIN
+    ALTER TABLE [Companies] ADD [twitterProfile] nvarchar(max) NOT NULL DEFAULT N'';
+END;
+
+GO
+
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20201112115843_Added social Links companies')
+BEGIN
+    INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+    VALUES (N'20201112115843_Added social Links companies', N'2.2.6-servicing-10079');
+END;
+
+GO
 

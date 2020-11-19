@@ -5,8 +5,13 @@
 html {
     scroll-behavior: smooth;
 }
+
+
 /* Starting cellphone */
 @media only screen and (min-width: 320px) {
+    .whiteColor {
+        color: white !important;
+    }
     .mainHeading {
         font-size: 30pt;
     }
@@ -14,6 +19,9 @@ html {
 
 /* Starting tablet */
 @media only screen and (min-width: 768px) {
+    .whiteColor {
+        color: inherit !important;
+    }
     .mainHeading {
         font-size: 45pt;
     }
@@ -21,6 +29,7 @@ html {
 
 /* Starting Laptop */
 @media only screen and (min-width: 1024px) {
+    
 }
 
 /* navbar anchor */
