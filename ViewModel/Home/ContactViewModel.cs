@@ -11,19 +11,21 @@ namespace WebBuilder.ViewModel.Home
     {
         public int id { get; set; }
         [Required]
-        [Display(Name = "Name*")]
+        [Display(Name= "名称")]
         public string Name { get; set; }
         [Required]
         [EmailAddress]
-        [Display(Name = "Email*")]
+        [Display(Name = "电子邮件")]
         public string Email { get; set; }
 
         [Required]
-        [Display(Name = "Phone*")]
         //[RegularExpression(@"^[0][1-9]\d{9}$|^[1-9]\d{9}$", ErrorMessage = "Must be Phone No")]
+        [Display(Name = "电话")]
         public string Phone { get; set; }
 
+        [Display(Name = "学科")]
         public string Subject { get; set; }
+        [Display(Name = "信息")]
         public string Message { get; set; }
 
         public int? CompanyId { get; set; }

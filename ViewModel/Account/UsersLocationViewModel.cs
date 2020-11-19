@@ -14,17 +14,17 @@ namespace WebBuilder.ViewModel.Account
         [Display(Name = "IP")]
         public string IP { get; set; }
 
-        [Display(Name = "Location")]
+        [Display(Name = "位置")]
         public string Location { get; set; }
 
-        [Display(Name = "Access Time")]
+        [Display(Name = "访问时间")]
         public DateTime Time { get; set; }
 
         [Display(Name = "URL")]
         public string Url { get; set; }
 
 
-        [Display(Name = "Location")]
+        [Display(Name = "浏览器")]
         public string Browser { get; set; }
     }
 }

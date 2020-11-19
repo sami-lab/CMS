@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -96,6 +97,13 @@ namespace WebBuilder.Controllers
             var user = await utilities.getProfile();
             return Json(user);
         }
+        public async Task<JsonResult> GetCompanyName()
+        {
+            var userId= User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier).Value;
+            var company = await utilities.getCompanyName(userId);
+            return Json(company);
+        }
+
 
     }
 }

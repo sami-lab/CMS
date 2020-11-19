@@ -41,6 +41,15 @@ namespace WebBuilder.Data.Models
         [Required]
         public string CompanyOwner { get; set; } //User
 
+        [Required]
+        public string FbProfile { get; set; } 
+
+        [Required]
+        public string twitterProfile { get; set; } 
+
+        [Required]
+        public string linkedinProfile { get; set; } 
+
         [ForeignKey("CompanyOwner")]
         public ApplicationUser User { get; set; }
 

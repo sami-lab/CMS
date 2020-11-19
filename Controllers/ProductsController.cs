@@ -285,6 +285,7 @@ namespace WebBuilder.Controllers
                  ViewBag.Categories = categoryRepository.GetDetailsWithCompany(utilities.getCompanyByName(name).id);
                 return View(data);
             }
+            ViewBag.CompanyName = name;
             ViewBag.Name = "Product";
             return View("ProductNotFound", id);
         }
@@ -424,6 +425,8 @@ namespace WebBuilder.Controllers
                         int modelId = productRepository.Update(id, model);
                         return RedirectToAction("Details", new { id = modelId,name= company.CompanyName });
                     }
+
+                    ViewBag.CompanyName = company.CompanyName;
                     ViewBag.Name = "Product";
                     return View("ProductNotFound", id);
                 }

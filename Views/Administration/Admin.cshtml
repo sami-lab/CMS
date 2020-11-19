@@ -10,17 +10,21 @@
                 <div class="row py-3" style="border-left:5px solid blue; background-color:aliceblue;">
                     <div class="col-md-12">
                         <div class="d-flex justify-content-between">
-                            <h2 class="font-weight-bold text-capitalize">overview</h2>
+                            <h2 class="font-weight-bold text-capitalize">
+                                概观
+                            </h2>
                             @if (User.IsInRole("Admin"))
                             {
                                 <a asp-controller="Products" asp-action="Create" class="btn btn-primary px-4">
-                                    <i class="fa fa-plus"></i>Add Product
+                                    <i class="fa fa-plus"></i>添加产品
+
                                 </a>
                             }
                             else
                             {
                                 <a asp-controller="Account" asp-action="Register" class="btn btn-primary px-4">
-                                    <i class="fa fa-plus"></i>Add Company
+                                    <i class="fa fa-plus"></i>新增公司
+
                                 </a>
                             }
 
@@ -37,7 +41,9 @@
                                 <div class="d-flex justify-content-around  align-items-center p-4">
 
                                     <div class="font-weight-bolder text-capitalize">
-                                        <h5 class="text-success  mt-0 mb-0">Total Users</h5>
+                                        <h5 class="text-success  mt-0 mb-0">
+                                            总用户
+                                        </h5>
                                         <h2 class="font-weight-600  mt-1" style="font-size: 30px; font-family: Georgia, 'Times New Roman', Times, serif;">@Model.TotalUsers</h2>
                                     </div>
                                     <i class="fas fa-download fa-3x"></i>
@@ -47,7 +53,9 @@
                                 <div class="d-flex justify-content-around align-items-center p-4">
 
                                     <div class="font-weight-bolder text-capitalize">
-                                        <h5 class="text-success  mt-0 mb-0">Total Companies </h5>
+                                        <h5 class="text-success  mt-0 mb-0">
+                                            公司总数
+                                        </h5>
                                         <h2 class="font-weight-600  mt-1" style="font-size: 30px; font-family: Georgia, 'Times New Roman', Times, serif;">
                                             @Model.TotalCompanies
                                         </h2>
@@ -60,7 +68,9 @@
                             <div class="d-flex justify-content-around align-items-center p-4">
 
                                 <div class="font-weight-bolder text-capitalize">
-                                    <h5 class="text-success  mt-0 mb-0">Total Categories</h5>
+                                    <h5 class="text-success  mt-0 mb-0">
+                                        类别总数
+                                    </h5>
                                     <h2 class="font-weight-600  mt-1" style="font-size: 30px; font-family: Georgia, 'Times New Roman', Times, serif;">@Model.TotalCategories</h2>
                                 </div>
                                 <i class="fas fa-comments-dollar fa-3x"></i>
@@ -70,7 +80,9 @@
                             <div class="d-flex justify-content-around align-items-center p-4">
 
                                 <div class="font-weight-bolder text-capitalize">
-                                    <h5 class="text-success  mt-0 mb-0">Total Products</h5>
+                                    <h5 class="text-success  mt-0 mb-0">
+                                        产品总数
+                                    </h5>
                                     <h2 class="font-weight-600  mt-1" style="font-size: 30px; font-family: Georgia, 'Times New Roman', Times, serif;">@Model.TotalProducts</h2>
                                 </div>
                                 <i class="fab fa-amazon-pay fa-3x"></i>
@@ -80,7 +92,9 @@
                             <div class="d-flex justify-content-around align-items-center p-4">
 
                                 <div class="font-weight-bolder text-capitalize">
-                                    <h5 class="text-success  mt-0 mb-0">Total Visits</h5>
+                                    <h5 class="text-success  mt-0 mb-0">
+                                        总造访
+                                    </h5>
                                     <h2 class="font-weight-600  mt-1" style="font-size: 30px; font-family: Georgia, 'Times New Roman', Times, serif;">@Model.Visits</h2>
                                 </div>
                                 <i class="fab fa-amazon-pay fa-3x"></i>
@@ -90,7 +104,7 @@
                             <div class="d-flex justify-content-around align-items-center p-4">
 
                                 <div class="font-weight-bolder text-capitalize">
-                                    <h5 class="text-success  mt-0 mb-0">Last Month Visit</h5>
+                                    <h5 class="text-success  mt-0 mb-0">上个月访问</h5>
                                     <h2 class="font-weight-600  mt-1" style="font-size: 30px; font-family: Georgia, 'Times New Roman', Times, serif;">@Model.LastMonthsVisits</h2>
                                 </div>
                                 <i class="fab fa-amazon-pay fa-3x"></i>
@@ -121,17 +135,23 @@
                 <div class="col-lg-9 col-sm-12">
 
                     <div class="rounded" style="background-color:#428BCA; display:flex; justify-content:space-between; align-items:center; margin-top:-20px">
-                        <h3 class="font-weight-bold" style=" color:white; margin-left:5px;">Total Products: @Model.TotalProducts</h3>
+                        <h3 class="font-weight-bold" style=" color:white; margin-left:5px;">
+                            产品总数  : @Model.TotalProducts
+                        </h3>
                         @if (User.IsInRole("Admin"))
                         {
                             <div style=" background-color:white; margin:10px;">
-                                <a asp-controller="Products" asp-action="ListProducts" class="btn btn-default btn-xs"><i class="fas fa-info-circle" title="Details"></i> Details</a>
+                                <a asp-controller="Products" asp-action="ListProducts" class="btn btn-default btn-xs">
+                                    <i class="fas fa-info-circle" title="Details"></i> 细节
+                                </a>
                             </div>
                         }
                         else
                         {
                             <div style=" background-color:white; margin:10px;">
-                                <a asp-controller="Products" asp-action="Index" class="btn btn-default btn-xs"><i class="fas fa-info-circle" title="Details"></i> Details</a>
+                                <a asp-controller="Products" asp-action="Index" class="btn btn-default btn-xs">
+                                    <i class="fas fa-info-circle" title="Details"></i> 细节
+                                </a>
                             </div>
                         }
                     </div>
@@ -142,7 +162,7 @@
                                     <th>@Html.DisplayNameFor(modelItem => Model.recentProducts.First().title)</th>
                                     <th>@Html.DisplayNameFor(modelItem => Model.recentProducts.First().CategoryName)</th>
                                     <th>@Html.DisplayNameFor(modelItem => Model.recentProducts.First().CompanyName)</th>
-                                    <th>Is Special?</th>
+                                    <th>很特别?</th>
                                     <th>@Html.DisplayNameFor(modelItem => Model.recentProducts.First().launch)</th>
                                 </tr>
                             </thead>
@@ -154,9 +174,9 @@
                                         <td>@item.CategoryName</td>
                                         <td>@item.CompanyName</td>
                                         <td>
-                                            @{bool res = true;}
-                                            @if (item.isSpecial) { res = true; }
-                                            else { res = false; }
+                                            @{string res = "没有";}
+                                            @if (item.isSpecial) { res = "是"; }
+                                            else { res = "没有"; }
                                             @res
                                         </td>
                                         <td>@item.launch.ToShortDateString()</td>
@@ -168,7 +188,9 @@
 
                 </div>
                 <div class="col-lg-3 col-sm-12">
-                    <h2 class="mb-2">Recent Categories</h2>
+                    <h2 class="mb-2">
+                        最近分类
+                    </h2>
                     <div class="au-card au-card--bg-blue au-card-top-countries m-b-40">
                         <div class="au-card-inner">
                             <div class="table-responsive">
@@ -197,20 +219,23 @@
             <div class=" mt-5">
                 <div class="panel panel-primary filterable">
                     <div class="rounded" style="background-color:#428BCA; display:flex; justify-content:space-between; align-items:center; margin-top:-20px">
-                        <h3 class="font-weight-bold" style=" color:white; margin-left:5px;">Last Month Visit: @Model.LastMonthsVisits</h3>
+                        <h3 class="font-weight-bold" style=" color:white; margin-left:5px;">
+                            上个月访问: @Model.LastMonthsVisits
+                        </h3>
                         <div style=" background-color:white; margin:10px;">
-                            <a asp-controller="Administration" asp-action="UsersStats" class="btn btn-default btn-xs"><i class="fas fa-info-circle" title="Details"></i> Details</a>
+                            <a asp-controller="Administration" asp-action="UsersStats" class="btn btn-default btn-xs"><i class="fas fa-info-circle" title="Details"></i> 细节</a>
                         </div>
                     </div>
                     <table class="table table-hover table-striped">
                         <thead>
 
                             <tr>
-                                <th><input type="text" class="form-control" placeholder="@Html.DisplayNameFor(model => model.recentVisits.First().IP)" disabled></th>
-                                <th><input type="text" class="form-control" placeholder="@Html.DisplayNameFor(model => model.recentVisits.First().Location)" disabled></th>
-                                <th><input type="text" class="form-control" placeholder="@Html.DisplayNameFor(model => model.recentVisits.First().Time)" disabled></th>
-                                <th><input type="text" class="form-control" placeholder=" @Html.DisplayNameFor(model => model.recentVisits.First().Url)" disabled></th>
-                                <th><input type="text" class="form-control" placeholder=" @Html.DisplayNameFor(model => model.recentVisits.First().Browser)" disabled></th>
+
+                                <th>@Html.DisplayNameFor(model => model.recentVisits.First().IP)"</th>
+                                <th>@Html.DisplayNameFor(model => model.recentVisits.First().Location)</th>
+                                <th>@Html.DisplayNameFor(model => model.recentVisits.First().Time)</th>
+                                <th>@Html.DisplayNameFor(model => model.recentVisits.First().Url)</th>
+                                <th>@Html.DisplayNameFor(model => model.recentVisits.First().Browser)</th>
                             </tr>
 
                         </thead>
@@ -250,9 +275,11 @@
                 <div class=" mt-5">
                     <div class="panel panel-primary filterable">
                         <div class="rounded" style="background-color:#428BCA; display:flex; justify-content:space-between; align-items:center; margin-top:-20px">
-                            <h3 class="font-weight-bold" style=" color:white; margin-left:5px;">Total Users: @Model.TotalUsers</h3>
+                            <h3 class="font-weight-bold" style=" color:white; margin-left:5px;">
+                                总用户: @Model.TotalUsers
+                            </h3>
                             <div style=" background-color:white; margin:10px;">
-                                <a asp-controller="Administration" asp-action="ListUsers" class="btn btn-default btn-xs"><i class="fas fa-info-circle" title="Details"></i> Details</a>
+                                <a asp-controller="Administration" asp-action="ListUsers" class="btn btn-default btn-xs"><i class="fas fa-info-circle" title="Details"></i> 细节</a>
                             </div>
                         </div>
                         <table class="table table-hover table-striped">
@@ -312,9 +339,11 @@
                 <div class=" mt-5 ">
                     <div class="panel panel-primary filterable">
                         <div class="rounded" style="background-color:#428BCA; display:flex; justify-content:space-between; align-items:center; margin-top:-20px">
-                            <h3 class="font-weight-bold" style=" color:white; margin-left:5px;">Total Companies: @Model.TotalCompanies</h3>
+                            <h3 class="font-weight-bold" style=" color:white; margin-left:5px;">
+                                公司总数: @Model.TotalCompanies
+                            </h3>
                             <div style=" background-color:white; margin:10px;">
-                                <a asp-controller="Company" asp-action="Index" class="btn btn-default btn-xs"><i class="fas fa-info-circle" title="Details"></i> Details</a>
+                                <a asp-controller="Company" asp-action="Index" class="btn btn-default btn-xs"><i class="fas fa-info-circle" title="Details"></i> 细节</a>
                             </div>
                         </div>
                         <table class="table table-hover table-striped">
@@ -391,10 +420,10 @@
                 animationEnabled: true,
                 theme: "light2",
                 title: {
-                    text: "Daily Products Data"
+                    text: "日用品数据"
                 },
                 axisY: {
-                    title: "Totals",
+                    title: "合计",
                     titleFontSize: 24,
                     includeZero: false,
                     crosshair: {
@@ -421,10 +450,10 @@
                 animationEnabled: true,
                 theme: "light2",
                 title: {
-                    text: "Daily Categories Data"
+                    text: "每日类别数据"
                 },
                 axisY: {
-                    title: "Total",
+                    title: "总",
                     titleFontSize: 24,
                     includeZero: false,
                     crosshair: {
@@ -451,10 +480,10 @@
                 animationEnabled: true,
                 theme: "light2",
                 title: {
-                    text: "Daily Visits Data"
+                    text: "每日访问数据"
                 },
                 axisY: {
-                    title: "Visits",
+                    title: "来访",
                     titleFontSize: 24,
                     includeZero: false,
                     crosshair: {
@@ -476,7 +505,7 @@
                     dataPoints: dataPoints1
                 }]
             });
-            function addData(data, data1,data2) {
+            function addData(data, data1, data2) {
                 data = JSON.parse(data);
                 data1 = JSON.parse(data1);
                 data1 = JSON.parse(data2);
@@ -508,8 +537,8 @@
 
             var p = document.getElementById('PassingToJavaScript1').value;
             var q = document.getElementById('PassingToJavaScript2').value;
-            var r  = document.getElementById('PassingToJavaScript3').value;
-            addData(p, q,r);
+            var r = document.getElementById('PassingToJavaScript3').value;
+            addData(p, q, r);
             //$.getJSON("/home/json", addData);
 
         }

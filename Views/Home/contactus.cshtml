@@ -76,25 +76,25 @@
             <div class="collapse navbar-collapse " id="navbarSupportedContent">
                 <ul class="navbar-nav  mx-auto">
                     <li class=" px-5 nav-item active">
-                        <a class="text-uppercase text-center font-weight-bold nav-link " asp-controller="Company" asp-action="Details" asp-route-name="@Model.CompanyName">
+                        <a class="text-uppercase text-center font-weight-bold border-bottom nav-link " asp-controller="Company" asp-action="Details" asp-route-name="@Model.CompanyName">
                             Home
                             <span class="sr-only">(current)</span>
                         </a>
                     </li>
                     <li class="nav-item  px-5">
-                        <a class="text-uppercase text-dark text-center font-weight-bold nav-link"
+                        <a class="text-uppercase text-dark text-center font-weight-bold border-bottom nav-link"
                            asp-controller="Products" asp-action="Products" asp-route-name="@Model.CompanyName">
                             Products
                         </a>
                     </li>
                     <li class="nav-item  px-5">
-                        <a class="text-uppercase text-dark text-center font-weight-bold  nav-link"
+                        <a class="text-uppercase text-dark text-center font-weight-bold border-bottom nav-link"
                            asp-controller="Home" asp-action="aboutus" asp-route-name="@Model.CompanyName">
                             About Us
                         </a>
                     </li>
                     <li class="nav-item  px-5">
-                        <a class="text-uppercase text-dark text-center font-weight-bold nav-link"
+                        <a class="text-uppercase text-dark text-center font-weight-bold border-bottom nav-link"
                            asp-controller="Home" asp-action="contactus" asp-route-name="@Model.CompanyName">
                             Contact Us
                         </a>
@@ -273,25 +273,38 @@
         <div class="row py-lg-5 d-flex justify-content-center" style="background-color: #282828;">
 
             <!-- First column -->
-            <div class="py-3 py-lg-0 col-9 col-md-4 d-flex justify-content-start align-items-start flex-column">
+            <div class="py-3 py-lg-0 col-12 col-md-4 d-flex justify-content-start align-items-start flex-column">
                 <div class="row">
                     <div class="col-12 d-flex justify-content-between align-items-center ">
-                        <h1 class="text-uppercase text-center mx-auto pb-lg-3"
-                            style="color: #B97A57; border-bottom: 4px dotted #9b562e;">
-                            <span class="mr-3">
-                                <i class="fas fa-gem small" style="color: #B97A57;"></i>
-                            </span>
-                            @Model.CompanyName
+                        @if (Model.CompanyName.Length > 10)
+                        {
+                            <h2 class="text-uppercase text-center mx-auto pb-lg-3"
+                                style="color: #B97A57; border-bottom: 4px dotted #9b562e;">
+                                @Model.CompanyName
+                            </h2>
+                        }
+                        else if (Model.CompanyName.Length > 15)
+                        {
+                            <h3 class="text-uppercase text-center mx-auto pb-lg-3"
+                                style="color: #B97A57; border-bottom: 4px dotted #9b562e;">
+                                @Model.CompanyName
+                            </h3>
+                        }
+                        else
+                        {
+                            <h1 class="text-uppercase text-center mx-auto pb-lg-3"
+                                style="color: #B97A57; border-bottom: 4px dotted #9b562e;">
 
-                            <span class="ml-3">
-                                <i class="fas fa-gem small" style="color: #B97A57;"></i>
-                            </span>
-                        </h1>
+                                @Model.CompanyName
+
+
+                            </h1>
+                        }
 
                     </div>
                     <div class="col-12">
                         <p class="text-muted text-center">
-                            @Model.CompanyDesc
+                            @Model.CompanyDesc.Substring(0, 100) .......
                         </p>
                     </div>
                     <div class="col-12  d-flex justify-center align-items-center">
@@ -379,10 +392,33 @@
 
 
                 <div class="collapse mt-3 " id="fourthColumn">
-                    <a class="d-block text-decoration-none" href="#"><i class="fas fa-map-marker-alt rounded mr-1" style="width:20px; height:20px;  margin-right:2px"></i>Add:  @Model.CompanyAdd</a>
-                    <a class="d-block text-decoration-none" href="tel:@Model.CompanyPhone">  <i class="fas fa-phone-volume rounded mr-1" style="width:20px; height:20px;  margin-right:2px"></i>TEL: @Model.CompanyPhone </a>
-                    <a class="d-block text-decoration-none" href="mailto: @Model.CompanyEmail">    <i class="fas fa-envelope-open-text rounded" style="width:20px; height:20px; margin-right:2px"></i>E-Mail: @Model.CompanyEmail </a>
+                    <a class="d-block text-decoration-none mt-1" href="#"><i class="fas fa-map-marker-alt rounded mr-1" style="width:20px; height:20px;  margin-right:4px"></i>Add:  @Model.CompanyAdd</a>
+                    <a class="d-block text-decoration-none mt-1" href="tel:@Model.CompanyPhone">  <i class="fas fa-phone-volume rounded mr-1" style="width:20px; height:20px;  margin-right:4px"></i>TEL: @Model.CompanyPhone </a>
+                    <a class="d-block text-decoration-none mt-1 " href="mailto: @Model.CompanyEmail">    <i class="fas fa-envelope-open-text rounded" style="width:20px; height:20px; margin-right:4px"></i>E-Mail: @Model.CompanyEmail </a>
+                    <div class="d-flex justify-content-center">
+                        @if (Model.FbProfile != null)
+                        {
+                            <a class="btn btn-primary  " href="@Model.FbProfile" target="_blank">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
 
+                        }
+                        @if (Model.twitterProfile != null)
+                        {
+                            <a class="btn btn-primary  mx-1" href="@Model.twitterProfile" target="_blank">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+
+                        }
+                        @if (Model.linkedinProfile != null)
+                        {
+                            <a class="btn btn-primary " href="@Model.linkedinProfile" target="_blank">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+
+                        }
+
+                    </div>
                 </div>
 
 
@@ -395,12 +431,35 @@
                     Contact Us
                 </a>
                 <div>
-                    <a class="d-block text-decoration-none" href="#"><i class="fas fa-map-marker-alt rounded" style="width:20px; height:20px;  margin-right:2px"></i>Add: @Model.CompanyAdd</a>
-                    <a class="d-block text-decoration-none" href="tel:@Model.CompanyPhone"><i class="fas fa-phone-volume rounded" style="width:20px; height:20px;  margin-right:2px"></i>TEL: @Model.CompanyPhone</a>
-                    <a class="d-block text-decoration-none" href="mailto: @Model.CompanyEmail">    <i class="fas fa-envelope-open-text rounded" style="width:20px; height:20px;  margin-right:2px"></i>E-Mail: @Model.CompanyEmail</a>
+                    <a class="d-block text-decoration-none mt-1" href="#"><i class="fas fa-map-marker-alt rounded" style="width:20px; height:20px;  margin-right:4px"></i>Add: @Model.CompanyAdd</a>
+                    <a class="d-block text-decoration-none mt-1" href="tel:@Model.CompanyPhone"><i class="fas fa-phone-volume rounded" style="width:20px; height:20px;  margin-right:4px"></i>TEL: @Model.CompanyPhone</a>
+                    <a class="d-block text-decoration-none mt-1 " href="mailto: @Model.CompanyEmail">    <i class="fas fa-envelope-open-text rounded" style="width:20px; height:20px;  margin-right:4px"></i>E-Mail: @Model.CompanyEmail</a>
+                    <div class="d-flex justify-content-center my-2">
+                        @if (Model.FbProfile != null)
+                        {
+                            <a class="btn  mx-1" style="background-color:#F3F2EF" href="@Model.FbProfile" target="_blank">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+
+                        }
+                        @if (Model.twitterProfile != null)
+                        {
+                            <a class="btn btn-primary  mx-1" href="@Model.twitterProfile" target="_blank">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+
+                        }
+                        @if (Model.linkedinProfile != null)
+                        {
+                            <a class="btn btn-primary mx-1" href="@Model.linkedinProfile" target="_blank">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+
+                        }
+
+                    </div>
                 </div>
             </div>
-
         </div>
 
 
@@ -444,19 +503,19 @@ else
             <div class="collapse navbar-collapse " id="navbarSupportedContent">
                 <ul class="navbar-nav  mx-auto">
                     <li class=" px-5 nav-item active">
-                        <a class="text-uppercase text-center font-weight-bold nav-link " asp-controller="Home" asp-action="Index">
+                        <a class="text-uppercase text-center font-weight-bold nav-link border-bottom" asp-controller="Home" asp-action="Index">
                             Home
                             <span class="sr-only">(current)</span>
                         </a>
                     </li>
                     <li class="nav-item  px-5">
-                        <a class="text-uppercase text-dark text-center font-weight-bold  nav-link"
+                        <a class="text-uppercase text-dark text-center font-weight-bold border-bottom  nav-link"
                            asp-controller="Home" asp-action="aboutus">
                             About Us
                         </a>
                     </li>
                     <li class="nav-item  px-5">
-                        <a class="text-uppercase text-dark text-center font-weight-bold nav-link"
+                        <a class="text-uppercase text-dark text-center font-weight-bold border-bottom nav-link"
                            asp-controller="Home" asp-action="contactus">
                             Contact Us
                         </a>

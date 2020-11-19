@@ -6,11 +6,15 @@
 
 <section class="jumbotron text-center text-light" style="background-image:url('/Image/bg.jpg'); margin-left: calc(-50vw + 50% - 8px);  width:100vw;">
     <div>
-        <h1 class="jumbotron-heading">All Brand's</h1>
+        <h1 class="jumbotron-heading">
+            所有品牌的
+        </h1>
     </div>
     <p>
         <a class="btn btn-primary mb-3" style="width:auto" asp-action="Register"
-           asp-controller="Account">Register new Brand</a>
+           asp-controller="Account">
+            注册新品牌
+        </a>
     </p>
 </section>
 <div class="container">
@@ -19,7 +23,9 @@
         <div class="row">
             <div class="panel panel-primary filterable">
                 <div class="panel-heading rounded">
-                    <h3 class="panel-title font-weight-bold">Brands</h3>
+                    <h3 class="panel-title font-weight-bold">
+                        品牌品牌
+                    </h3>
                     <div class="pull-right">
                         <button class="btn btn-default btn-xs btn-filter"><i class="fas fa-filter"></i> Filter</button>
                     </div>
@@ -29,13 +35,13 @@
 
                         <tr class="filters">
                             <th><input type="text" class="form-control" placeholder="#" disabled></th>
-                            <th><input type="text" class="form-control" placeholder="Name" disabled></th>
-                            <th><input type="text" class="form-control" placeholder="Company Email" disabled></th>
-                            <th><input type="text" class="form-control" placeholder="Company Phone" disabled></th>
-                            <th><input type="text" class="form-control" placeholder="Owner" disabled></th>
-                            <th><input type="text" class="form-control" placeholder="Joining Date" disabled></th>
-                            <th><input type="text" class="form-control" placeholder="Total Categories" disabled></th>
-                            <th><input type="text" class="form-control" placeholder="Total Products" disabled></th>
+                            <th><input type="text" class="form-control" placeholder="名称" disabled></th>
+                            <th><input type="text" class="form-control" placeholder="公司电邮" disabled></th>
+                            <th><input type="text" class="form-control" placeholder="公司电话" disabled></th>
+                            <th><input type="text" class="form-control" placeholder="所有者" disabled></th>
+                            <th><input type="text" class="form-control" placeholder="加盟日期" disabled></th>
+                            <th><input type="text" class="form-control" placeholder="类别总数" disabled></th>
+                            <th><input type="text" class="form-control" placeholder="产品总数" disabled></th>
                             <th></th>
                         </tr>
 
@@ -75,13 +81,13 @@
                                     @if (User.IsInRole("Super Admin"))
                                     {
 
-                                        <a asp-controller="Products" asp-action="ListProducts" asp-route-companyId="@item.id">
-                                            List Products
-                                        </a>
+                                    <a asp-controller="Products" asp-action="ListProducts" asp-route-companyId="@item.id">
+                                        列出产品
+                                    </a>
 
-                                        <a asp-controller="Category" asp-action="Categories" asp-route-userId="@item.CompanyOwner"><i class="far fa-edit" title="Categories"></i></a><span>|</span>
-                                        <a asp-action="Details" asp-route-name="@item.CompanyName"><i class="fas fa-info-circle" title="Details"></i></a>
-                                        <a asp-action="Edit" asp-route-id="@item.id"><i class="far fa-edit" title="Edit"></i></a><span>|</span>
+                                        <a asp-controller="Category" asp-action="Categories" asp-route-userId="@item.CompanyOwner"><i class="far fa-edit" title="分类目录"></i></a><span>|</span>
+                                        <a asp-action="Details" asp-route-name="@item.CompanyName"><i class="fas fa-info-circle" title="细节"></i></a>
+                                        <a asp-action="Edit" asp-route-id="@item.id"><i class="far fa-edit" title="编辑"></i></a><span>|</span>
                                         @await Html.PartialAsync("~/Views/Shared/Modal.cshtml", item.id)<span>|</span>
                                     }
 
@@ -99,14 +105,16 @@
     {
         <div class="card">
             <div class="card-header">
-                No Brand Registered yet
+                尚未注册品牌
             </div>
             <div class="card-body">
                 <h5 class="card-title">
-                    Use the button below to Add new Brand
+                    使用下面的按钮添加新品牌
                 </h5>
                 <a class="btn btn-primary mb-3" style="width:auto" asp-action="Register"
-                   asp-controller="Account">Create new Brand</a>
+                   asp-controller="Account">
+                    建立新品牌
+                </a>
             </div>
         </div>
     }

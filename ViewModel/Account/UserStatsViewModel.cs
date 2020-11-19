@@ -10,10 +10,10 @@ namespace WebBuilder.ViewModel.Account
     public class UserStatsViewModel
     {
         public int id { get; set; }
-        [Display(Name = "Visits")]
+        [Display(Name = "来访")]
         public int Count { get; set; }
 
-        [Display(Name = "Time")]
+        [Display(Name = "时间")]
         public DateTime When { get; set; }
         public string UserId { get; set; }
       

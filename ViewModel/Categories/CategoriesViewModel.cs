@@ -13,13 +13,13 @@ namespace WebBuilder.ViewModel.Categories
         [DataType(DataType.Date)]
         public System.DateTime launch { get; set; }
         [Required]
-        [Display(Name = "Category Name")]
+        [Display(Name = "分类名称")]
         public string CategoryName { get; set; }
         [Required]
-        [Display(Name = "Company")]
+        [Display(Name = "公司")]
         public int CompanyId { get; set; }
         public string CompanyName { get; set; }
-        [Display(Name = "Total Products")]
+        [Display(Name = "产品总数")]
         public int TotalProducts { get; set; }
     }
 }

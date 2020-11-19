@@ -13,35 +13,49 @@
         <div class="row">
             <form class="col-6" id="searchForm"  asp-controller="Products" asp-action="SearcProducts" method="get" asp-route-companyId="@Model.company.id">
                 <p>
-                    <label class="custom-control">Find By: </label>
+                    <label class="custom-control">
+                        查找依据：
+                    </label>
                     <select name="searchList" id="searchList" class="form-control mb-1" style="border:1px solid #cccccc">
-                        <option value="">--Select--</option>
-                        <option value="title">Title</option>
-                        <option value="details">Details</option>
-                        <option value="overviews">overviews</option>
+                        <option value="">
+                            --选择--
+                        </option>
+                        <option value="title">标题</option>
+                        <option value="details">细节</option>
+                        <option value="overviews">概述</option>
                     </select>
                     <input type="text" name="companyId" hidden value="@Model.company.id" />
-                    <input type="text" class="form-control search" autocomplete="off" style="display: none;" id="title" placeholder="Search By title" name="title">
-                    <input type="text" class="form-control search" autocomplete="off" style="display: none;" id="details" placeholder="Search By details keyword" name="details">
-                    <input type="text" class="form-control search" autocomplete="off" style="display: none;" id="overviews" placeholder="Search By overview" name="overviews">
+                    <input type="text" class="form-control search" autocomplete="off" style="display: none;" id="title" placeholder="按标题搜索" name="title">
+                    <input type="text" class="form-control search" autocomplete="off" style="display: none;" id="details" placeholder="按详情搜索关键字" name="details">
+                    <input type="text" class="form-control search" autocomplete="off" style="display: none;" id="overviews" placeholder="按概述搜索" name="overviews">
 
-                    <input id="submit" class="btn btn-primary mt-1" disabled type="submit" value="Filter" />
+                    <input id="submit" class="btn btn-primary mt-1" disabled type="submit" value="过滤" />
                 </p>
             </form>
             <form class="col-6" id="sortForm" asp-controller="Products" asp-route-companyId="@Model.company.id" asp-action="Sort" method="get">
                 <p>
                     <input type="text" name="companyId" hidden value="@Model.company.id" />
-                    <label>Sort By: </label>
+                    <label>
+                        排序方式:
+                    </label>
                     <select name="sortBy" class="form-control mb-1" style="border:1px solid #cccccc">
-                        <option value="title">Title</option>
-                        <option value="CategoryName">Category Name</option>
+                        <option value="title">
+                            标题
+                        </option>
+                        <option value="CategoryName">
+                            分类名称
+                        </option>
                         <option value="id">id</option>
                     </select>
                     <select name="order" class="form-control mb-1" style="border:1px solid #cccccc">
-                        <option value="Asc" selected>Ascending Order</option>
-                        <option value="Des">Descending Order</option>
+                        <option value="Asc" selected>
+                            升序
+                        </option>
+                        <option value="Des">
+                            降序
+                        </option>
                     </select>
-                    <input class="btn btn-primary" type="submit" value="Filter" />
+                    <input class="btn btn-primary" type="submit" value="过滤" />
                 </p>
             </form>
         </div>
@@ -49,18 +63,20 @@
         <div class="row">
             <div class="panel panel-primary filterable">
                 <div class="panel-heading rounded">
-                    <h3 class="panel-title font-weight-bold">Products</h3>
+                    <h3 class="panel-title font-weight-bold">
+                        产品展示
+                    </h3>
                     <div class="pull-right">
-                        <button class="btn btn-default btn-xs btn-filter"><i class="fas fa-filter"></i> Filter</button>
+                        <button class="btn btn-default btn-xs btn-filter"><i class="fas fa-filter"></i> 过滤</button>
                     </div>
                 </div>
                 <table class="table table-responsive ">
                     <thead>
                         <tr class="filters">
                             <th><input type="text" class="form-control" placeholder="Id" disabled></th>
-                            <th><input type="text" class="form-control" placeholder="Title" disabled></th>
-                            <th><input type="text" class="form-control" placeholder="Category Name" disabled></th>
-                            <th><input type="text" class="form-control" placeholder="Is Special" disabled></th>
+                            <th><input type="text" class="form-control" placeholder="标题" disabled></th>
+                            <th><input type="text" class="form-control" placeholder="分类名称" disabled></th>
+                            <th><input type="text" class="form-control" placeholder="很特别" disabled></th>
                             <th></th>
                         </tr>
                     </thead>
@@ -78,15 +94,15 @@
                                     @Html.DisplayFor(modelItem => item.CategoryName)
                                 </td>
                                 <td>
-                                    @{ string res = item.isSpecial ? "Yes" : "NO";
+                                    @{ string res = item.isSpecial ? "是" : "没有";
                                     }
                                     @res
                                 </td>
                                 <td>
 
-                                    <a asp-controller="Products" asp-action="Details" asp-route-id="@item.id" asp-route-name="@Model.company.CompanyName"><i class="fas fa-info-circle" title="Details"></i></a><span>|</span>
+                                    <a asp-controller="Products" asp-action="Details" asp-route-id="@item.id" asp-route-name="@Model.company.CompanyName"><i class="fas fa-info-circle" title="细节"></i></a><span>|</span>
                                     <a asp-action="Edit" asp-controller="Products" 
-                                       asp-route-id="@item.id" class="btn btn-primary"><i class="fas fa-edit" title="Edit"></i></a>
+                                       asp-route-id="@item.id" class="btn btn-primary"><i class="fas fa-edit" title="编辑"></i></a>
                                     @await Html.PartialAsync("~/Views/Shared/Modal.cshtml", item.id)<span>|</span>
 
                                 </td>
@@ -102,7 +118,9 @@
                     @if (ViewBag.CurrentPage > 1)
                     {
                         <li class="page-item">
-                            <a class="page-link" asp-controller="Products" asp-action="ListProducts" asp-route-companyId="@Model.company.id">First</a>
+                            <a class="page-link" asp-controller="Products" asp-action="ListProducts" asp-route-companyId="@Model.company.id">
+                                第一
+                            </a>
                         </li>
                         <li class="page-item">
                             @{ var pageNo = ViewBag.CurrentPage - 1; }
@@ -125,7 +143,7 @@
                             <a class="page-link" asp-controller="Products" asp-action="ListProducts" asp-route-companyId="@Model.company.id" asp-route-pageNo="@pageNo">&raquo;</a>
                         </li>
                         <li class="page-item">
-                            <a class="page-link" asp-controller="Products" asp-action="ListProducts" asp-route-companyId="@Model.company.id" asp-route-pageNo="@ViewBag.TotalPages">Last</a>
+                            <a class="page-link" asp-controller="Products" asp-action="ListProducts" asp-route-companyId="@Model.company.id" asp-route-pageNo="@ViewBag.TotalPages">持续</a>
                         </li>
                     }
                 </ul>
@@ -137,18 +155,20 @@
     {
         <div class="card">
             <div class="card-header">
-                No Products created yet
+                尚无产品
             </div>
             @if (User.IsInRole("Admin"))
             {
 
                 <div class="card-body">
                     <h5 class="card-title">
-                        Use the button below to create a Product
+
+                        使用下面的按钮创建产品
                     </h5>
                     <a class="btn btn-primary" style="width:auto"
                        asp-controller="Products" asp-action="Create">
-                        Add new Products
+
+                        新增产品
                     </a>
                 </div>
             }
@@ -157,7 +177,9 @@
 </div>
 
 <div class="container py-5">
-    <h1>All Categories</h1>
+    <h1>
+        所有类别
+    </h1>
 
 
     @if (Model.Categories.Any())
@@ -166,17 +188,21 @@
         <div class="row">
             <div class="panel panel-primary filterable">
                 <div class="panel-heading rounded">
-                    <h3 class="panel-title font-weight-bold">Categories</h3>
+                    <h3 class="panel-title font-weight-bold">
+                        分类目录
+                    </h3>
                     <div class="pull-right">
-                        <button class="btn btn-default btn-xs btn-filter"><i class="fas fa-filter"></i> Filter</button>
+                        <button class="btn btn-default btn-xs btn-filter">
+                            <i class="fas fa-filter"></i> 过滤
+                        </button>
                     </div>
                 </div>
                 <table class="table table-responsive ">
                     <thead>
                         <tr class="filters">
                             <th><input type="text" class="form-control" placeholder="Id" disabled></th>
-                            <th><input type="text" class="form-control" placeholder="Category Name" disabled></th>
-                            <th><input type="text" class="form-control" placeholder="Total Products" disabled></th>
+                            <th><input type="text" class="form-control" placeholder="分类名称" disabled></th>
+                            <th><input type="text" class="form-control" placeholder="产品总数" disabled></th>
                             <th></th>
                         </tr>
                     </thead>
@@ -194,13 +220,19 @@
                                     @Html.DisplayFor(modelItem => item.TotalProducts)
                                 </td>
                                 <td>
-                                    <a asp-controller="Category" asp-action="Details" asp-route-id="@item.id" class="card-link">Details</a>
-                                    <a asp-controller="Company" asp-action="Details" asp-route-id="@item.CompanyId" class="card-link">Company Details</a>
-                                    <a asp-controller="Products" asp-action="ProductsInCategory" asp-route-id="@item.id"  class="card-link">Products</a>
+                                    <a asp-controller="Category" asp-action="Details" asp-route-id="@item.id" class="card-link">
+                                        细节
+                                    </a>
+                                    <a asp-controller="Company" asp-action="Details" asp-route-id="@item.CompanyId" class="card-link">
+                                        公司资料
+                                    </a>
+                                    <a asp-controller="Products" asp-action="ProductsInCategory" asp-route-id="@item.id" class="card-link">
+                                        产品展示
+                                    </a>
                                     @if (User.IsInRole("Admin"))
                                     {
                                         <a asp-action="Edit" asp-controller="Category"
-                                           asp-route-id="@item.id" class="btn btn-primary"><i class="fas fa-edit" title="Edit"></i></a>
+                                           asp-route-id="@item.id" class="btn btn-primary"><i class="fas fa-edit" title="编辑"></i></a>
                                     }
 
                                 </td>
@@ -219,18 +251,19 @@
     {
         <div class="card">
             <div class="card-header">
-                No Category created yet
+                尚未创建类别
             </div>
             @if (User.IsInRole("Admin"))
             {
 
                 <div class="card-body">
                     <h5 class="card-title">
-                        Use the button below to create a Cateory
+                        使用下面的按钮创建分类
                     </h5>
                     <a class="btn btn-primary" style="width:auto"
                        asp-controller="Category" asp-action="Create">
-                        Add new Category
+                        新增类别
+
                     </a>
                 </div>
             }

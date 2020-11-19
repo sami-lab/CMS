@@ -10,8 +10,8 @@ namespace WebBuilder.Data.Interfaces
     {
         List<CompaniesViewModel> GetDetails();
         CompaniesViewModel GetDetail(int id);
-        int Add(CompaniesViewModel model);
-        int Update(int id, CompaniesViewModel model);
+        string Add(CompaniesViewModel model);
+        string Update(int id, CompaniesViewModel model);
         bool delete(int id);
     }
 }

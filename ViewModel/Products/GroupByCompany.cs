@@ -10,10 +10,10 @@ namespace WebBuilder.ViewModel.Products
     {
         [Display(Name = "ID")]
         public int CompanyId { get; set; }
-        [Display(Name = "Company")]
+        [Display(Name = "公司")]
         public string CompanyName { get; set; }
         public IEnumerable<ProductsViewModel> Products { get; set; }
-        [Display(Name = "Total Products")]
+        [Display(Name = "产品总数")]
         public int TotalProducts { get; set; }
     }
 }

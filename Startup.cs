@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Authorization;
@@ -23,7 +24,7 @@ namespace WebBuilder
         }
 
         public IConfiguration Configuration { get; }
-       
+
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
@@ -35,17 +36,19 @@ namespace WebBuilder
             });
             //Db ConString
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseMySql(
+                options.UseSqlServer(
                     Configuration.GetConnectionString("ConString")));
             //Options
             services.AddIdentity<ApplicationUser, IdentityRole>(options =>
             {
-                options.Password.RequiredLength = 7;
-                options.Password.RequiredUniqueChars = 3;
+                options.Password.RequiredLength = 6;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireUppercase = false;
             })
             .AddEntityFrameworkStores<ApplicationDbContext>()
             .AddDefaultTokenProviders();
-          
+
 
             //Setting Up Global Authentication
             services.AddMvc(config =>
@@ -81,7 +84,7 @@ namespace WebBuilder
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, UserManager<ApplicationUser> userManager,
-        RoleManager<IdentityRole> roleManager, ApplicationDbContext db)
+        RoleManager<IdentityRole> roleManager, IServiceScopeFactory service)
         {
             if (env.IsDevelopment())
             {
@@ -94,7 +97,10 @@ namespace WebBuilder
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-
+            app.UseForwardedHeaders(new ForwardedHeadersOptions
+            {
+                ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
+            });
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
@@ -103,17 +109,18 @@ namespace WebBuilder
             MyIdentityDataInitializer myIdentityDataInitializer = new MyIdentityDataInitializer(Configuration);
             myIdentityDataInitializer.SeedData(userManager, roleManager);
 
-            app.Use(async (context, next) =>
+            app.UseWhen((context) => context.Request.Query.ContainsKey("name") && !(context.User.IsInRole("Admin") || context.User.IsInRole("Super Admin")), mapApp =>
             {
-                if(!context.User.IsInRole("Admin") || !context.User.IsInRole("Super Admin"))
+                mapApp.Use(async (context, next) =>
                 {
-                    UsersLocations usersLocations = new UsersLocations();
-                    await  usersLocations.readUserLocation(context,db);
-                }
-             
-                await next();
+
+                    UsersLocations usersLocations = new UsersLocations(service);
+                    usersLocations.readUserLocation(context);
+                    await next();
+                });
+
             });
-         
+
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

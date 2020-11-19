@@ -4,7 +4,7 @@
     ViewData["Title"] = "Contacts";
 }
 
-<h1>Contacts</h1>
+<h1> 联络人</h1>
 
 <table class="table">
     <thead>
@@ -49,15 +49,17 @@
                 <td>
                     <form method="post" asp-action="DeleteContact" asp-route-id="@item.id">
                         <span id="confirmDeleteSpan_@item.id" style="display:none">
-                            <span><b>Are you sure you want to delete?</b></span>
-                            <button type="submit" class="btn btn-danger">Yes</button>
+                            <span><b>你确定你要删除?</b></span>
+                            <button type="submit" class="btn btn-danger">
+                                是
+                            </button>
                             <a href="#/" class="btn btn-primary"
-                               onclick="confirmDelete('@item.id', false)">No</a>
+                               onclick="confirmDelete('@item.id', false)">没有</a>
                         </span>
 
                         <span id="deleteSpan_@item.id">
                             <a href="#/" class="btn btn-danger"
-                               onclick="confirmDelete('@item.id', true)">Delete</a>
+                               onclick="confirmDelete('@item.id', true)">删除</a>
                         </span>
                     </form>
                 </td>

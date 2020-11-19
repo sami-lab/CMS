@@ -119,10 +119,10 @@ namespace WebBuilder.Controllers
                     {
                         model.CompanyOwner = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier).Value;
                     }
-                    int companyId = companyRepository.Add(model);
-                    if (companyId > 0)
+                    string companyname = companyRepository.Add(model);
+                    if (companyname != null)
                     {
-                        return RedirectToAction("Details", new { id = companyId });
+                        return RedirectToAction("Details", new { name = companyname });
                     }
                     ModelState.AddModelError("", "Unable to Add Company! Please Try Again");
                     return View(model);
@@ -180,10 +180,10 @@ namespace WebBuilder.Controllers
                     var data = companyRepository.GetDetail(id);
                     if (data != null)
                     {
-                        int companyId = companyRepository.Update(id, model);
-                        if (companyId > 0)
+                        string companyname = companyRepository.Update(id, model);
+                        if (companyname != null)
                         {
-                            return RedirectToAction("Details", new { id = companyId });
+                            return RedirectToAction("Details", new { name = companyname });
                         }
                         ModelState.AddModelError("", "Unable to Add Product! Please Try Again");
                         return View(model);

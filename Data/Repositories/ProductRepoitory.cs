@@ -110,6 +110,7 @@ namespace WebBuilder.Data.Repositories
                     isSpecial = x.isSpecial,
                     CompanyId = (int)x.CompanyId,
                     CompanyName= x.Company.CompanyName,
+
                     CategoryId = x.CategoryId,
                     CategoryName= x.Categories.CategoryName,
                     ImageName = x.Images.FirstOrDefault().Image_Path
@@ -161,7 +162,10 @@ namespace WebBuilder.Data.Repositories
                                             CompanyTitle= company.CompanyTitle,
                                             CompanyDesc= company.CompanyDesc,
                                             CompanyLogoPath= company.CompanyLogo,
-                                            CategoryId= br.CategoryId,
+                                            FbProfile= company.FbProfile,
+                                            twitterProfile= company.twitterProfile,
+                                            linkedinProfile= company.linkedinProfile,
+                                            CategoryId = br.CategoryId,
                                             CategoryName= category.CategoryName,
                                             Images = (from im in context.Images
                                                       where im.productId == br.id
@@ -194,6 +198,9 @@ namespace WebBuilder.Data.Repositories
                                isSpecial = br.isSpecial,
                                CompanyId = (int)br.CompanyId,
                                CompanyName = company.CompanyName,
+                               FbProfile = company.FbProfile,
+                               twitterProfile = company.twitterProfile,
+                               linkedinProfile = company.linkedinProfile,
                                CategoryId = br.CategoryId,
                                CategoryName = category.CategoryName,
                                ImageName = (from im in context.Images
@@ -222,6 +229,9 @@ namespace WebBuilder.Data.Repositories
                                 isSpecial = br.isSpecial,
                                 CompanyId = (int)br.CompanyId,
                                 CompanyName = company.CompanyName,
+                                FbProfile = company.FbProfile,
+                                twitterProfile = company.twitterProfile,
+                                linkedinProfile = company.linkedinProfile,
                                 CategoryId = br.CategoryId,
                                 CategoryName = category.CategoryName,
                                 ImageName = (from im in context.Images
@@ -265,6 +275,9 @@ namespace WebBuilder.Data.Repositories
                 isSpecial = product.isSpecial,
                 CompanyId = (int)product.CompanyId,
                 CompanyName = product.Company.CompanyName,
+                FbProfile = product.Company.FbProfile,
+                twitterProfile = product.Company.twitterProfile,
+                linkedinProfile = product.Company.linkedinProfile,
                 CategoryId = product.CategoryId,
                 CategoryName = product.Categories.CategoryName,
                 ImageName= product.Images.FirstOrDefault().Image_Path,
@@ -292,6 +305,9 @@ namespace WebBuilder.Data.Repositories
                                 isSpecial = br.isSpecial,
                                 CompanyId = (int)br.CompanyId,
                                 CompanyName = company.CompanyName,
+                                FbProfile = company.FbProfile,
+                                twitterProfile = company.twitterProfile,
+                                linkedinProfile = company.linkedinProfile,
                                 CategoryId = br.CategoryId,
                                 CategoryName = category.CategoryName,
                                 ImageName = (from im in context.Images
@@ -333,11 +349,11 @@ namespace WebBuilder.Data.Repositories
             var product = context.Products.Find(id);
             if (product == null) return 0;
 
-            product.title = product.title;
-            product.details = product.details;
-            product.overviews = product.overviews;
-            product.isSpecial = product.isSpecial;
-            product.CategoryId = product.CategoryId;
+            product.title = model.title;
+            product.details = model.details;
+            product.overviews = model.overviews;
+            product.isSpecial = model.isSpecial;
+            product.CategoryId = model.CategoryId;
             //Handling Images Uploading  ExistingImages.Length - UpcomingPhotos.Length more Images
             if (model.Photos != null && model.Photos.Count > 0)
             {

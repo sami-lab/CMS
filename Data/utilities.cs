@@ -66,6 +66,9 @@ namespace WebBuilder.Data
                 CompanyName = x.CompanyName,
                 TotalProducts = x.Products.Count,
                 TotalCategories = x.Catergories.Count,
+                linkedinProfile = x.linkedinProfile,
+                FbProfile = x.FbProfile,
+                twitterProfile = x.twitterProfile,
                 Categories = x.Catergories.Select(y => new ViewModel.Categories.CategoriesViewModel()
                 {
                     CategoryName = y.CategoryName,
@@ -98,7 +101,10 @@ namespace WebBuilder.Data
                 CompanyName= x.CompanyName,
                 TotalProducts= x.Products.Count,
                 TotalCategories= x.Catergories.Count,
-                Categories= x.Catergories.Select(y=> new ViewModel.Categories.CategoriesViewModel()
+                linkedinProfile = x.linkedinProfile,
+                FbProfile = x.FbProfile,
+                twitterProfile = x.twitterProfile,
+                Categories = x.Catergories.Select(y=> new ViewModel.Categories.CategoriesViewModel()
                 {
                     CategoryName= y.CategoryName,
                     CompanyId= y.CompanyId,
@@ -128,6 +134,9 @@ namespace WebBuilder.Data
                 whyCooseUsImagePath = x.whyCooseUsImage,
                 whyCooseUsText = x.whyCooseUsText,
                 CompanyName = x.CompanyName,
+                linkedinProfile = x.linkedinProfile,
+                FbProfile = x.FbProfile,
+                twitterProfile = x.twitterProfile,
                 TotalProducts = x.Products.Count,
                 TotalCategories = x.Catergories.Count,
                 Categories = x.Catergories.Select(y => new ViewModel.Categories.CategoriesViewModel()
@@ -236,7 +245,18 @@ namespace WebBuilder.Data
                 return null;
             }
         }
-
+        public async Task<string> getCompanyName(string userId)
+        {
+            var companyName = await context.Companies.Select(x=> new {x.CompanyOwner, x.CompanyName }).FirstOrDefaultAsync(x => x.CompanyOwner == userId);
+            if(companyName != null)
+            {
+                return companyName.CompanyName;
+            }
+            else
+            {
+                return  null;
+            }
+        }
         public async Task<bool> IncrementAccess(string userId)
         {
             try

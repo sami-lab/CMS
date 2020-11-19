@@ -23,17 +23,17 @@ namespace WebBuilder.ViewModel.Administration
             Companies = new List<CompaniesViewModel>();
         }
         public List<ApplicationUserViewModel> Users { get; set; }
-        [Display(Name ="Total Users")]
+        [Display(Name = "总用户")]
         public int TotalUsers { get; set; }
-        [Display(Name = "Total Companies")]
+        [Display(Name = "公司总数")]
         public int TotalCompanies { get; set; }
-        [Display(Name = "Total Categories")]
+        [Display(Name = "类别总数")]
         public int TotalCategories { get; set; }
-        [Display(Name = "Total Products")]
+        [Display(Name = "产品总")]
         public int TotalProducts { get; set; }
-        [Display(Name = "Total Visits")]
+        [Display(Name = "总造访")]
         public int Visits { get; set; }
-        [Display(Name = "Total Visits")]
+        [Display(Name = "总造访")]
         public int LastMonthsVisits { get; set; }
 
         public List<Graph> ProductsGraph { get; set; }

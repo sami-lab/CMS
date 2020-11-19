@@ -29,7 +29,7 @@ namespace WebBuilder.Data.Repositories
             utilities = _utilities;
         }
 
-        public int Add(CompaniesViewModel model)
+        public string Add(CompaniesViewModel model)
         {
             Companies company = new Companies()
             {
@@ -44,11 +44,14 @@ namespace WebBuilder.Data.Repositories
                 CompanyEmail = model.CompanyEmail,
                 CompanyPhone = model.CompanyPhone,
                 CompanyAdd = model.CompanyAdd,
-                CompanyOwner = model.CompanyOwner
+                CompanyOwner = model.CompanyOwner,
+                linkedinProfile = model.linkedinProfile,
+                FbProfile = model.FbProfile,
+                twitterProfile = model.twitterProfile,
             };
             context.Companies.Add(company);
             context.SaveChanges();
-            return company.id;
+            return company.CompanyName;
         }
 
         public bool delete(int id)
@@ -64,10 +67,10 @@ namespace WebBuilder.Data.Repositories
 
         public CompaniesViewModel GetDetail(int id)
         {
-           
-            var company = context.Companies.Include(x=> x.Products).Include(x => x.Catergories).Select(x => new CompaniesViewModel()
+
+            var company = context.Companies.Include(x => x.Products).Include(x => x.Catergories).Select(x => new CompaniesViewModel()
             {
-                id= x.id,
+                id = x.id,
                 Date = x.Date,
                 CompanyTitle = x.CompanyTitle,
                 CompanyName = x.CompanyName,
@@ -83,22 +86,27 @@ namespace WebBuilder.Data.Repositories
                 CompanyOwnerName = x.User.Name,
                 TotalProducts = x.Products.Count,
                 TotalCategories = x.Catergories.Count,
+                linkedinProfile = x.linkedinProfile,
+                FbProfile = x.FbProfile,
+                twitterProfile = x.twitterProfile,
                 Products = x.Products.Select(p => new ProductsViewModel()
                 {
                     id = p.id,
                     CategoryId = p.CategoryId,
                     CompanyId = p.CompanyId,
                     ImageName = p.Images.FirstOrDefault().Image_Path,
-                    title = p.title
+                    title = p.title,
+                    isSpecial= p.isSpecial
                 }).Take(12).ToList(),
                 SpecialProducts = x.Products.Select(p => new ProductsViewModel()
                 {
                     id = p.id,
                     CategoryId = p.CategoryId,
                     CompanyId = p.CompanyId,
-                    ImageName= p.Images.FirstOrDefault().Image_Path,
-                    title = p.title
-                }).Where(p => p.isSpecial).Take(8).ToList(),
+                    ImageName = p.Images.FirstOrDefault().Image_Path,
+                    title = p.title,
+                    isSpecial= p.isSpecial
+                }).Where(p => p.isSpecial).Take(9).ToList(),
                 Categories = x.Catergories.Select(c => new CategoriesViewModel()
                 {
                     id = c.id,
@@ -128,6 +136,9 @@ namespace WebBuilder.Data.Repositories
                 CompanyPhone = x.CompanyPhone,
                 CompanyAdd = x.CompanyAdd,
                 CompanyOwner = x.CompanyOwner,
+                linkedinProfile = x.linkedinProfile,
+                FbProfile = x.FbProfile,
+                twitterProfile = x.twitterProfile,
                 CompanyOwnerName = x.User.Name,
                 TotalProducts = x.Products.Count,
                 TotalCategories = x.Catergories.Count,
@@ -135,7 +146,7 @@ namespace WebBuilder.Data.Repositories
             return companies;
         }
 
-        public int Update(int id, CompaniesViewModel model)
+        public string Update(int id, CompaniesViewModel model)
         {
             var company = context.Companies.Find(id);
             if (!httpContextAccessor.HttpContext.User.IsInRole("Super Admin"))
@@ -143,10 +154,10 @@ namespace WebBuilder.Data.Repositories
                 string loggedInAdminId = httpContextAccessor.HttpContext.User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier).Value;
                 if (loggedInAdminId != company.CompanyOwner)
                 {
-                    return 0;
+                    return null;
                 }
             }
-            if (company == null) return 0;
+            if (company == null) return null;
             company.CompanyTitle = model.CompanyTitle;
             company.CompanyName = model.CompanyName;
             company.CompanyDesc = model.CompanyDesc;
@@ -181,11 +192,13 @@ namespace WebBuilder.Data.Repositories
             company.CompanyEmail = model.CompanyEmail;
             company.CompanyPhone = model.CompanyPhone;
             company.CompanyAdd = model.CompanyAdd;
-
+            company.linkedinProfile = model.linkedinProfile;
+            company.FbProfile = model.FbProfile;
+            company.twitterProfile = model.twitterProfile;
 
             context.Companies.Update(company);
             context.SaveChanges();
-            return company.id;
+            return company.CompanyName;
         }
 
 

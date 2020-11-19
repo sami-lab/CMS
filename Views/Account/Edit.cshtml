@@ -20,22 +20,28 @@
         <div class="row">
             <div class="col-md-3 register-left">
                 <img src="https://image.ibb.co/n7oTvU/logo_white.png" asp-append-version="true" alt="" />
-                <h3>Welcome</h3>
+                <h3>欢迎</h3>
 
                 @if (User.IsInRole("Super Admin"))
                 {
-                    <p>You are 30 seconds away to Update @Model.Name</p>
-                    <a asp-controller="Company" asp-action="Index" style="border: none; border-radius: 1.5rem; padding:10px; padding-left:30px; padding-right:30px; background: #f8f9fa; font-weight: bold; color: #383d41; margin-top: 30%; margin-bottom: 3%; cursor: pointer;">All Companies</a><br />
+                    <p>您距离更新有30秒的路程 @Model.Name</p>
+                    <a asp-controller="Company" asp-action="Index" style="border: none; border-radius: 1.5rem; padding:10px; padding-left:30px; padding-right:30px; background: #f8f9fa; font-weight: bold; color: #383d41; margin-top: 30%; margin-bottom: 3%; cursor: pointer;">
+                        所有公司
+                    </a><br />
                 }
                 else
                 {
-                    <p>Your are Updating Your Info at the best Web Builder Market</p>
-                    <a asp-controller="Account" asp-action="Profile" asp-route-id="@Model.Id" style="border: none; border-radius: 1.5rem; padding:10px; padding-left:30px; padding-right:30px; background: #f8f9fa; font-weight: bold; color: #383d41; margin-top: 30%; margin-bottom: 3%; cursor: pointer;">Profile</a><br />
+                    <p>您正在最佳的Web Builder市场上更新您的信息</p>
+                    <a asp-controller="Account" asp-action="Profile" asp-route-id="@Model.Id" style="border: none; border-radius: 1.5rem; padding:10px; padding-left:30px; padding-right:30px; background: #f8f9fa; font-weight: bold; color: #383d41; margin-top: 30%; margin-bottom: 3%; cursor: pointer;">
+                        个人资料
+                    </a><br />
                 }
 
             </div>
             <div class="col-md-9 register-right">
-                <h3 class="register-heading">Update Account </h3>
+                <h3 class="register-heading">
+                    更新账户
+                </h3>
                 <form method="post" class="mt-3" enctype="multipart/form-data">
                     <div class="row register-form">
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -121,7 +127,9 @@
                                 <span asp-validation-for="Address.StreetAddress" class="text-danger"></span>
                             </div>
                         </div>
-                        <button type="submit" class="btnRegister">Update</button>
+                        <button type="submit" class="btnRegister">
+                            更新资料
+                        </button>
 
                     </div>
                 </form>
@@ -130,7 +138,9 @@
     </div>
 
     <div>
-        <a asp-action="Profile" asp-route-id="@Model.Id">Back to Profile</a>
+        <a asp-action="Profile" asp-route-id="@Model.Id">
+            返回个人资料
+        </a>
     </div>
 </div>
 @section Scripts {
@@ -139,7 +149,7 @@
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 
     <script>
-       
+
         $(document).ready(function () {
             let stateid = $("#stateid").val();
             let cityId = $("#cityid").val();
@@ -149,9 +159,9 @@
                     $("#Cities").val(cityId);
                 }).catch(error => console.log(error))
             }).catch(error => console.log(error))
-          
-          
-           
+
+
+
 
             $('.custom-file-input').on("change", function () {
                 var fileName = $(this).val().split("\\").pop();
@@ -183,17 +193,17 @@
                 $("#State").val($("#States option:selected").text());
                 GetCities($("#States").val());
             });
-            $("#Cities").change( function () {
+            $("#Cities").change(function () {
                 $("#City").val('');
                 $("#City").val($("#Cities option:selected").text());
             });
-          
-         
-                
-           
+
+
+
+
         });
-       
-       
+
+
         async function GetStates(country_id) {
             if ($("#Countries").val().length > 0) {
                 $.getJSON("/Account/getStates", { country_id: country_id }, function (data) {
@@ -206,13 +216,13 @@
             }
         }
 
-         async function GetCities(state_id) {
-             await   $.getJSON("/Account/getCities", { state_id: state_id }, function (data) {
-                    $("#Cities").empty();
-                    $.each(data, function (index, row) {
-                        $("#Cities").append("<option value='" + row.id + "'>" + row.name + '</option>')
-                    });
+        async function GetCities(state_id) {
+            await $.getJSON("/Account/getCities", { state_id: state_id }, function (data) {
+                $("#Cities").empty();
+                $.each(data, function (index, row) {
+                    $("#Cities").append("<option value='" + row.id + "'>" + row.name + '</option>')
                 });
+            });
         }
     </script>
 }

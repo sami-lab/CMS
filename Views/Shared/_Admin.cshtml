@@ -7,25 +7,50 @@
 
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link href="~/lib/fontawesome-free-5.13.0-web/css/all.min.css" rel="stylesheet" />
+        <script src="~/lib/jquery/jquery.min.js"></script>
+        <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+        <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
     </environment>
     <environment exclude="Development">
-
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
               asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute"
+              asp-suppress-fallback-integrity="true"
               crossorigin="anonymous"
               integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"
+              asp-fallback-href="~/lib/fontawesome-free-5.13.0-web/css/all.min.css"
+              asp-fallback-test-class="fab" asp-fallback-test-property="font-style" asp-fallback-test-value="normal"
+              asp-suppress-fallback-integrity="true"
+              integrity="sha512-L7MWcK7FNPcwNqnLdZq86lTHYLdQqZaz5YcAgE+5cnGmlw8JT03QB2+oxL100UeB6RlzZLUxCGSS4/++mNZdxw=="
+              crossorigin="anonymous" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.0/jquery.min.js"
+                asp-fallback-src="~/lib/jquery/jquery.min.js"
+                asp-fallback-test="window.jQuery"
+                asp-suppress-fallback-integrity="true"
+                integrity="sha512-suUtSPkqYmFd5Ls30Nz6bjDX+TCcfEzhFfqjijfdggsaFZoylvTj+2odBzshs0TCwYrYZhQeCgHgJEkncb2YVQ=="
+                crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"
+                asp-fallback-src="~/lib/jquery-validation/dist/jquery.validate.min.js"
+                asp-fallback-test="window.jQuery && window.jQuery.validator"
+                asp-suppress-fallback-integrity="true"
+                integrity="sha512-O/nUTF5mdFkhEoQHFn9N5wmgYyW323JO6v8kr6ltSRKriZyTr/8417taVWeabVS4iONGk2V444QD0P2cwhuTkg=="
+                crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.11/jquery.validate.unobtrusive.js"
+                asp-fallback-src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"
+                asp-fallback-test="window.jQuery && window.jQuery.validator && window.jQuery.validator.unobtrusive"
+                asp-suppress-fallback-integrity="true"
+                integrity="sha512-Sw6xGAALk16gIMo01Nzur7z1lrF5DLbIy/cd9JiBy4yvcQsXwEnJRMHtTg2/OIO76WGv4C1yR+mCUkOtENKDTA=="
+                crossorigin="anonymous"></script>
     </environment>
 
-    <script src="~/lib/jquery/jquery.min.js"></script>
-    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
-    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Libre+Baskerville&family=Roboto:wght@500&display=swap"
           rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet" />
-    <link href="~/lib/fontawesome-free-5.13.0-web/css/all.min.css" rel="stylesheet" />
-    <script src="~/lib/fontawesome-free-5.13.0-web/js/all.min.js"></script>
+
     <link rel="stylesheet" href="~/css/site.css" />
     <link href="~/css/admin.css" rel="stylesheet" />
 </head>
@@ -37,7 +62,7 @@
         <nav id="sidebar" class="sidebar-wrapper">
             <div class="sidebar-content">
                 <div class="sidebar-brand">
-                    <a asp-controller="Home" asp-action="Index">北京聚盈科技有限公司</a>
+                    <a asp-controller="Home" asp-action="Index" id="companyName">北京聚盈科技有限公司</a>
                     <div id="close-sidebar">
                         <i class="fas fa-times"></i>
                     </div>
@@ -53,64 +78,96 @@
 
                         @if (User.IsInRole("Super Admin"))
                         {
-                            <span class="user-role"> Administrator </span>
+                            <span class="user-role">
+                                管理员
+                            </span>
                         }
                         else if (User.IsInRole("Admin"))
                         {
-                            <span class="user-role"> Admin </span>
+                            <span class="user-role">
+                                管理员
+                            </span>
                         }
                         else
                         {
-                            <span class="user-role"> User </span>
+                            <span class="user-role"> 用户 </span>
                         }
                         <span class="user-status">
                             <i class="fa fa-circle text-success"></i>
-                            <span>Online</span>
+                            <span>线上</span>
                         </span>
                     </div>
                 </div>
-                <!-- sidebar-header  -->
-                <div class="sidebar-search">
-                    <div>
-                        <form id="search-form" class="input-group" method="get" asp-controller="Details" asp-action="Details">
-                            <input type="text" name="name" required min="1" class="form-control search-menu" placeholder="Search Company">
-                            <div class="input-group-append">
-                                <button class="input-group-text" type="submit">
-                                    <i class="fa fa-search" aria-hidden="true"></i>
-                                </button>
-                            </div>
-                        </form>
-                        <script>
-                            document.getElementById("search-form").onsubmit = function (e) {
-                                if (e.target.name.value.length == 0) {
-                                    e.preventDefault();
+                @if (User.IsInRole("Super Admin"))
+                {
+
+                    <!-- sidebar-header  -->
+                    <div class="sidebar-search">
+                        <div>
+                            <form id="search-form" class="input-group" method="get" asp-controller="Company" asp-action="Details">
+                                <input type="text" name="name" required min="1" class="form-control search-menu" placeholder="搜索公司">
+                                <div class="input-group-append">
+                                    <button class="input-group-text" type="submit">
+                                        <i class="fa fa-search" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                            </form>
+                            <script>
+                                document.getElementById("search-form").onsubmit = function (e) {
+                                    if (e.target.name.value.length == 0) {
+                                        e.preventDefault();
+                                    }
                                 }
-                            }
-                        </script>
+                            </script>
+                        </div>
                     </div>
-                </div>
+                }
                 <!-- sidebar-search  -->
                 <div class="sidebar-menu">
                     <ul>
                         <li class="header-menu">
-                            <span>General</span>
+                            <span>一般</span>
                         </li>
                         <li class="sidebar-dropdown">
                             <a href="#">
                                 <i class="fa fa-tachometer-alt"></i>
-                                <span>Dashboard</span>
-                                <span class="badge badge-pill badge-warning">New</span>
+                                <span>
+                                    仪表板
+                                </span>
+                                <span class="badge badge-pill badge-warning">
+                                    新
+                                </span>
                             </a>
                             <div class="sidebar-submenu">
                                 <ul>
+                                    @if (User.IsInRole("Admin"))
+                                    {
+                                        <li>
+                                            <a asp-controller="Company" asp-action="Details">
+                                                家
+                                                <span class="badge badge-pill badge-success">
+                                                    专业版
+                                                </span>
+                                            </a>
+                                        </li>
+                                    }
+                                    else
+                                    {
+                                        <li>
+                                            <a asp-controller="Home" asp-action="Index">
+                                                用户主页
+
+                                                <span class="badge badge-pill badge-success">
+                                                    专业版
+                                                </span>
+                                            </a>
+                                        </li>
+                                    }
+
                                     <li>
-                                        <a asp-controller="Home" asp-action="Index">
-                                            User Home
-                                            <span class="badge badge-pill badge-success">Pro</span>
+                                        <a asp-controller="Administration" asp-action="admin">
+                                            管理员主页
                                         </a>
-                                    </li>
-                                    <li>
-                                        <a asp-controller="Administration" asp-action="admin">Admin Home</a>
                                     </li>
                                 </ul>
                             </div>
@@ -118,7 +175,9 @@
                         <li class="sidebar-dropdown">
                             <a href="#">
                                 <i class="fa fa-shopping-cart"></i>
-                                <span>Companies</span>
+                                <span>
+                                    公司介绍
+                                </span>
                             </a>
                             <div class="sidebar-submenu">
                                 <ul>
@@ -126,18 +185,19 @@
                                     {
                                         <li>
                                             <a asp-controller="Company" asp-action="Index">
-                                                Details
+                                                细节
                                             </a>
                                         </li>
                                     }
                                     else
                                     {
                                         <li>
-                                            <a asp-controller="Company" asp-action="Details">Details</a>
+                                            <a asp-controller="Company" asp-action="Details">细节</a>
                                         </li>
                                         <li>
                                             <a asp-controller="Company" asp-action="Edit">
-                                                Update Company
+                                                更新公司
+
                                             </a>
                                         </li>
 
@@ -149,7 +209,9 @@
                         <li class="sidebar-dropdown">
                             <a href="#">
                                 <i class="far fa-money-bill-alt"></i>
-                                <span>Categories</span>
+                                <span>
+                                    分类目录
+                                </span>
                             </a>
                             <div class="sidebar-submenu">
                                 <ul>
@@ -157,19 +219,21 @@
                                     {
                                         <li>
                                             <a asp-controller="Category" asp-action="Categories">
-                                                Details
+                                                细节
                                             </a>
                                         </li>
                                         <li>
                                             <a asp-controller="Category" asp-action="Create">
-                                                Create
+                                                创建
                                             </a>
                                         </li>
                                     }
                                     @if (User.IsInRole("Super Admin"))
                                     {
                                         <li>
-                                            <a asp-controller="Category" asp-action="Index">Categories</a>
+                                            <a asp-controller="Category" asp-action="Index">
+                                                分类目录
+                                            </a>
                                         </li>
                                     }
 
@@ -179,7 +243,9 @@
                         <li class="sidebar-dropdown">
                             <a href="#">
                                 <i class="fa fa-shopping-cart"></i>
-                                <span>Products</span>
+                                <span>
+                                    产品展示
+                                </span>
                             </a>
                             <div class="sidebar-submenu">
                                 <ul>
@@ -187,29 +253,33 @@
                                     {
                                         <li>
                                             <a asp-controller="Products" asp-action="PremiumProducts">
-                                                Premium Products
+                                                优质产品
+
                                             </a>
                                         </li>
                                         <li>
                                             <a asp-controller="Products" asp-action="Products">
-                                                Details
+                                                细节
                                             </a>
                                         </li>
                                         <li>
                                             <a asp-controller="Products" asp-action="Create">
-                                                Create
+                                                创建
                                             </a>
                                         </li>
                                         <li>
                                             <a asp-controller="Products" asp-action="ListProducts">
-                                                List Products
+                                                列出产品
+
                                             </a>
                                         </li>
                                     }
                                     @if (User.IsInRole("Super Admin"))
                                     {
                                         <li>
-                                            <a asp-controller="Products" asp-action="Index">Products</a>
+                                            <a asp-controller="Products" asp-action="Index">
+                                                产品展示
+                                            </a>
                                         </li>
 
                                     }
@@ -220,24 +290,30 @@
                         <li class="sidebar-dropdown">
                             <a href="#">
                                 <i class="far fa-copyright"></i>
-                                <span>Account</span>
+                                <span>帐户</span>
                             </a>
                             <div class="sidebar-submenu">
                                 <ul>
 
                                     <li>
-                                        <a asp-controller="Account" asp-action="Profile">Profile</a>
+                                        <a asp-controller="Account" asp-action="Profile">
+                                            个人资料
+                                        </a>
                                     </li>
                                     <li>
-                                        <a asp-controller="Administration" asp-action="UsersStats">Visit Stats</a>
+                                        <a asp-controller="Administration" asp-action="UsersStats">
+                                            访问统计
+                                        </a>
                                     </li>
                                     @if (User.IsInRole("Super Admin"))
                                     {
                                         <li>
-                                            <a asp-controller="Account" asp-action="Register">Register</a>
+                                            <a asp-controller="Account" asp-action="Register">寄存器</a>
                                         </li>
                                         <li>
-                                            <a asp-controller="Account" asp-action="ChangePassword">Change Password</a>
+                                            <a asp-controller="Account" asp-action="ChangePassword">
+                                                更改密码
+                                            </a>
                                         </li>
                                     }
                                 </ul>
@@ -246,13 +322,15 @@
                         <li class="sidebar-dropdown">
                             <a href="#">
                                 <i class="far fa-money-bill-alt"></i>
-                                <span>Contacts</span>
+                                <span>
+                                    联络人
+                                </span>
                             </a>
                             <div class="sidebar-submenu">
                                 <ul>
                                     <li>
                                         <a asp-controller="Administration" asp-action="Contacts">
-                                            Contacts
+                                            联络人
                                         </a>
                                     </li>
 
@@ -265,14 +343,14 @@
                         {
 
                             <li class="header-menu">
-                                <span>Extra</span>
+                                <span>额外</span>
                             </li>
                             <li>
                                 <!-- sidebar-header  -->
                                 <div class="sidebar-search">
                                     <div>
                                         <form id="search-form1" class="input-group" method="get" asp-controller="Account" asp-action="Profile">
-                                            <input type="text" name="id" required autocomplete="off" class="form-control search-menu" placeholder="Search User">
+                                            <input type="text" name="id" required autocomplete="off" class="form-control search-menu" placeholder="搜索用户">
                                             <div class="input-group-append">
                                                 <button class="input-group-text" type="submit">
                                                     <i class="fa fa-search" aria-hidden="true"></i>
@@ -293,16 +371,20 @@
                             <li class="sidebar-dropdown">
                                 <a href="#">
                                     <i class="fas fa-user-shield"></i>
-                                    <span>Administration</span>
+                                    <span>行政</span>
                                 </a>
                                 <div class="sidebar-submenu">
                                     <ul>
 
                                         <li>
-                                            <a asp-controller="Administration" asp-action="ListUsers">All Users</a>
+                                            <a asp-controller="Administration" asp-action="ListUsers">
+                                                所有用户
+                                            </a>
                                         </li>
                                         <li>
-                                            <a asp-controller="Administration" asp-action="GetAllRoles">All Roles</a>
+                                            <a asp-controller="Administration" asp-action="GetAllRoles">
+                                                所有角色
+                                            </a>
                                         </li>
 
 
@@ -316,11 +398,11 @@
             </div>
             <!-- sidebar-content  -->
             <div class="sidebar-footer">
-                <a asp-controller="Account" asp-action="Profile" title="Profile">
+                <a asp-controller="Account" asp-action="Profile" title="个人资料">
                     <i class="fas fa-user-circle"></i>
                     <span class="badge-sonar"></span>
                 </a>
-                <a asp-controller="Account" asp-action="Logout" title="Logout">
+                <a asp-controller="Account" asp-action="Logout" title="登出">
                     <i class="fa fa-power-off"></i>
                 </a>
             </div>
@@ -340,13 +422,29 @@
 
 
 
+    <environment include="Development">
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.js"></script>
+        <script src="~/lib/fontawesome-free-5.13.0-web/js/all.min.js"></script>
 
-    
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.js" ></script>
+    </environment>
+    <environment exclude="Development">
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"
+                integrity="sha512-TawcSfIUO8yB0Or8FXEDW2X32Q71ZGAOYVVwe7n3EsoyQb+iMZbodI6RnQ4JDcItNoO3TmwP7/bD89vhQA4zTA=="
+                crossorigin="anonymous"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.js"
+                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.bundle.js"
+                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
+                asp-suppress-fallback-integrity="true"
+                integrity="sha512-mhV+Ge4Zk16rhJNmSHp7CDD4SDmXqjx4TVEM4iovkQMLPaBMELy9b47N43JO/aXsmRd4K0iftGbaNk0Nn0XpBA=="
+                crossorigin="anonymous"></script>
+    </environment>
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script src="~/js/script.js" asp-append-version="true"></script>
 
     <script>
+        let Companyname = null;
         window.onload = async function () {
             //Profile
             const req1 = await fetch('/Home/GetProfile');
@@ -357,6 +455,20 @@
             else {
                 document.querySelector('#userpic img').src = '/Image/emp.jpg';
             }
+
+            //Company Name
+            if (Companyname === null) {
+                const req2 = await fetch('/Home/GetCompanyName');
+                const data2 = await req2.json();
+                if (data2 != null) {
+                    Companyname = data2;
+                    document.querySelector('#companyName').textContent = data2;
+                    document.querySelector('#companyName').href = '/Company/Details/?name=' + data2;
+                }
+            }
+
+
+
         }
     </script>
 </body>

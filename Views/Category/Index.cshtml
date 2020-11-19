@@ -24,13 +24,19 @@
                                         @item.CategoryName
                                     </div>
                                     <div class="card-body">
-                                        <p class="card-text text-center text-dark">Total @item.TotalProducts Products Registered Yet </p>
+                                        <p class="card-text text-center text-dark">
+                                            总 @item.TotalProducts 产品尚未注册
+                                        </p>
                                     </div>
 
                                     <div class="card-footer text-center">
-                                        <a asp-action="Details" asp-route-id="@item.id" class="card-link">Details</a>
-                                        <a asp-controller="Company" asp-action="Details" asp-route-name="@item.CompanyName" class="card-link">Company Details</a>
-                                        <a asp-controller="Products" asp-action="ProductsInCategory" asp-route-categoryId="@item.id" asp-route-name="@item.CompanyName" class="card-link">Products</a>
+                                        <a asp-action="Details" asp-route-id="@item.id" class="card-link">细节</a>
+                                        <a asp-controller="Company" asp-action="Details" asp-route-name="@item.CompanyName" class="card-link">
+                                            公司资料
+                                        </a>
+                                        <a asp-controller="Products" asp-action="ProductsInCategory" asp-route-categoryId="@item.id" asp-route-name="@item.CompanyName" class="card-link">
+                                            产品展示
+                                        </a>
                                     </div>
 
                                 </div>
@@ -44,15 +50,18 @@
                 <div class="d-flex justify-content-center align-items-center">
                     <div class="card">
                         <div class="card-header">
-                            No Category Registered yet
+                            尚未注册类别
+
                         </div>
                         <div class="card-body">
                             <h5 class="card-title">
-                                Use the button below to create a Category
+                                使用下面的按钮创建类别
+
                             </h5>
                             <a class="btn btn-primary" style="width:auto"
                                asp-controller="Category" asp-action="Create">
-                                Add new Category
+                                新增类别
+
                             </a>
                         </div>
                     </div>
@@ -67,15 +76,15 @@
         <div class="d-flex justify-content-center align-items-center">
             <div class="card my-5">
                 <div class="card-header">
-                    No Category Registered yet
+                    尚未注册类别
                 </div>
                 <div class="card-body">
                     <h5 class="card-title">
-                        Use the button below to create a Category
+                        使用下面的按钮创建类别
                     </h5>
                     <a class="btn btn-primary" style="width:auto"
                        asp-controller="Category" asp-action="Create">
-                        Add new Category
+                        新增类别
                     </a>
                 </div>
             </div>

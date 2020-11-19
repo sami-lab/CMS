@@ -2,13 +2,19 @@
 
 @{
     ViewData["Title"] = "Create Products";
+    <meta property="og:title"
+          content="Product Registeration "
+          key="og:title" />
+    <meta property="og:url" content="/Products/Create" key="og:url" />
 }
 
 
 <div class="container">
 
     <form asp-action="Create" class="bg-light m-3 p-5" enctype="multipart/form-data">
-        <h2 class="text-primary text-center m-1">Register Product</h2>
+        <h2 class="text-primary text-center m-1">
+            注册产品
+        </h2>
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="row mx-1">
             <div class="col-6">
@@ -59,17 +65,23 @@
                 <div>
                     <div class="custom-file">
                         <input asp-for="Photos" id="file" multiple class="form-control custom-file-input" />
-                        <label class="custom-file-label">Choose File...</label>
+                        <label class="custom-file-label">
+                            选择文件...
+                        </label>
                     </div>
                 </div>
             </div>
         </div>
         <div class="form-group">
-            <button type="button" onclick="ClearImages()" class="px-2 py-2 btn btn-info">Clear Images</button>
+            <button type="button" onclick="ClearImages()" class="px-2 py-2 btn btn-info">
+                清晰的图像
+            </button>
         </div>
         <div class="col-12 form-group">
-            <input type="submit" value="Create" class="btn btn-primary" />
-            <a asp-action="Products" class="px-2">Back to List</a>
+            <input type="submit" value="创建" class="btn btn-primary" />
+            <a asp-action="Products" class="px-2">
+                返回目录
+            </a>
         </div>
     </form>
 
@@ -116,25 +128,25 @@
             <div class="collapse navbar-collapse " id="navbarSupportedContent">
                 <ul class="navbar-nav  mx-auto">
                     <li class=" px-5 nav-item active">
-                        <a class="text-uppercase text-center font-weight-bold nav-link " href="#">
+                        <a class="text-uppercase text-center font-weight-bold border-bottom nav-link " href="#">
                             Home
                             <span class="sr-only">(current)</span>
                         </a>
                     </li>
                     <li class="nav-item  px-5">
-                        <a class="text-uppercase text-dark text-center font-weight-bold nav-link"
+                        <a class="text-uppercase text-dark text-center font-weight-bold border-bottom nav-link"
                            href="#">
                             Products
                         </a>
                     </li>
                     <li class="nav-item  px-5">
-                        <a class="text-uppercase text-dark text-center font-weight-bold  nav-link"
+                        <a class="text-uppercase text-dark text-center font-weight-bold border-bottom  nav-link"
                            href="#">
                             About Us
                         </a>
                     </li>
                     <li class="nav-item  px-5">
-                        <a class="text-uppercase text-dark text-center font-weight-bold nav-link"
+                        <a class="text-uppercase text-dark text-center font-weight-bold border-bottom nav-link"
                            href="#">
                             Contact Us
                         </a>
@@ -207,7 +219,7 @@
 @section Scripts {
 
     <link href="~/lib/summernote/summernote.min.css" rel="stylesheet" />
-    <script src="~/lib/summernote/summernote.min.js" ></script>
+    <script src="~/lib/summernote/summernote.min.js"></script>
     <link href="~/css/company.css" rel="stylesheet" />
     <link href="~/css/Product.css" rel="stylesheet" />
     <style>
@@ -330,13 +342,13 @@
             var input = $("#file");
 
             $('#tabs').html(`  <div class="tab-pane active" id="image-1"><img src="http://placekitten.com/400/252" /></div>
-                                                                <div class="tab-pane" id="image-2"><img src="http://placekitten.com/400/252" /></div>
-                                                                <div class="tab-pane" id="image-3"><img src="http://placekitten.com/400/252" /></div>
-                                                                <div class="tab-pane" id="image-4"><img src="http://placekitten.com/400/252" /></div>`)
+                                                                    <div class="tab-pane" id="image-2"><img src="http://placekitten.com/400/252" /></div>
+                                                                    <div class="tab-pane" id="image-3"><img src="http://placekitten.com/400/252" /></div>
+                                                                    <div class="tab-pane" id="image-4"><img src="http://placekitten.com/400/252" /></div>`)
             $('#images').html(`  <li class="active"><a data-target="#image-1" data-toggle="tab"><img src="http://placekitten.com/200/126" /></a></li>
-                                                                <li><a data-target="#image-2" data-toggle="tab"><img src="http://placekitten.com/200/126" /></a></li>
-                                                                <li><a data-target="#image-3" data-toggle="tab"><img src="http://placekitten.com/200/126" /></a></li>
-                                                                <li><a data-target="#image-4" data-toggle="tab"><img src="http://placekitten.com/200/126" /></a></li>`);
+                                                                    <li><a data-target="#image-2" data-toggle="tab"><img src="http://placekitten.com/200/126" /></a></li>
+                                                                    <li><a data-target="#image-3" data-toggle="tab"><img src="http://placekitten.com/200/126" /></a></li>
+                                                                    <li><a data-target="#image-4" data-toggle="tab"><img src="http://placekitten.com/200/126" /></a></li>`);
             $('.custom-file-label').html("Choose File..");
             input.replaceWith(input.val('').clone(true));
         }

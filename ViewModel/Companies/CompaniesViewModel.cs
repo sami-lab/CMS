@@ -18,34 +18,34 @@ namespace WebBuilder.ViewModel.Companies
         [Display(Name = "ID")]
         public int id { get; set; }
 
-        [Display(Name = "Date")]
+        [Display(Name = "日期")]
         [DataType(DataType.Date)]
         public System.DateTime Date { get; set; }
 
         [Required]
-        [Display(Name = "Company Name")]
+        [Display(Name = "公司名")]
         public string CompanyName { get; set; }
         [Required]
-        [Display(Name = "Company Title")]
+        [Display(Name = "公司名称")]
         public string CompanyTitle { get; set; }
         [Required]
-        [Display(Name = "Company Description")]
+        [Display(Name = "公司介绍")]
         public string CompanyDesc { get; set; }
 
-        [Display(Name = "Logo")]
+        [Display(Name = "商标")]
         public string CompanyLogoPath { get; set; } //image
 
      
         [DataType(DataType.Upload)]
-        [Display(Name = "Logo")]
+        [Display(Name = "商标")]
         public IFormFile CompanyLogo { get; set; } //image
 
-        [Display(Name = "Background Image")]
+        [Display(Name = "背景图")]
         public string CompanyBackgorundPath { get; set; } //image
 
       
         [DataType(DataType.Upload)]
-        [Display(Name = "Background Image")]
+        [Display(Name = "背景图")]
         public IFormFile CompanyBackgorund { get; set; } //image
 
         [Display(Name = "Why Choose Us Image")]
@@ -55,24 +55,33 @@ namespace WebBuilder.ViewModel.Companies
         [DataType(DataType.Upload)]
         public IFormFile whyCooseUsImage { get; set; } //image
         [Required]
-        [Display(Name = "Why Choose Us Text")]
+        [Display(Name = "为什么选择我们文字")]
         public string whyCooseUsText { get; set; }
 
         [Required]
-        [Display(Name = "Company Complete Address")]
+        [Display(Name = "公司完整地址")]
         public string CompanyAdd { get; set; }
         [Required]
-        [Display(Name = "Company Phone")]
+        [Display(Name = "公司电话")]
         public string CompanyPhone { get; set; }
         [Required]
         [EmailAddress]
-        [Display(Name = "Company Email")]
+        [Display(Name = "公司电邮")]
         public string CompanyEmail { get; set; }
         
         public string CompanyOwner { get; set; }
-        [Display(Name = "Owner Name")]
+        [Display(Name = "所有者名称")]
         public string CompanyOwnerName { get; set; }
         public string CompanyOwnerImage { get; set; }
+
+        [Display(Name = "Facebook个人资料")]
+        public string FbProfile { get; set; }
+
+        [Display(Name = "Twitter 个人资料")]
+        public string twitterProfile { get; set; }
+
+        [Display(Name = "LinkedIn 个人资料")]
+        public string linkedinProfile { get; set; }
 
         public int TotalCategories { get; set; }
         public int TotalProducts { get; set; }

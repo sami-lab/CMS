@@ -20,5 +20,6 @@ namespace WebBuilder.Data
         List<cities> getCities(int state_id);
 
         Task<string> getProfile();
+        Task<string> getCompanyName(string userId);
     }
 }

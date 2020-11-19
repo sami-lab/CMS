@@ -9,7 +9,7 @@ namespace WebBuilder.ViewModel.Administration
     public class CreateRoleViewmodel
     {
         [Required]
-        [Display(Name = "Role Name")]
+        [Display(Name = "角色名称")]
         public string RoleName { get; set; }
     }
 }

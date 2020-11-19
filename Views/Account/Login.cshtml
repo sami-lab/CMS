@@ -2,11 +2,17 @@
 
 @{
     ViewData["Title"] = "Login";
+    <meta property="og:title"
+          content="现在登录北京巨鹰科技有限公司"
+          key="og:title" />
+    <meta property="og:url" content="/Account/Login" key="og:url" />
 }
 
 <div class="container" id="logreg-forms">
     <div class="social">
-        <h1 class="h3 mb-3 mt-3 font-weight-normal" style="text-align: center"> Sign in</h1>
+        <h1 class="h3 mb-3 mt-3 font-weight-normal" style="text-align: center">
+            登入
+        </h1>
     </div>
     <form class="form-signin" asp-controller="Account" asp-action="Login" method="post">
         <div asp-validation-summary="All" class="text-danger"></div>
@@ -21,7 +27,9 @@
             <span asp-validation-for="Password" class="text-danger"></span>
         </div>
 
-        <button class="btn btn-success btn-block" type="submit"><i class="fas fa-sign-in-alt"></i> Sign in</button>
+        <button class="btn btn-success btn-block" type="submit">
+            <i class="fas fa-sign-in-alt"></i>登入
+        </button>
 
         <hr>
     </form>
@@ -34,5 +42,5 @@
     <link href="~/css/Login.css" rel="stylesheet" />
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 
-    
+
 }

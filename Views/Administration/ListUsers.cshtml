@@ -8,70 +8,99 @@
 }
 
 <div class="container">
-    <h1>All Users</h1>
+    <h1>所有用户</h1>
 
     @if (Model.Any())
     {
         <div class="row">
             <form class="col-6" id="searchForm" asp-controller="Administration" asp-action="Search" method="get">
                 <p>
-                    <label class="custom-control">Find By: </label>
+                    <label class="custom-control">
+                        查找依据:
+                    </label>
                     <select name="searchList" id="searchList" class="form-control mb-1" style="border:1px solid #cccccc">
-                        <option value="">--Select--</option>
-                        <option value="Name">Name</option>
-                        <option value="Email">Email</option>
+                        <option value="">--选择--</option>
+                        <option value="Name">名称</option>
+                        <option value="Email">
+                            电子邮件
+                        </option>
                         <option value="Id">ID</option>
-                        <option value="PhoneNumber">PhoneNumber</option>
-                        <option value="Country">Country</option>
-                        <option value="State">State</option>
-                        <option value="City">City</option>
+                        <option value="PhoneNumber">
+                            电话号码
+                        </option>
+                        <option value="Country">
+                            国家
+                        </option>
+                        <option value="State">
+                            州
+                        </option>
+                        <option value="City">
+                            市
+                        </option>
                     </select>
-                    <input type="text" class="form-control search" autocomplete="off" style="display: none;" id="Name" placeholder="Search By Name" name="FullName">
-                    <input type="text" class="form-control search" autocomplete="off" style="display: none;" id="Email" placeholder="Search By Email" name="Email">
-                    <input type="text" class="form-control search" autocomplete="off" style="display: none;" id="Id" placeholder="Search By Id" name="Id">
-                    <input type="text" class="form-control search" autocomplete="off" style="display: none;" id="PhoneNumber" placeholder="Search By Phone Number" name="PhoneNumber">
-                    <input type="text" class="form-control search" autocomplete="off" style="display: none;" id="Country" placeholder="Search By Phone Number" name="PhoneNumber">
-                    <input type="text" class="form-control search" autocomplete="off" style="display: none;" id="State" placeholder="Search By Phone Number" name="PhoneNumber">
-                    <input type="text" class="form-control search" autocomplete="off" style="display: none;" id="City" placeholder="Search By Phone Number" name="PhoneNumber">
+                    <input type="text" class="form-control search" autocomplete="off" style="display: none;" id="Name" placeholder="按名称搜索" name="FullName">
+                    <input type="text" class="form-control search" autocomplete="off" style="display: none;" id="Email" placeholder="通过电子邮件搜索" name="Email">
+                    <input type="text" class="form-control search" autocomplete="off" style="display: none;" id="Id" placeholder="搜索依据 Id" name="Id">
+                    <input type="text" class="form-control search" autocomplete="off" style="display: none;" id="PhoneNumber" placeholder="通过电话号码搜索" name="PhoneNumber">
+                    <input type="text" class="form-control search" autocomplete="off" style="display: none;" id="Country" placeholder="按国家搜索" name="Country">
+                    <input type="text" class="form-control search" autocomplete="off" style="display: none;" id="State" placeholder="按州搜索" name="State">
+                    <input type="text" class="form-control search" autocomplete="off" style="display: none;" id="City" placeholder="按城市搜索" name="City">
 
-                    <input id="submit" class="btn btn-primary mt-1" disabled type="submit" value="Filter" />
+                    <input id="submit" class="btn btn-primary mt-1" disabled type="submit" value="过滤" />
                 </p>
             </form>
             <form class="col-6" id="sortForm" asp-controller="Administration" asp-action="Sort" method="get">
                 <p>
-                    <label>Sort By: </label>
+                    <label>排序方式: </label>
                     <select name="sortBy" class="form-control mb-1" style="border:1px solid #cccccc">
-                        <option value="Name">Full Name</option>
-                        <option value="Email">Email</option>
+                        <option value="Name">
+                            全名
+                        </option>
+                        <option value="Email">
+                            电子邮件
+                        </option>
                         <option value="Id">ID</option>
-                        <option value="PhoneNumber">Phone Number</option>
-                        <option value="Country">Country</option>
-                        <option value="State">State</option>
-                        <option value="State">City</option>
+                        <option value="PhoneNumber">
+                            电话号码
+                        </option>
+                        <option value="Country">国家</option>
+                        <option value="State">州</option>
+                        <option value="City">
+                            市
+                        </option>
                     </select>
                     <select name="order" class="form-control mb-1" style="border:1px solid #cccccc">
-                        <option value="Asc" selected>Ascending Order</option>
-                        <option value="Des">Descending Order</option>
+                        <option value="Asc" selected>
+                            升序
+                        </option>
+                        <option value="Des">
+                            降序
+                        </option>
                     </select>
-                    <input class="btn btn-primary" type="submit" value="Filter" />
+                    <input class="btn btn-primary" type="submit" value="过滤" />
                 </p>
             </form>
         </div>
 
         if (User.IsInRole("Super Admin"))
         {
-            <a asp-action="Register" asp-controller="Account"
-               class="btn btn-primary mb-3" style="width:auto">
-                Add new user
-            </a>
+        <a asp-action="Register" asp-controller="Account"
+           class="btn btn-primary mb-3" style="width:auto">
+            添加新用户
+
+        </a>
         }
 
         <div class="row">
             <div class="panel panel-primary filterable">
                 <div class="panel-heading rounded">
-                    <h3 class="panel-title font-weight-bold">Users</h3>
+                    <h3 class="panel-title font-weight-bold">
+                        用户数
+                    </h3>
                     <div class="pull-right">
-                        <button class="btn btn-default btn-xs btn-filter"><i class="fas fa-filter"></i> Filter</button>
+                        <button class="btn btn-default btn-xs btn-filter">
+                            <i class="fas fa-filter"></i> 过滤
+                        </button>
                     </div>
                 </div>
                 <table class="table table-responsive ">
@@ -79,6 +108,9 @@
                         <tr class="filters">
                             <th><input type="text" class="form-control" placeholder="@Html.DisplayNameFor(model => model.Name)" disabled></th>
                             <th><input type="text" class="form-control" placeholder="@Html.DisplayNameFor(model => model.Email)" disabled></th>
+                            <th>
+                                访问 今天 / 月
+                            </th>
                             <th><input type="text" class="form-control" placeholder="@Html.DisplayNameFor(model => model.PhoneNumber)" disabled></th>
                             <th><input type="text" class="form-control" placeholder=" @Html.DisplayNameFor(model => model.Address.Country)" disabled></th>
                             <th><input type="text" class="form-control" placeholder=" @Html.DisplayNameFor(model => model.Address.City)" disabled></th>
@@ -96,6 +128,9 @@
                                 @Html.DisplayFor(modelItem => item.Email)
                             </td>
                             <td>
+                                @Html.DisplayFor(modelItem => item.TotaldailyVisits) /  @Html.DisplayFor(modelItem => item.TotalMonthlyVisits)
+                            </td>
+                            <td>
                                 @Html.DisplayFor(modelItem => item.PhoneNumber)
                             </td>
                             <td>
@@ -107,15 +142,15 @@
                             <td>
                                 @if (User.IsInRole("Super Admin"))
                                 {
-                                    <a asp-controller="Account" asp-action="ChangePassword" asp-route-id="@item.Id"><i class="fas fa-key" title="Change Password"></i></a><span>|</span>
-                                    <a asp-controller="Account" asp-action="Profile" asp-route-id="@item.Id"><i class="fas fa-id-badge" title="Details"></i></a><span>|</span>
+                                    <a asp-controller="Account" asp-action="ChangePassword" asp-route-id="@item.Id"><i class="fas fa-key" title="更改密码"></i></a><span>|</span>
+                                    <a asp-controller="Account" asp-action="Profile" asp-route-id="@item.Id"><i class="fas fa-id-badge" title="细节"></i></a><span>|</span>
                                     <a asp-action="Edit" asp-controller="Account"
-                                       asp-route-id="@item.Id"><i class="fas fa-edit" title="Edit"></i></a>
+                                       asp-route-id="@item.Id"><i class="fas fa-edit" title="编辑"></i></a>
                                     @await Html.PartialAsync("~/Views/Shared/Modal.cshtml", item.Id)<span>|</span>
                                     //Should render only if user is admin
-                                    <a asp-controller="Company" asp-action="Create" asp-route-userId="@item.Id"><i class="fas fa-list-alt" title="Update Company"></i></a><span>|</span>
-                                    <a asp-controller="Category" asp-action="categories" asp-route-userId="@item.Id"><i class="fas fa-list-alt" title="Categories"></i></a><span>|</span>
-                                    <a asp-controller="Products" asp-action="Products" asp-route-userId="@item.Id"><i class="fab fa-product-hunt" title="Products"></i></a><span>|</span>
+                                    <a asp-controller="Company" asp-action="Create" asp-route-userId="@item.Id"><i class="fas fa-list-alt" title="更新公司"></i></a><span>|</span>
+                                    <a asp-controller="Category" asp-action="categories" asp-route-userId="@item.Id"><i class="fas fa-list-alt" title="分类目录"></i></a><span>|</span>
+                                    <a asp-controller="Products" asp-action="Products" asp-route-userId="@item.Id"><i class="fab fa-product-hunt" title="产品展示"></i></a><span>|</span>
 
                                 }
 
@@ -132,7 +167,9 @@
                     @if (ViewBag.CurrentPage > 1)
                     {
                         <li class="page-item">
-                            <a class="page-link" asp-controller="Administration" asp-action="ListUsers">First</a>
+                            <a class="page-link" asp-controller="Administration" asp-action="ListUsers">
+                                第一
+                            </a>
                         </li>
                         <li class="page-item">
                             @{ var pageNo = ViewBag.CurrentPage - 1; }
@@ -155,7 +192,7 @@
                             <a class="page-link" asp-controller="Administration" asp-action="ListUsers" asp-route-pageNo="@pageNo">&raquo;</a>
                         </li>
                         <li class="page-item">
-                            <a class="page-link" asp-controller="Administration" asp-action="ListUsers" asp-route-pageNo="@ViewBag.TotalPages">Last</a>
+                            <a class="page-link" asp-controller="Administration" asp-action="ListUsers" asp-route-pageNo="@ViewBag.TotalPages">持续</a>
                         </li>
                     }
                 </ul>
@@ -167,15 +204,18 @@
     {
         <div class="card">
             <div class="card-header">
-                No users created yet
+                尚未创建用户
+
             </div>
             <div class="card-body">
                 <h5 class="card-title">
-                    Use the button below to create a user
+                    使用下面的按钮创建用户
+
                 </h5>
                 <a class="btn btn-primary" style="width:auto"
                    asp-controller="Account" asp-action="Register">
-                    Add new user
+                    添加新用户
+
                 </a>
             </div>
         </div>

@@ -11,15 +11,21 @@
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header ">
-                <h4 class="modal-title">Warning</h4>
+                <h4 class="modal-title">警告</h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body">
                 <form asp-action="Delete" asp-route-id="@Model" method="post">
                     <span>
-                        <span><b>Are you sure you want to delete??</b></span>
-                        <button type="submit" class="btn btn-danger">Yes</button>
-                        <a href="#/" class="btn btn-primary" data-dismiss="modal">No</a>
+                        <span>
+                            <b>
+                                你确定你要删除??
+                            </b>
+                        </span>
+                        <button type="submit" class="btn btn-danger">
+                            是
+                        </button>
+                        <a href="#/" class="btn btn-primary" data-dismiss="modal">没有</a>
                     </span>
                 </form>
             </div>

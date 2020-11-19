@@ -148,17 +148,10 @@ namespace WebBuilder.Data.Repositories
             {
                 return null;
             }
+            var token = await Usermanager.GeneratePasswordResetTokenAsync(user);
             // ChangePasswordAsync changes the user password
-            var result = await Usermanager.ChangePasswordAsync(user,
-                model.CurrentPassword, model.NewPassword);
-
-            // The new password did not meet the complexity rules or
-            // the current password is incorrect. Add these errors to
-            // the ModelState and rerender ChangePassword view
-            if (result.Succeeded)
-            {
-                await Signinmanager.RefreshSignInAsync(user);
-            }
+            var result = await Usermanager.ResetPasswordAsync(user, token, model.NewPassword);
+         
             return result;
         }
 

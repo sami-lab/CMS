@@ -7,7 +7,9 @@
     <div class="col-md-6 border shadow bg-light d-block mx-auto">
         <form method="post" class="p-5">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <h5 class="text-primary text-center">Update Your Category</h5>
+            <h5 class="text-primary text-center">
+                更新类别
+            </h5>
             <div class="form-group">
                 <label asp-for="CategoryName" class="control-label"></label>
                 <input asp-for="CategoryName" class="form-control" />
@@ -15,8 +17,10 @@
             </div>
 
             <div class="form-group">
-                <input type="submit" value="Update" class="btn btn-primary" />
-                <a asp-action="Categories" class="px-2">Back to List</a>
+                <input type="submit" value="更新资料" class="btn btn-primary" />
+                <a asp-action="Categories" class="px-2">
+                    返回目录
+                </a>
             </div>
         </form>
     </div>

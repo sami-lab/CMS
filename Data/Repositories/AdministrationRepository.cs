@@ -156,8 +156,8 @@ namespace WebBuilder.Data.Repositories
                    StreetAddress = user.Address.StreetAddress,
                    id = user.Address.id
                },
-               TotaldailyVisits= user.UserStats.Count(x=> x.When.Date == DateTime.Now.Date),
-               TotalMonthlyVisits= user.UserStats.OrderBy(x => x.When).Count(x => (x.When - DateTime.Now).TotalDays <= 30)
+               TotaldailyVisits= user.UserStats.Where(x=> x.When.Date == DateTime.Now.Date).Sum(x=> x.Count),
+               TotalMonthlyVisits= user.UserStats.OrderBy(x => x.When).Where(x => (x.When - DateTime.Now).TotalDays <= 30).Sum(x=> x.Count)
            }).Skip(skip).Take(limit).ToList();
         }
 

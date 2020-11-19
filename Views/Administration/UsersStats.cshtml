@@ -5,7 +5,9 @@
 }
 
 <div class="container">
-    <h1>All Visits</h1>
+    <h1>
+        所有造访
+    </h1>
 
     @if (Model.Any())
     {
@@ -13,9 +15,13 @@
         <div class="row">
             <div class="panel panel-primary filterable">
                 <div class="panel-heading rounded">
-                    <h3 class="panel-title font-weight-bold">Users</h3>
+                    <h3 class="panel-title font-weight-bold">
+                        用户数
+                    </h3>
                     <div class="pull-right">
-                        <button class="btn btn-default btn-xs btn-filter"><i class="fas fa-filter"></i> Filter</button>
+                        <button class="btn btn-default btn-xs btn-filter">
+                            <i class="fas fa-filter"></i> 过滤
+                        </button>
                     </div>
                 </div>
                 <table class="table table-responsive ">
@@ -60,7 +66,7 @@
                     @if (ViewBag.CurrentPage > 1)
                     {
                         <li class="page-item">
-                            <a class="page-link" asp-controller="Administration" asp-action="UsersStats" asp-route-CompanyName="@ViewBag.CompanyName" >First</a>
+                            <a class="page-link" asp-controller="Administration" asp-action="UsersStats" asp-route-CompanyName="@ViewBag.CompanyName">第一</a>
                         </li>
                         <li class="page-item">
                             @{ var pageNo = ViewBag.CurrentPage - 1; }
@@ -83,7 +89,7 @@
                             <a class="page-link" asp-controller="Administration" asp-action="UsersStats" asp-route-CompanyName="@ViewBag.CompanyName" asp-route-pageNo="@pageNo">&raquo;</a>
                         </li>
                         <li class="page-item">
-                            <a class="page-link" asp-controller="Administration" asp-action="UsersStats" asp-route-CompanyName="@ViewBag.CompanyName" asp-route-pageNo="@ViewBag.TotalPages">Last</a>
+                            <a class="page-link" asp-controller="Administration" asp-action="UsersStats" asp-route-CompanyName="@ViewBag.CompanyName" asp-route-pageNo="@ViewBag.TotalPages">持续</a>
                         </li>
                     }
                 </ul>
@@ -95,7 +101,8 @@
     {
         <div class="card">
             <div class="card-header">
-                No user Visited yet
+                尚无用户访问
+
             </div>
             <div class="card-body">
                

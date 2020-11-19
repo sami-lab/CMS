@@ -14,6 +14,11 @@
         </h5>
     </div>
 
+    @if (ViewBag.CompanyName != null)
+    {
+        <a asp-controller="Company" asp-action="Details" asp-route-name="@ViewBag.CompanyName" class="btn btn-outline-success"
+           style="width:auto">Click here to return to Home Page</a>
+    }
     <a asp-controller="Home" asp-action="index" class="btn btn-outline-success"
        style="width:auto">Click here to return to Home Page</a>
 </div>

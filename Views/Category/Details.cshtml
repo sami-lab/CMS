@@ -1,11 +1,13 @@
 ﻿@model WebBuilder.ViewModel.Categories.CategoriesViewModel
 
 @{
-    ViewData["Title"] = "Categories Details";
+    ViewData["Title"] = "类别详细信息";
 }
 
 <div class="container">
-    <h1>Details</h1>
+    <h1>
+        细节
+    </h1>
 
     <hr />
     <dl class="row">
@@ -33,20 +35,30 @@
     </dl>
 
     <div>
-        @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+        @Html.ActionLink("编辑", "Edit", new { id = Model.id }) |
         @if (User.IsInRole("Admin"))
         {
-            <a asp-controller="Products" asp-action="Create" asp-route-categoryId="@Model.id">Create Products</a> <span>|</span>
-            <a asp-action="Categories">Back to List</a> <span>|</span>
+            <a asp-controller="Products" asp-action="Create" asp-route-categoryId="@Model.id">
+                创建产品
+            </a> <span>|</span>
+            <a asp-action="Categories">
+                返回目录
+            </a> <span>|</span>
         }
         else
         {
-            <a asp-action="Index">Back to List</a> <span>|</span>
+            <a asp-action="Index">
+                返回目录
+            </a> <span>|</span>
         }
         @await Html.PartialAsync("~/Views/Shared/Modal.cshtml", Model.id)<span>|</span>
-        <a asp-controller="Products" asp-action="ProductsInCategory" asp-route-id="@Model.id" asp-route-name="@Model.CompanyName">Products</a> |
+        <a asp-controller="Products" asp-action="ProductsInCategory" asp-route-id="@Model.id" asp-route-name="@Model.CompanyName">
+            产品展示
+        </a> |
 
-        <a asp-controller="Company" asp-action="Details" asp-route-name="@Model.CompanyName">Company</a>
+        <a asp-controller="Company" asp-action="Details" asp-route-name="@Model.CompanyName">
+            公司
+        </a>
 
     </div>
 </div>

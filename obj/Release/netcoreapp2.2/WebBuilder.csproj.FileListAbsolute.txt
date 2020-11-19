@@ -111,7 +111,6 @@ D:\Files and Softwares\ass\backend\WebBuilder\obj\Release\netcoreapp2.2\Razor\Vi
 D:\Files and Softwares\ass\backend\WebBuilder\obj\Release\netcoreapp2.2\Razor\Views\Shared\NotFound.g.cshtml.cs
 D:\Files and Softwares\ass\backend\WebBuilder\obj\Release\netcoreapp2.2\Razor\Views\Shared\ProductNotFound.g.cshtml.cs
 D:\Files and Softwares\ass\backend\WebBuilder\obj\Release\netcoreapp2.2\Razor\Views\Shared\_Admin.g.cshtml.cs
-D:\Files and Softwares\ass\backend\WebBuilder\obj\Release\netcoreapp2.2\Razor\Views\Shared\_CookieConsentPartial.g.cshtml.cs
 D:\Files and Softwares\ass\backend\WebBuilder\obj\Release\netcoreapp2.2\Razor\Views\Shared\_Layout.g.cshtml.cs
 D:\Files and Softwares\ass\backend\WebBuilder\obj\Release\netcoreapp2.2\Razor\Views\Shared\_ValidationScriptsPartial.g.cshtml.cs
 D:\Files and Softwares\ass\backend\WebBuilder\obj\Release\netcoreapp2.2\Razor\Views\_ViewImports.g.cshtml.cs

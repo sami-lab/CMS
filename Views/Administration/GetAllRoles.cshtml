@@ -1,10 +1,12 @@
 ﻿@model IEnumerable<IdentityRole>
 
 @{
-    ViewBag.Title = "All Roles";
+    ViewBag.Title = "所有角色";
 }
 <div class="container">
-    <h1>All Roles</h1>
+    <h1>
+        所有角色
+    </h1>
 
     @if (Model.Any())
     {
@@ -13,7 +15,7 @@
         {
             <div class="card mb-3">
                 <div class="card-header">
-                    Role Id : @role.Id
+                    角色 Id : @role.Id
                 </div>
                 <div class="card-body">
                     <h5 class="card-title">@role.Name</h5>
@@ -25,7 +27,8 @@
     {
         <div class="card">
             <div class="card-header">
-                No roles created yet
+                尚未创建任何角色
+
             </div>
         </div>
     }</div>
